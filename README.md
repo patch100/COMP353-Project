@@ -1,6 +1,9 @@
 # COMP-353 Project
 This is the official repository for the "Team Patrick" group.
 
+If you need any information about git, I suggest reading the following article:
+* http://rogerdudler.github.io/git-guide/
+
 ### Team Members
 1. Patrick Young (27016085)
 2. Jonathan Bingham
