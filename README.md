@@ -6,8 +6,8 @@ If you need any information about git, I suggest reading the following article:
 
 ### Team Members
 1. Patrick Young (27016085)
-2. Jonathan Bingham
-3. Frederick Secco
+2. Jonathan Bingham (27440545)
+3. Frederick Secco (26986080)
 4. Gabriel Hardy (6975739)
 
 ### Folder Hierarchy
