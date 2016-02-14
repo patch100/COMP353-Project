@@ -1,0 +1,77 @@
+set up git
+
+generate public and private ssh keys
+ssh-keygen -t rsa -b 4096 -C "youremail@here.com"
+
+start the agent in the background
+eval "$(ssh-agent -s)"
+
+add your key to the agent
+ssh-add ~/.ssh/id_rsa
+
+copies the key to your clipboard
+pbcopy < ~/.ssh/id_rsa.pub 
+
+go to github.com > setting > ssh > new key > paste
+
+test git setup
+ssh -T git@github.com
+
+----------------------------------------------------------------------
+
+
+On github.com
+
+navigate to the main project and click fork in the top right corner
+when you fork it creates a personal copy of the main project to work on
+this fork is where you will push all your work
+when you are ready to merge your work with the rest of the group, create a Pull request (making sure of course you have selected the correct branch)
+
+Once you have forked the project copy its url making sure you select the ssh url
+
+----------------------------------------------------------------------
+
+On your computer
+
+navigate to the directory you want to work in
+
+create a local copy of the repository by
+git clone [url goes here]
+
+type in your password and what not when prompted
+
+now you have a working copy of the project on your computer
+
+----------------------------------------------------------------------
+
+working with your local copy
+
+when working on a specific task you should create a branch to work on
+this allows you to diverge from the main branch, do your work, then merge it back to the master one
+
+before this will work add an upstream (the main project on github.com that we will sync from)
+i use main to refer to the main project on githum.com, but others may use upstream
+git remote add main [URL TO MAIN PROJECT]
+
+every time you start a new task do:
+1. You have to update your master branch (load your branch, update from main repo, push to your repo)
+  git checkout master
+  git pull --rebase main master
+  git push origin master
+2. From here, you can create your new branch starting from master
+  git checkout -b NEW_BRANCH_NAME
+3. You work, commit
+4. You push to your own repo
+  git push origin NEW_BRANCH_NAME
+5. You rebase master into your branch (let's use the local method)
+  git checkout master
+  git pull --rebase main master
+  git push origin master
+  git checkout NEW_BRANCH_NAME
+  git rebase master
+6. If you rebased anything, your branch on your repos will be invalid
+  git push origin NEW_BRANCH_NAME
+    (This will fail with an history error because of the rebase)
+  git push -f origin NEW_BRANCH_NAME
+7. Verify that everything is still working
+8. Create your PR
