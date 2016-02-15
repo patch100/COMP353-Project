@@ -48,12 +48,12 @@ SELECT c.cName
 From Customer c
 WHERE (
   SELECT COUNT(od.pNumber)
-	FROM Customer c, Shippment s, OrderDetail od
-	WHERE c.cNumber = s.cNumber 
+	FROM Customer cc, Shippment s, OrderDetail od
+	WHERE c.cNumber = s.cNumber
   AND s.oNumber = od.oNumber ) = (SELECT COUNT(*) FROM Product);
 
 # Query 7
 select c.cname, min(o.oQuantity), max(o.oQuantity) 
-from shippment as s join orderdetail as o on s.oNumber = o.oNumber 
-join customer as c on c.cnumber = s.cnumber
+from Shippment as s join OrderDetail as o on s.oNumber = o.oNumber 
+join Customer as c on c.cnumber = s.cnumber
 group by c.cname;
