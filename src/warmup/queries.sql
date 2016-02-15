@@ -45,12 +45,10 @@ WHERE cName not in (
 
 # Query 6
 SELECT c.cName
-From Customer c
-WHERE (
-  SELECT COUNT(od.pNumber)
-	FROM Customer cc, Shippment s, OrderDetail od
-	WHERE c.cNumber = s.cNumber
-  AND s.oNumber = od.oNumber ) = (SELECT COUNT(*) FROM Product);
+FROM Customer c, Shippment s, OrderDetail od
+WHERE c.cNumber = s.cNumber AND 
+  s.oNumber = od.oNumber
+GROUP BY c.cName HAVING COUNT(DISTINCT od.pNumber) >= (SELECT COUNT(*) FROM Product);
 
 # Query 7
 select c.cname, min(o.oQuantity), max(o.oQuantity) 
