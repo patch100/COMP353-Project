@@ -1,23 +1,18 @@
-# COMP-353 Project
-This is the official repository for the "Team Patrick" group.
+# Slim Framework 3 Skeleton Application
 
-If you need any information about git, I suggest reading the following article:
-* http://rogerdudler.github.io/git-guide/
+Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
 
-### Team Members
-1. Patrick Young (27016085)
-2. Jonathan Bingham (27440545)
-3. Frederick Secco (26986080)
-4. Gabriel Hardy (6975739)
+This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
 
-### Folder Hierarchy
-* src (where source files go)
-* main_app (main application folder)
-* doc
-* tools
-* testing (unit and integration)
+## Install the Application
 
-### Technologies Used
-* PHP5
-* SQL3
-* Apache2
+Run this command from the directory in which you want to install your new Slim Framework application.
+
+    php composer.phar create-project slim/slim-skeleton [my-app-name]
+
+Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+
+* Point your virtual host document root to your new application's `public/` directory.
+* Ensure `logs/` is web writeable.
+
+That's it! Now go build something cool.
