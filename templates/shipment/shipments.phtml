@@ -4,27 +4,27 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
-<h1>Customers</h1>
+<h1>Dependants</h1>
 
-<p><a href="<?=$router->pathFor('customer-new')?>">Add New Customer</a></p>
+<a href="/index.php/dependant/new">Add New Dependant</a>
 
 <table class="pure-table">
     <tr>
         <th>Name</th>
-        <th>Address</th>
-        <th>Phone Number</th>
+        <th>SIN</th>
+        <th>DOB</th>
         <th>Actions</th>
     </tr>
 
-<?php foreach($data['customers'] as $customer): ?>
+<?php foreach($data['dependants'] as $dependant): ?>
 
     <tr>
-        <td><?=$customer->getName() ?></td>
-        <td><?=$customer->getAddress() ?></td>
-        <td><?=$customer->getPhoneNumber() ?> ...</td>
+        <td><?=$dependant->getName() ?></td>
+        <td><?=$dependant->getSin() ?></td>
+        <td><?=$dependant->getDob() ?></td>
         <td>
-            <a href="<?=$router->pathFor('customer-edit', ['id' => $customer->getId()])?>">Edit</a>
-            <a href="<?=$router->pathFor('customer-delete', ['id' => $customer->getId()])?>">Delete</a>
+            <a href="/index.php/dependant/<?php echo $dependant->getId(); ?>/edit">Edit</a>
+            <a href="/index.php/dependant/<?php echo $dependant->getId(); ?>/delete">Delete</a>
         </td>
     </tr>
 

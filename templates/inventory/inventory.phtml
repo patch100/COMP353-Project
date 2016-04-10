@@ -4,31 +4,31 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
-<h1>New Customer</h1>
+<h1>Dependants</h1>
 
-<form class="pure-form" method="post" action="/ticket/new">
-    <label for="title">Title</label>
-    <input name="title" id="title" type="text" size="60" /><br />
+<a href="/index.php/dependant/new">Add New Dependant</a>
 
-    <label for="description">Description</label>
-    <textarea name="description" id="description" rows="6" cols="80"></textarea><br />
+<table class="pure-table">
+    <tr>
+        <th>Name</th>
+        <th>SIN</th>
+        <th>DOB</th>
+        <th>Actions</th>
+    </tr>
 
-    <label for="component">Component</label>
-    <select name="component">
-        <option value=""></option>
-<?php
-if($data['components'] && is_array($data['components'])): 
-    foreach($data['components'] as $component): ?>
+<?php foreach($data['dependants'] as $dependant): ?>
 
-        <option value=<?=$component->getId()?>><?=$component->getName()?></option>
-<?php
-    endforeach;
-endif;
-?>
-    </select><br />
+    <tr>
+        <td><?=$dependant->getName() ?></td>
+        <td><?=$dependant->getSin() ?></td>
+        <td><?=$dependant->getDob() ?></td>
+        <td>
+            <a href="/index.php/dependant/<?php echo $dependant->getId(); ?>/edit">Edit</a>
+            <a href="/index.php/dependant/<?php echo $dependant->getId(); ?>/delete">Delete</a>
+        </td>
+    </tr>
 
-    <input type="submit" class="pure-button" value="Create" />
-</form>
-
+<?php endforeach; ?>
+</table>
 </body>
 </html>
