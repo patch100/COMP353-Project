@@ -6,7 +6,7 @@
 <body>
 <h1>Customers</h1>
 
-<a href="/index.php/customer/new">Add New Customer</a>
+<p><a href="<?=$router->pathFor('customer-new')?>">Add New Customer</a></p>
 
 <table class="pure-table">
     <tr>
@@ -21,10 +21,10 @@
     <tr>
         <td><?=$customer->getName() ?></td>
         <td><?=$customer->getAddress() ?></td>
-        <td><?=$customer->getPhoneNumber() ?></td>
+        <td><?=$customer->getPhoneNumber() ?> ...</td>
         <td>
-            <a href="/index.php/customer/<?php echo $customer->getId(); ?>/edit">Edit</a>
-            <a href="/index.php/customer/<?php echo $customer->getId(); ?>/delete">Delete</a>
+            <a href="<?=$router->pathFor('customer-edit', ['id' => $customer->getId()])?>">Edit</a>
+            <a href="<?=$router->pathFor('customer-delete', ['id' => $customer->getId()])?>">Delete</a>
         </td>
     </tr>
 

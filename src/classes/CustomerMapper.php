@@ -15,7 +15,7 @@ class CustomerMapper extends Mapper
         //    $results[] = new CustomerEntity($row);
         //}
         $dummy = [];
-        $results[] = new CustomerEntity($dummy)
+        $results[] = new CustomerEntity($dummy);
 
         return $results;
     }
@@ -35,7 +35,7 @@ class CustomerMapper extends Mapper
         //    return new CustomerEntity($stmt->fetch());
         //}
         $dummy = [];
-        return new CustomerEntity($dummy) 
+        return new CustomerEntity($dummy);
     }
 
     /**
@@ -54,6 +54,23 @@ class CustomerMapper extends Mapper
         ]);
         if(!$result) {
             throw new Exception("could not save record");
+        }
+    }
+
+        /**
+     * Delete a customer
+     *
+     * @param CustomerEntity the customer object
+     */
+    public function delete(CustomerEntity $customer) {
+        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
+        $sql = "DELETE FROM customers WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "id" => $customer->getId()
+        ]);
+        if(!$result) {
+            throw new Exception("could not delete record");
         }
     }
 }

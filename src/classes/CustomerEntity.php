@@ -38,7 +38,7 @@ class CustomerEntity
         return $this->address;
     }
 
-    public function getPhone() {
+    public function getPhoneNumber() {
         return $this->phone;
     }
 

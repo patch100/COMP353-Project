@@ -14,7 +14,14 @@ return [
             'path' => __DIR__ . '/../logs/app.log',
         ],
 
-        //db settings
+        // Dev db settings
+        // 'db' => [
+        //     'host' => 'localhost',
+        //     'user' => 'root',
+        //     'pass' => 'root',
+        //     'dbname' => 'nmc353_4',
+        // ],
+        //Production db settings
         'db' => [
             'host' => 'nmc353_4.encs.concordia.ca',
             'user' => 'nmc353_4',

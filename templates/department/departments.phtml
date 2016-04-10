@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
-<h1>Customers</h1>
+<h1>Departments</h1>
 
-<a href="/index.php/customer/new">Add New Customer</a>
+<p><a href="<?=$router->pathFor('customer-new')?>">Add New Department</a></p>
 
 <table class="pure-table">
     <tr>
@@ -21,10 +21,10 @@
     <tr>
         <td><?=$customer->getName() ?></td>
         <td><?=$customer->getAddress() ?></td>
-        <td><?=$customer->getPhoneNumber() ?></td>
+        <td><?=$customer->getPhoneNumber() ?> ...</td>
         <td>
-            <a href="/index.php/customer/<?php echo $customer->getId(); ?>/edit">Edit</a>
-            <a href="/index.php/customer/<?php echo $customer->getId(); ?>/delete">Delete</a>
+            <a href="<?=$router->pathFor('department-edit', ['id' => $customer->getId()])?>">Edit</a>
+            <a href="<?=$router->pathFor('department-delete', ['id' => $customer->getId()])?>">Delete</a>
         </td>
     </tr>
 
