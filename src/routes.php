@@ -304,15 +304,17 @@ $app->post('/dependant/{id}/delete', function ($request, $response, $args) {
 // Employees
 $app->get('/employees', function ($request, $response, $args) {
   $this->logger->info("Employees page");
-  $mapper = new EmployeeMapper($this->db);
-  $employees = $mapper->getEmployees();
+  $employee_mapper = new EmployeeMapper($this->db);
+  $employees = $employee_mapper->getEmployees();
   return $this->renderer->render($response, 'employee/employees.phtml', [$args, "employees" => $employees]);
 });
 
 // New Employee
 $app->get('/employee/new', function ($request, $response, $args) {
   $this->logger->info("Creating new employee");
-  return $this->renderer->render($response, 'employee/employee.phtml', $args);
+  $dependant_mapper = new DependantMapper($this->db);
+  $dependants = $dependant_mapper->getDependants();
+  return $this->renderer->render($response, 'employee/employee.phtml', [$args, "dependants" => $dependants]);
 });
 
 // New Employee POST
