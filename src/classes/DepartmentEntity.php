@@ -1,5 +1,5 @@
 <?php
-class CustomerEntity
+class DepartmentEntity
 {
     protected $name;
     protected $room;

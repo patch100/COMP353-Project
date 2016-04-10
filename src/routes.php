@@ -100,8 +100,10 @@ $app->post('/department/new', function (Request $request, Response $response) {
     $data = [];
     // TODO: SET CORRECT PARAMS
     $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $data['room'] = filter_var($data['room'], FILTER_SANITIZE_STRING);
+    $data['fax'] = filter_var($data['fax'], FILTER_SANITIZE_STRING);
+    $data['phoneOne'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['phoneTwo'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
 
     $department = new DepartmentEntity($data);
     $mapper = new DepartmentMapper($this->db);
@@ -127,14 +129,18 @@ $app->post('/department/edit', function (Request $request, Response $response) {
     // TODO: SET CORRECT PARAMS
     $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
     $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $data['room'] = filter_var($data['room'], FILTER_SANITIZE_STRING);
+    $data['fax'] = filter_var($data['fax'], FILTER_SANITIZE_STRING);
+    $data['phoneOne'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['phoneTwo'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
 
     $mapper = new DepartmentMapper($this->db);
     $department = $mapper->getDepartmentById($data['id']);
     $department->setName($data['name']);
-    $department->setAddress($data['address']);
-    $department->setPhoneNumber($data['phone']);
+    $department->setRoom($data['room']);
+    $department->setFax($data['fax']);
+    $department->setPhoneOne($data['phoneOne']);
+    $department->setPhoneTwo($data['phoneTwo']);
     $mapper->save($department);
     $response = $response->withRedirect("/departments");
     return $response;
@@ -171,9 +177,9 @@ $app->post('/order/new', function (Request $request, Response $response) {
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $data['total'] = filter_var($data['total'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($data['date'], FILTER_SANITIZE_STRING);
+    $data['method'] = filter_var($data['method'], FILTER_SANITIZE_STRING);
 
     $order = new OrderEntity($data);
     $mapper = new OrderMapper($this->db);
@@ -198,15 +204,15 @@ $app->post('/order/edit', function (Request $request, Response $response) {
     $data = [];
     // TODO: SET CORRECT PARAMS
     $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $data['total'] = filter_var($data['total'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($data['date'], FILTER_SANITIZE_STRING);
+    $data['method'] = filter_var($data['method'], FILTER_SANITIZE_STRING);
 
     $mapper = new OrderMapper($this->db);
     $order = $mapper->getOrderById($data['id']);
-    $order->setName($data['name']);
-    $order->setAddress($data['address']);
-    $order->setPhoneNumber($data['phone']);
+    $order->setTotal( $data['total']);
+    $order->setDate($data['date']);
+    $order->setMethod($data['method']);
     $mapper->save($order);
     $response = $response->withRedirect("/orders");
     return $response;
@@ -221,3 +227,77 @@ $app->post('/order/{id}/delete', function ($request, $response, $args) {
   $mapper->delete($order);
   return $this->renderer->render($response, 'order/orders.phtml', $args);
 });
+
+/**********************DEPENDANTS**********************/
+// Dependants
+$app->get('/dependants', function ($request, $response, $args) {
+  $this->logger->info("Dependants page");
+  $mapper = new DependantMapper($this->db);
+  $dependants = $mapper->getDependants();
+  return $this->renderer->render($response, 'dependant/dependants.phtml', [$args, "dependants" => $dependants]);
+});
+
+// New Dependants
+$app->get('/dependant/new', function ($request, $response, $args) {
+  $this->logger->info("Creating new dependant");
+  return $this->renderer->render($response, 'dependant/dependant.phtml', $args);
+});
+
+// New Dependant POST
+$app->post('/dependant/new', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
+
+    $dependant = new DependantEntity($data);
+    $mapper = new DependantMapper($this->db);
+    $mapper->save($dependant);
+    $response = $response->withRedirect("/dependants");
+    return $response;
+});
+
+//Edit Dependant GET
+$app->get('/dependant/{id}/edit', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new DependantMapper($this->db);
+  $dependant = $mapper->getDependantById($id);
+  $this->logger->info("Edit Dependant " . $id);
+  return $this->renderer->render($response, 'dependant/edit_dependant.phtml', [$args, "dependant" => $dependant]);
+});
+
+// EDIT Dependant POST
+$app->post('/dependant/edit', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
+
+    $mapper = new DependantMapper($this->db);
+    $dependant = $mapper->getDependantById($data['id']);
+    $dependant->setName( $data['name']);
+    $dependant->setSin($data['sin']);
+    $dependant->setDob($data['dob']);
+    $mapper->save($dependant);
+    $response = $response->withRedirect("/dependants");
+    return $response;
+});
+
+// Delete Dependant
+$app->post('/dependant/{id}/delete', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new DependantMapper($this->db);
+  $dependant = $mapper->getDependantById($id);
+  $this->logger->info("Deleting dependant " . $id);
+  $mapper->delete($dependant);
+  return $this->renderer->render($response, 'dependant/dependants.phtml', $args);
+});
+
+/**********************DEPENDANTS**********************/
