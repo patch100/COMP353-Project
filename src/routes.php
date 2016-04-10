@@ -237,7 +237,7 @@ $app->get('/dependants', function ($request, $response, $args) {
   return $this->renderer->render($response, 'dependant/dependants.phtml', [$args, "dependants" => $dependants]);
 });
 
-// New Dependants
+// New Dependant
 $app->get('/dependant/new', function ($request, $response, $args) {
   $this->logger->info("Creating new dependant");
   return $this->renderer->render($response, 'dependant/dependant.phtml', $args);
@@ -300,4 +300,82 @@ $app->post('/dependant/{id}/delete', function ($request, $response, $args) {
   return $this->renderer->render($response, 'dependant/dependants.phtml', $args);
 });
 
-/**********************DEPENDANTS**********************/
+/**********************EMPLOYEE**********************/
+// Employees
+$app->get('/employees', function ($request, $response, $args) {
+  $this->logger->info("Employees page");
+  $mapper = new EmployeeMapper($this->db);
+  $employees = $mapper->getEmployees();
+  return $this->renderer->render($response, 'employee/employees.phtml', [$args, "employees" => $employees]);
+});
+
+// New Employee
+$app->get('/employee/new', function ($request, $response, $args) {
+  $this->logger->info("Creating new employee");
+  return $this->renderer->render($response, 'employee/employee.phtml', $args);
+});
+
+// New Employee POST
+$app->post('/employee/new', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
+    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
+    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $data['position'] = filter_var($data['position'], FILTER_SANITIZE_STRING);
+
+    $employee = new EmployeeEntity($data);
+    $mapper = new EmployeeMapper($this->db);
+    $mapper->save($employee);
+    $response = $response->withRedirect("/employees");
+    return $response;
+});
+
+//Edit Employee GET
+$app->get('/employee/{id}/edit', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new EmployeeMapper($this->db);
+  $employee = $mapper->getEmployeeById($id);
+  $this->logger->info("Edit Employee " . $id);
+  return $this->renderer->render($response, 'employee/edit_employee.phtml', [$args, "employee" => $employee]);
+});
+
+// EDIT Employee POST
+$app->post('/employee/edit', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
+    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
+    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $data['position'] = filter_var($data['position'], FILTER_SANITIZE_STRING);
+
+    $mapper = new EmployeeMapper($this->db);
+    $employee = $mapper->getEmployeeById($data['id']);
+    $employee->setName( $data['name']);
+    $employee->setSin($data['sin']);
+    $employee->setDob($data['dob']);
+    $employee->setAddress($data['address']);
+    $employee->setPhone($data['phone']);
+    $employee->setPosition($data['position']);
+    $mapper->save($employee);
+    $response = $response->withRedirect("/employees");
+    return $response;
+});
+
+// Delete Employee
+$app->post('/employee/{id}/delete', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new EmployeeMapper($this->db);
+  $employee = $mapper->getEmployeeById($id);
+  $this->logger->info("Deleting employee " . $id);
+  $mapper->delete($employee);
+  return $this->renderer->render($response, 'employee/employees.phtml', $args);
+});
