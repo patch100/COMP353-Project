@@ -4,30 +4,23 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
-<h1>New Department</h1>
+<h1>New department</h1>
 
-<form class="pure-form" method="post" action="/ticket/new">
-    <label for="title">Title</label>
-    <input name="title" id="title" type="text" size="60" /><br />
+<form class="pure-form" method="post" action="/index.php/department/new">
+    <label for="name">Name</label>
+    <input name="name" id="name" type="text" size="60" /><br />
 
-    <label for="description">Description</label>
-    <textarea name="description" id="description" rows="6" cols="80"></textarea><br />
+    <label for="room">Room Number</label>
+    <input name="room" id="room" type="text" size="60" /><br />
+    
+    <label for="fax">Fax</label>
+    <input name="fax" id="fax" type="text" size="60" /><br />
 
-    <label for="component">Component</label>
-    <select name="component">
-        <option value=""></option>
-<?php
-if($data['components'] && is_array($data['components'])): 
-    foreach($data['components'] as $component): ?>
+    <label for="phoneOne">Phone 1</label>
+    <input name="phoneOne" id="phoneOne" type="text" size="60" v/><br />
 
-        <option value=<?=$component->getId()?>><?=$component->getName()?></option>
-<?php
-    endforeach;
-endif;
-?>
-    </select><br />
-
-    <input type="submit" class="pure-button" value="Create" />
+    <label for="phoneTwo">Phone 2</label>
+    <input name="phoneTwo" id="phoneTwo" type="text" size="60" /><br />
 </form>
 
 </body>

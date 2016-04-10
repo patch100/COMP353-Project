@@ -6,7 +6,7 @@
 <body>
 <h1>Departments</h1>
 
-<p><a href="<?=$router->pathFor('customer-new')?>">Add New Department</a></p>
+<a href="/index.php/department/new">Add New Department</a>
 
 <table class="pure-table">
     <tr>
@@ -16,15 +16,17 @@
         <th>Actions</th>
     </tr>
 
-<?php foreach($data['customers'] as $customer): ?>
+<?php foreach($data['department'] as $department): ?>
 
     <tr>
-        <td><?=$customer->getName() ?></td>
-        <td><?=$customer->getAddress() ?></td>
-        <td><?=$customer->getPhoneNumber() ?> ...</td>
+        <td><?=$department->getName() ?></td>
+        <td><?=$department->getRoom() ?></td>
+        <td><?=$department->getFax() ?></td>
+        <td><?=$department->getPhoneOne() ?></td>
+        <td><?=$department->getPhoneTwo() ?></td>
         <td>
-            <a href="<?=$router->pathFor('department-edit', ['id' => $customer->getId()])?>">Edit</a>
-            <a href="<?=$router->pathFor('department-delete', ['id' => $customer->getId()])?>">Delete</a>
+            <a href="/index.php/department/<?php echo $department->getId(); ?>/edit">Edit</a>
+            <a href="/index.php/department/<?php echo $department->getId(); ?>/delete">Delete</a>
         </td>
     </tr>
 

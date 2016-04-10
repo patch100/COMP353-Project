@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>COMP 353 Database Project</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+<body>
+<h1>Edit Department</h1>
+<?php $department = $data['department'] ?>
+<form class="pure-form" method="post" action="/index.php/department/edit">
+    <input type="hidden" name="id" value="<?php echo $department->getId(); ?>"/>
+    <label for="name">Name</label>
+    <input name="name" id="name" type="text" size="60" value="<?php echo $department->getName(); ?>"/><br />
+
+    <label for="room">Room Number</label>
+    <input name="room" id="room" type="text" size="60" value="<?php echo $customer->getRoom(); ?>"/><br />
+    
+    <label for="fax">Fax</label>
+    <input name="fax" id="fax" type="text" size="60" value="<?php echo $customer->getFax(); ?>"/><br />
+
+    <label for="phoneOne">Phone 1</label>
+    <input name="phoneOne" id="phoneOne" type="text" size="60" value="<?php echo $customer->getPhoneOne(); ?>"/><br />
+
+    <label for="phoneTwo">Phone 2</label>
+    <input name="phoneTwo" id="phoneTwo" type="text" size="60" value="<?php echo $customer->getPhoneTwo(); ?>"/><br />
+
+    <input type="submit" class="pure-button" value="Create" />
+</form>
+
+</body>
+</html>

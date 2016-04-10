@@ -2,10 +2,10 @@
 class CustomerEntity
 {
     protected $name;
-    protected $room_number;
+    protected $room;
     protected $fax;
-    protected $phone_1;
-    protected $phone_2;
+    protected $phoneOne;
+    protected $phoneTwo;
 
     /**
      * Accept an array of data matching properties of this class
@@ -24,9 +24,9 @@ class CustomerEntity
         $this->id = 1;
         $this->name = "Patrick";
         $this->fax = "514-999-9999";
-        $this->room_number = "514-999-9999";
-        $this->phone_1 = "514-999-9999";
-        $this->phone_2 = "514-999-9999";
+        $this->room = "514-999-9999";
+        $this->phoneOne = "514-999-9999";
+        $this->phoneTwo = "514-999-9999";
 
     }
 
@@ -38,8 +38,8 @@ class CustomerEntity
         return $this->name;
     }
 
-    public function getRoomNumber() {
-        return $this->room_number;
+    public function getRoom() {
+        return $this->room;
     }
 
     public function getFax() {
@@ -47,29 +47,30 @@ class CustomerEntity
     }
 
     public function getPhoneOne() {
-        return $this->phone_1;
+        return $this->phoneOne;
     }
 
     public function getPhoneTwo() {
-        return $this->phone_2;
+        return $this->phoneTwo;
     }
 
     public function setName($name) {
         $this->name = $name;
     }
 
-    public function getRoomNumber($room_number) {
-         $this->room_number = $room_number;
+    public function setRoom($room_number) {
+         $this->room = $room_number;
     }
 
-    public function getFax($fax) {
+    public function setFax($fax) {
          $this->fax = $fax;
     }
 
-    public function getPhoneOne($phone_1) {
-         $this->phone_1 = $phone_1;
+    public function setPhoneOne($phone_1) {
+         $this->phoneOne = $phone_1;
     }
 
-    public function getPhoneTwo($phone_2) {
-         $this->phone_2 = $phone_2;
+    public function setPhoneTwo($phone_2) {
+         $this->phoneTwo = $phone_2;
     }
+}
