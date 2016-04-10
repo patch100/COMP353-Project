@@ -60,7 +60,7 @@ $app->post('/customer/edit', function (Request $request, Response $response) {
     $customer_data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
 
     $customer_mapper = new CustomerMapper($this->db);
-    $customer = $customer_mapper->getCustomerById($customer_id);
+    $customer = $customer_mapper->getCustomerById($customer_data['id']);
     $customer->setName($customer_data['name']);
     $customer->setAddress($customer_data['address']);
     $customer->setPhoneNumber($customer_data['phone']);
@@ -380,4 +380,73 @@ $app->post('/employee/{id}/delete', function ($request, $response, $args) {
   $this->logger->info("Deleting employee " . $id);
   $mapper->delete($employee);
   return $this->renderer->render($response, 'employee/employees.phtml', $args);
+});
+
+/**********************ITEMS**********************/
+// Items
+$app->get('/items', function ($request, $response, $args) {
+  $this->logger->info("Items page");
+  $item_mapper = new ItemMapper($this->db);
+  $items = $item_mapper->getItems();
+  return $this->renderer->render($response, 'item/items.phtml', [$args, "items" => $items]);
+});
+
+// New Item
+$app->get('/item/new', function ($request, $response, $args) {
+  $this->logger->info("Creating new item");
+  return $this->renderer->render($response, 'item/item.phtml', $args);
+});
+
+// New Item POST
+$app->post('/item/new', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['color'] = filter_var($data['color'], FILTER_SANITIZE_STRING);
+
+    $item = new ItemEntity($data);
+    $mapper = new ItemMapper($this->db);
+    $mapper->save($item);
+    $response = $response->withRedirect("/items");
+    return $response;
+});
+
+//Edit Item GET
+$app->get('/item/{id}/edit', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new ItemMapper($this->db);
+  $item = $mapper->getItemById($id);
+  $this->logger->info("Edit Item " . $id);
+  return $this->renderer->render($response, 'item/edit_item.phtml', [$args, "item" => $item]);
+});
+
+// EDIT Item POST
+$app->post('/item/edit', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['color'] = filter_var($data['color'], FILTER_SANITIZE_STRING);
+
+    $mapper = new ItemMapper($this->db);
+    $item = $mapper->getItemById($data['id']);
+    $item->setName( $data['name']);
+    $item->setColor($data['color']);
+    $mapper->save($item);
+    $response = $response->withRedirect("/items");
+    return $response;
+});
+
+// Delete Item
+$app->post('/item/{id}/delete', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new ItemMapper($this->db);
+  $item = $mapper->getItemById($id);
+  $this->logger->info("Deleting Item " . $id);
+  $mapper->delete($item);
+  return $this->renderer->render($response, 'item/items.phtml', $args);
 });

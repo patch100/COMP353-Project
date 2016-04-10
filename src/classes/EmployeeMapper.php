@@ -46,7 +46,7 @@ class EmployeeMapper extends Mapper
      */
     public function save(EmployeeEntity $employee) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into dependants (name, sin, dob, address, phone, position) values (:name, :sin, :dob, :address, :phone, :position)";
+        $sql = "insert into employees (name, sin, dob, address, phone, position) values (:name, :sin, :dob, :address, :phone, :position)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $employee->getName(),
@@ -66,7 +66,7 @@ class EmployeeMapper extends Mapper
      *
      * @param EmployeeEntity the Employee object
      */
-    public function delete(Employee $dependant) {
+    public function delete(Employee $employee) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
         $sql = "DELETE FROM employee WHERE id = :id";
         $stmt = $this->db->prepare($sql);

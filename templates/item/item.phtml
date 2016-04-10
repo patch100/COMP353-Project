@@ -4,28 +4,22 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
-<h1>New Customer</h1>
+<h1>New Item</h1>
 
-<form class="pure-form" method="post" action="/ticket/new">
-    <label for="title">Title</label>
-    <input name="title" id="title" type="text" size="60" /><br />
+<form class="pure-form" method="post" action="/index.php/item/new">
+    <label for="name">Name</label>
+    <input name="name" id="name" type="text" size="60" /><br />
 
-    <label for="description">Description</label>
-    <textarea name="description" id="description" rows="6" cols="80"></textarea><br />
-
-    <label for="component">Component</label>
-    <select name="component">
+<!--     <label for="color">Colors</label>
+    <select name="color">
         <option value=""></option>
 <?php
-if($data['components'] && is_array($data['components'])): 
-    foreach($data['components'] as $component): ?>
-
-        <option value=<?=$component->getId()?>><?=$component->getName()?></option>
+    foreach($data['colors'] as $color): ?>
+        <option value=<?=$color->getId()?>><?=$color->getName()?></option>
 <?php
     endforeach;
-endif;
 ?>
-    </select><br />
+    </select><br /> -->
 
     <input type="submit" class="pure-button" value="Create" />
 </form>
