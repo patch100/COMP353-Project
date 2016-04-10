@@ -27,7 +27,6 @@ class CustomerEntity
         $this->room = "514-999-9999";
         $this->phoneOne = "514-999-9999";
         $this->phoneTwo = "514-999-9999";
-
     }
 
     public function getId() {

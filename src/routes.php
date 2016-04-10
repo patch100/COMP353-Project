@@ -79,11 +79,11 @@ $app->post('/customer/{id}/delete', function ($request, $response, $args) {
 });
 
 /**********************DEPARTMENTS**********************/
-// Customers
+// Departments
 $app->get('/departments', function ($request, $response, $args) {
-  $this->logger->info("Customers page");
+  $this->logger->info("Departments page");
   $mapper = new DepartmentMapper($this->db);
-  $customers = $customer_mapper->getDepartments();
+  $departments = $mapper->getDepartments();
   return $this->renderer->render($response, 'department/departments.phtml', [$args, "departments" => $departments]);
 });
 
@@ -131,7 +131,7 @@ $app->post('/department/edit', function (Request $request, Response $response) {
     $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
 
     $mapper = new DepartmentMapper($this->db);
-    $department = $mapper->getCustomerById($customer_id);
+    $department = $mapper->getDepartmentById($data['id']);
     $department->setName($data['name']);
     $department->setAddress($data['address']);
     $department->setPhoneNumber($data['phone']);
@@ -148,4 +148,76 @@ $app->post('/department/{id}/delete', function ($request, $response, $args) {
   $this->logger->info("Deleting department " . $id);
   $mapper->delete($department);
   return $this->renderer->render($response, 'department/departments.phtml', $args);
+});
+
+/**********************ORDERS**********************/
+// Orders
+$app->get('/orders', function ($request, $response, $args) {
+  $this->logger->info("Orders page");
+  $mapper = new OrderMapper($this->db);
+  $orders = $mapper->getOrders();
+  return $this->renderer->render($response, 'order/orders.phtml', [$args, "orders" => $orders]);
+});
+
+// New Order
+$app->get('/order/new', function ($request, $response, $args) {
+  $this->logger->info("Creating new order");
+  return $this->renderer->render($response, 'order/order.phtml', $args);
+});
+
+// New Order POST
+$app->post('/order/new', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
+    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+
+    $order = new OrderEntity($data);
+    $mapper = new OrderMapper($this->db);
+    $mapper->save($order);
+    $response = $response->withRedirect("/orders");
+    return $response;
+});
+
+//Edit Order GET
+$app->get('/order/{id}/edit', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new OrderMapper($this->db);
+  $order = $mapper->getOrderById($id);
+  $this->logger->info("Edit Order " . $id);
+  return $this->renderer->render($response, 'order/edit_order.phtml', [$args, "order" => $order]);
+});
+
+// EDIT Order POST
+$app->post('/order/edit', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
+    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+
+    $mapper = new OrderMapper($this->db);
+    $order = $mapper->getOrderById($data['id']);
+    $order->setName($data['name']);
+    $order->setAddress($data['address']);
+    $order->setPhoneNumber($data['phone']);
+    $mapper->save($order);
+    $response = $response->withRedirect("/orders");
+    return $response;
+});
+
+// Delete Order
+$app->post('/order/{id}/delete', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new OrderMapper($this->db);
+  $order = $mapper->getOrderById($id);
+  $this->logger->info("Deleting order " . $id);
+  $mapper->delete($order);
+  return $this->renderer->render($response, 'order/orders.phtml', $args);
 });

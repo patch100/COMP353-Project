@@ -57,7 +57,7 @@ class CustomerMapper extends Mapper
         }
     }
 
-        /**
+    /**
      * Delete a customer
      *
      * @param CustomerEntity the customer object

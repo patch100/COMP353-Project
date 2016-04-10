@@ -39,7 +39,6 @@ class DepartmentMapper extends Mapper
     }
 
 
-    //phone 1, phone 2, deptID, name, room number, fax
     /**
      * Save a department
      *
@@ -58,6 +57,23 @@ class DepartmentMapper extends Mapper
         ]);
         if(!$result) {
             throw new Exception("could not save record");
+        }
+    }
+
+    /**
+     * Delete a department
+     *
+     * @param DepartmentEntity the department object
+     */
+    public function delete(DepartmentEntity $department) {
+        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
+        $sql = "DELETE FROM departments WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "id" => $department->getId()
+        ]);
+        if(!$result) {
+            throw new Exception("could not delete record");
         }
     }
 }

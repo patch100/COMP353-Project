@@ -4,27 +4,27 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
-<h1>Customers</h1>
+<h1>Orders</h1>
 
-<p><a href="<?=$router->pathFor('customer-new')?>">Add New Customer</a></p>
+<a href="/index.php/order/new">Add New Order</a>
 
 <table class="pure-table">
     <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Phone Number</th>
+        <th>Grand Total</th>
+        <th>Date Purchased</th>
+        <th>Method of Payment</th>
         <th>Actions</th>
     </tr>
 
-<?php foreach($data['customers'] as $customer): ?>
+<?php foreach($data['orders'] as $order): ?>
 
     <tr>
-        <td><?=$customer->getName() ?></td>
-        <td><?=$customer->getAddress() ?></td>
-        <td><?=$customer->getPhoneNumber() ?> ...</td>
+        <td><?=$order->getTotal() ?></td>
+        <td><?=$order->getDate() ?></td>
+        <td><?=$order->getMethod() ?></td>
         <td>
-            <a href="<?=$router->pathFor('customer-edit', ['id' => $customer->getId()])?>">Edit</a>
-            <a href="<?=$router->pathFor('customer-delete', ['id' => $customer->getId()])?>">Delete</a>
+            <a href="/index.php/order/<?php echo $order->getId(); ?>/edit">Edit</a>
+            <a href="/index.php/order/<?php echo $order->getId(); ?>/delete">Delete</a>
         </td>
     </tr>
 
