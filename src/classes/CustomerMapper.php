@@ -7,15 +7,12 @@ class CustomerMapper extends Mapper
      * @return [CustomerEntity]  List of customers
      */
     public function getCustomers() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new CustomerEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new CustomerEntity($dummy);
+        $sql = "select * from customer";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new CustomerEntity($row);
+        }
 
         return $results;
     }
@@ -45,7 +42,7 @@ class CustomerMapper extends Mapper
      */
     public function save(CustomerEntity $customer) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into customers (name, address, phone) values (:name, :address, :phone)";
+        $sql = "insert into customer (Name, Address, Telephone) values (:name, :address, :phone)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $customer->getName(),
@@ -64,7 +61,7 @@ class CustomerMapper extends Mapper
      */
     public function delete(CustomerEntity $customer) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM customers WHERE id = :id";
+        $sql = "DELETE FROM customer WHERE CustomerNumber = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "id" => $customer->getId()
