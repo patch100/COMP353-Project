@@ -56,7 +56,7 @@ class EmployeeMapper extends Mapper
      *
      * @param EmployeeEntity the Employee object
      */
-    public function save(EmployeeEntity $employee) {
+    public function save(EmployeeEntity $employee, $data) {
         $id = $this->count() + 1;
         $sql = "insert into Employee (Id, Name, SSN, DateOfBirth, Address, Telephone, Position, email) values (:id, :name, :sin, :dob, :address, :phone, :position, :email)";
         $stmt = $this->db->prepare($sql);
@@ -73,6 +73,19 @@ class EmployeeMapper extends Mapper
         if(!$result) {
             throw new Exception("could not save record");
         }
+
+        $sql = "insert into HasEmployees (DeptId, EmpId, IsManager, StartDate, EndDate) values (:deptId, :empId, :manager, :start, :end)";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "deptId" => (int)$data['deptId'],
+            "empId" => $id,
+            "manager" => $data['manager'],
+            "start" => $data['start'],
+            "end" => $data['end'],
+        ]);
+        if(!$result) {
+            throw new Exception("could not save record");
+        }
     }
 
         /**
@@ -80,7 +93,7 @@ class EmployeeMapper extends Mapper
      *
      * @param EmployeeEntity the employee object
      */
-    public function update(EmployeeEntity $employee) {
+    public function update(EmployeeEntity $employee, $data) {
         $sql = "update Employee SET Name = :name, Address = :address, Telephone = :phone, DateOfBirth = :dob, SSN = :sin, Position = :position, email = :email where Id = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
@@ -95,6 +108,19 @@ class EmployeeMapper extends Mapper
         ]);
         if(!$result) {
             throw new Exception("could not update record");
+        }
+
+        $sql = "update HasEmployees SET DeptId = :deptId, IsManager = :manager, StartDate = :start, EndDate = :end where EmpId = :empId";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "deptId" => (int)$data['deptId'],
+            "empId" => $employee->getId(),
+            "manager" => $data['manager'],
+            "start" => $data['start'],
+            "end" => $data['end'],
+        ]);
+        if(!$result) {
+            throw new Exception("could not save record");
         }
     }
 

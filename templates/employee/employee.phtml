@@ -27,6 +27,25 @@
 
     <label for="email">Email</label>
     <input name="email" id="email" type="text" size="60" /><br />
+
+    <label for="department">Departments</label>
+    <select name="department">
+        <option value=""></option>
+        <?php foreach($data['departments'] as $department): ?>
+            <option value=<?=$department->getId()?>><?=$department->getName()?></option>
+        <?php endforeach;?>
+    </select><br />
+
+    <label for="manager">Is Manager</label>
+    <input type="hidden" name="manager" value="0" />
+    <input type="checkbox" name="manager" value="1" />
+
+    <label for="start">Start Date</label>
+    <input name="start" id="start" type="date" size="60" /><br />
+
+    <label for="end">End Date</label>
+    <input name="end" id="end" type="date" size="60" /><br />
+
     <input type="submit" class="pure-button" value="Create" />
 </form>
 

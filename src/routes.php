@@ -162,26 +162,22 @@ $app->get('/department/{id}/delete', function ($request, $response, $args) {
 });
 
 // Query
-//TODO FIX
-$app->get('/departments/query', function ($request, $response, $args) {
+$app->get('/department/query', function ($request, $response, $args) {
   $this->logger->info("Departments GET Query Page");
   $mapper = new DepartmentMapper($this->db);
-  return $this->renderer->render($response, 'queries/query_departments.phtml', $args);
+  $departments = $mapper->getDepartments();
+  return $this->renderer->render($response, 'queries/query_departments.phtml', [$args, "departments" => $departments]);
 });
 
 // Query POST
-//TODO FIX
-$app->post('/departments/query', function ($request, $response, $args) {
+$app->post('/department/query', function ($request, $response, $args) {
   $data = $request->getParsedBody();
-  #$deptId = $data['deptInput'];
-  $deptId = filter_var($data['deptInput'], FILTER_SANITIZE_STRING);
+
+  $deptId = (int)filter_var($data['department'], FILTER_SANITIZE_STRING);
   $this->logger->info("Departments POST Query Page");
   $mapper = new DepartmentMapper($this->db);
-  #error_log('this is the first entry');
-  $query_results = $mapper->processQuery($deptId);
-  #$this->logger->info('Query results: ' . print_r($query_results));
-  print_r($query_results);
-  return $this->renderer->render($response, 'queries/query_departments.phtml', $args);
+  $departments = $mapper->processQuery($deptId);
+  return $this->renderer->render($response, 'queries/query_departments.phtml', [$args, "departments" => $departments]);
 });
 
 /**********************ORDERS**********************/
@@ -346,9 +342,9 @@ $app->get('/employees', function ($request, $response, $args) {
 // New Employee
 $app->get('/employee/new', function ($request, $response, $args) {
   $this->logger->info("Creating new employee");
-  $dependant_mapper = new DependantMapper($this->db);
-  $dependants = $dependant_mapper->getDependants();
-  return $this->renderer->render($response, 'employee/employee.phtml', [$args, "dependants" => $dependants]);
+  $department_mapper = new DepartmentMapper($this->db);
+  $departments = $department_mapper->getDepartments();
+  return $this->renderer->render($response, 'employee/employee.phtml', [$args, "departments" => $departments]);
 });
 
 // New Employee POST
@@ -356,6 +352,7 @@ $app->post('/employee/new', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
+    $department_data = [];
     $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
     $data['SSN'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
     $data['DateOfBirth'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
@@ -363,10 +360,15 @@ $app->post('/employee/new', function ($request, $response) {
     $data['Telephone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
     $data['Position'] = filter_var($post_data['position'], FILTER_SANITIZE_STRING);
     $data['email'] = filter_var($post_data['email'], FILTER_SANITIZE_STRING);
+    $department_data['deptId'] = filter_var($post_data['department'], FILTER_SANITIZE_STRING);
+    $department_data['manager'] = filter_var($post_data['manager'], FILTER_SANITIZE_STRING);
+    $department_data['start'] = filter_var($post_data['start'], FILTER_SANITIZE_STRING);
+    $department_data['end'] = filter_var($post_data['end'], FILTER_SANITIZE_STRING);
 
     $employee = new EmployeeEntity($data);
     $mapper = new EmployeeMapper($this->db);
-    $mapper->save($employee);
+    $this->logger->info("Creating new employee");
+    $mapper->save($employee, $department_data);
     $response = $response->withRedirect("/employees");
     return $response;
 });
@@ -376,8 +378,10 @@ $app->get('/employee/{id}/edit', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new EmployeeMapper($this->db);
   $employee = $mapper->getEmployeeById($id);
+  $department_mapper = new DepartmentMapper($this->db);
+  $departments = $department_mapper->getDepartments();
   $this->logger->info("Edit Employee " . $id);
-  return $this->renderer->render($response, 'employee/edit_employee.phtml', [$args, "employee" => $employee]);
+  return $this->renderer->render($response, 'employee/edit_employee.phtml', [$args, "employee" => $employee, "departments" => $departments]);
 });
 
 //Details Employee GET
@@ -395,6 +399,7 @@ $app->post('/employee/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
+    $department_data = [];
     $data['Id'] = (int)filter_var($post_data['id'], FILTER_SANITIZE_STRING);
     $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
     $data['SSN'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
@@ -403,6 +408,10 @@ $app->post('/employee/edit', function ($request, $response) {
     $data['Telephone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
     $data['Position'] = filter_var($post_data['position'], FILTER_SANITIZE_STRING);
     $data['email'] = filter_var($post_data['email'], FILTER_SANITIZE_STRING);
+    $department_data['deptId'] = filter_var($post_data['department'], FILTER_SANITIZE_STRING);
+    $department_data['manager'] = filter_var($post_data['manager'], FILTER_SANITIZE_STRING);
+    $department_data['start'] = filter_var($post_data['start'], FILTER_SANITIZE_STRING);
+    $department_data['end'] = filter_var($post_data['end'], FILTER_SANITIZE_STRING);
 
     $mapper = new EmployeeMapper($this->db);
     $employee = $mapper->getEmployeeById($data['Id']);
@@ -413,7 +422,7 @@ $app->post('/employee/edit', function ($request, $response) {
     $employee->setPhone($data['Telephone']);
     $employee->setPosition($data['Position']);
     $employee->setEmail($data['email']);
-    $mapper->update($employee);
+    $mapper->update($employee, $department_data);
     $response = $response->withRedirect("/employees");
     return $response;
 });
