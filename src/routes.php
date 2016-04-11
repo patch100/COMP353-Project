@@ -160,6 +160,7 @@ $app->post('/department/{id}/delete', function ($request, $response, $args) {
 });
 
 // Query
+//TODO FIX
 $app->get('/departments/query', function ($request, $response, $args) {
   $this->logger->info("Departments GET Query Page");
   $mapper = new DepartmentMapper($this->db);
@@ -167,6 +168,7 @@ $app->get('/departments/query', function ($request, $response, $args) {
 });
 
 // Query POST
+//TODO FIX
 $app->post('/departments/query', function ($request, $response, $args) {
   $data = $request->getParsedBody();
   #$deptId = $data['deptInput'];
