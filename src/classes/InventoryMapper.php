@@ -72,4 +72,20 @@ class InventoryMapper extends Mapper
             throw new Exception("could not update record");
         }
     }
+
+        /**
+     * Save a item
+     *
+     * @param InventoryEntity the item object
+     */
+    public function delete(InventoryEntity $item) {
+        $sql = "delete from Inventory WHERE ItemId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "id" => $item->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+    }
 }

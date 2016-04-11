@@ -13,18 +13,13 @@ class OrderEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        //TODO UNCOMMENT AND SET PROPER DATA
-        // if(isset($data['id'])) {
-        //     $this->id = $data['id'];
-        // }
-        // $this->name = $data['name'];
-        // $this->address = $data['address'];
-        // $this->phone = $data['phone'];
-        $now = new DateTime();
-        $this->id = 1;
-        $this->total = 9999;
-        $this->date = $now->format('Y-m-d H:i:s');    // MySQL datetime format
-        $this->method = "credit";
+        if(isset($data['Id'])) {
+            $this->id = $data['Id'];
+        }
+
+        $this->total = $data['Balance'];
+        $this->date = $data['DateOfPurchase'];
+        $this->method = $data['PaymentMethod'];
     }
 
     public function getId() {
@@ -35,7 +30,7 @@ class OrderEntity
         return $this->total;
     }
 
-    public function getdate() {
+    public function getDate() {
         return $this->date;
     }
 

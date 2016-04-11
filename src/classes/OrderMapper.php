@@ -7,15 +7,12 @@ class OrderMapper extends Mapper
      * @return [OrderEntity]  List of orders
      */
     public function getOrders() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new OrderEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new OrderEntity($dummy);
+        $sql = "SELECT * FROM Orders";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new OrderEntity($row);
+        }
 
         return $results;
     }
@@ -27,35 +24,70 @@ class OrderMapper extends Mapper
      * @return OrderEntity  The order
      */
     public function getOrderById($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["customer_id" => $customer_id]);
-        //if($result) {
-        //    return new OrderEntity($stmt->fetch());
-        //}
-        $dummy = [];
+        $sql = "SELECT * FROM Orders WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $id]);
+        if($result) {
+           return new OrderEntity($stmt->fetch());
+        }
         return new OrderEntity($dummy);
     }
 
     /**
-     * Save a order
-     *
+     * save a order
+     * TODO Fix save
      * @param OrderEntity the order object
      */
     public function save(OrderEntity $order) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into orders (name, address, phone) values (:name, :address, :phone)";
+        $id = (int)$this->count() + 1;
+        $sql = "INSERT INTO Orders (Id, PaymentMethod, DateOfPurchase, Balance) VALUES (:id, :method, :date_m, :total)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
-            "name" => $order->getName(),
-            "address" => $order->getAddress(),
-            "phone" => $order->getPhone(),
+            "id" => $id,
+            "mehod" => $order->getMethod(),
+            "date_m" => $order->getDate(),
+            "total" => $order->getTotal(),
         ]);
         if(!$result) {
-            throw new Exception("could not save record");
+            throw new Exception("could not update record");
         }
     }
+
+            /**
+     * Update a Order
+     *
+     * @param OrderEntity the order object
+     */
+    public function update(OrderEntity $order) {
+        $sql = "UPDATE Orders SET PaymentMethod = :method, DateOfPurchase = :date_m, Balance = :total WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "method" => $order->getMethod(),
+            "date_m" => $order->getDate(),
+            "total" => $order->getTotal(),
+            "id" => (int)$order->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+    }
+
+    /**
+     * count 
+     *
+     * @param 
+     */
+    public function count() {
+        $sql = "SELECT Id FROM Orders ORDER BY Id DESC LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute();
+        $count = 0;
+        if($result) {
+           $row = $stmt->fetch();
+           $count = (int)$row['Id'];
+        }
+        return $count;
+    }   
 
     /**
      * Delete a order
@@ -63,12 +95,9 @@ class OrderMapper extends Mapper
      * @param OrderEntity the order object
      */
     public function delete(OrderEntity $order) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM orders WHERE id = :id";
+        $sql = "DELETE FROM Orders WHERE Id = :id";
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute([
-            "id" => $order->getId()
-        ]);
+        $result = $stmt->execute(["id" => $order->getId()]);
         if(!$result) {
             throw new Exception("could not delete record");
         }

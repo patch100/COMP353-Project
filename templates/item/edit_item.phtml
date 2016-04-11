@@ -11,9 +11,16 @@
     <label for="name">Name</label>
     <input name="name" id="name" type="text" size="60" value="<?php echo $item->getName(); ?>"/><br />
 
-    <label for="color">Color</label>
-    <!-- TODO Change to select -->
-    <input name="color" id="color" type="text" size="60" value="<?php echo $item->getColor(); ?>"/><br />
+<label for="color">Colors</label>
+    <select name="color">
+        <option value=""></option>
+<?php
+    foreach($data['colors'] as $color): ?>
+        <option value=<?=$color->getName()?>><?=$color->getName()?></option>
+<?php
+    endforeach;
+?>
+    </select><br />
     
     <input type="submit" class="pure-button" value="Create" />
 </form>

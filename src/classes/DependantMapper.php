@@ -39,7 +39,6 @@ class DependantMapper extends Mapper
      * @param DependantEntity the Dependant object
      */
     public function save(DependantEntity $dependant) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
         $sql = "insert into EmployeeDependant (Name, SSN, DateOfBirth) values (:name, :sin, :dob)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
@@ -52,13 +51,30 @@ class DependantMapper extends Mapper
         }
     }
 
+        /**
+     * Save a Dependant
+     *
+     * @param DependantEntity the Dependant object
+     */
+    public function updateCareGiver($employee_id, $dependant) {
+        $sql = "insert into IsCareGiver (Id, SSN) values (:id, :sin)";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "id" => (int)$employee_id,
+            "sin" => (int)$dependant->getSin(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not save record");
+        }
+    }
+
             /**
      * Update a DependantEntity
      *
      * @param DependantEntity the DependantEntity object
      */
     public function update(DependantEntity $dependant) {
-        $sql = "UPDATE Dependant SET Name = :name, DateOfBirth = :dob WHERE SSN = :id";
+        $sql = "UPDATE EmployeeDependant SET Name = :name, DateOfBirth = :dob WHERE SSN = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $dependant->getName(),

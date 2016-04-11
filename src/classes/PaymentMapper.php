@@ -7,16 +7,12 @@ class PaymentMapper extends Mapper
      * @return [PaymentEntity]  List of Payments
      */
     public function getPayments() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new CustomerEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new PaymentEntity($dummy);
-
+        $sql = "SELECT * FROM Payment";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new PaymentEntity($row);
+        }
         return $results;
     }
 
@@ -27,15 +23,30 @@ class PaymentMapper extends Mapper
      * @return PaymentEntity  The Payment
      */
     public function getPaymentById($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["customer_id" => $customer_id]);
-        //if($result) {
-        //    return new CustomerEntity($stmt->fetch());
-        //}
-        $dummy = [];
-        return new PaymentEntity($dummy);
+        $sql = "SELECT * FROM Payment WHERE OrderId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $id]);
+        if($result) {
+           return new PaymentEntity($stmt->fetch());
+        }
+    }
+
+        /**
+     * Update a payment
+     *
+     * @param PaymentEntity the payment object
+     */
+    public function update(PaymentEntity $payment) {
+        $sql = "UPDATE Payment SET Amount = :amount, PaymentDate = :date_m WHERE OrderId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "amount" => $payment->getAmount(),
+            "date_m" => $payment->getDate(),
+            "id" => (int)$payment->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
     }
 
     /**
@@ -44,16 +55,30 @@ class PaymentMapper extends Mapper
      * @param PaymentEntity the payment object
      */
     public function save(PaymentEntity $payment) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into payments (date, orderId, amount) values (:date, :orderId, :amount)";
+        $sql = "insert into Payment (OrderId, PaymentDate, Amount) values (:id, :date, :amount)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
+            "id" => $payment->getId(),
             "date" => $payment->getDate(),
-            "orderId" => $payment->getOrderId(),
             "amount" => $payment->getAmount(),
         ]);
         if(!$result) {
             throw new Exception("could not save record");
         }
+    }
+
+        /**
+     * Delete a payment
+     *
+     * @param PaymentEntity the payment object
+     */
+    public function delete(PaymentEntity $payment) {
+        $sql = "DELETE FROM Payment WHERE OrderId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $payment->getId()]);
+        if(!$result) {
+            throw new Exception("could not delete record");
+        }
+        return $result;
     }
 }

@@ -16,6 +16,7 @@ class ItemEntity
             $this->id = $data['Id'];
         }
         $this->name = $data['Name'];
+        $this->color = $data['Color'];
     }
 
     public function getId() {

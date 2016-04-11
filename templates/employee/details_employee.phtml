@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>COMP 353 Database Project</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+<body>
+<h1>Employee</h1>
+<?php $employee = $data['employee'] ?>
+<form class="pure-form" method="post" action="/index.php/employee/edit">
+    <label for="name">Name</label>
+    <p><?php echo $employee->getName(); ?></p>
+
+    <label for="sin">SIN</label>
+    <p><?php echo $employee->getSin(); ?></p>
+    
+    <label for="dob">Date of Birth</label>
+    <p><?php echo $employee->getDob(); ?></p>
+
+    <label for="phone">Phone</label>
+    <p><?php echo $employee->getPhone(); ?></p>
+
+    <label for="address">Address</label>
+    <p><?php echo $employee->getAddress(); ?></p>
+
+    <label for="position">Position</label>
+    <p><?php echo $employee->getPosition(); ?></p>
+
+    <label for="email">Email</label>
+    <p><?php echo $employee->getEmail(); ?></p>
+
+<label for="dependants">Dependants</label>
+<table class="pure-table">
+    <tr>
+        <th>Name</th>
+        <th>SIN</th>
+        <th>DOB</th>
+    </tr>
+<?php foreach($data['dependants'] as $dependant): ?>
+
+    <tr>
+        <td><?=$dependant->getName() ?></td>
+        <td><?=$dependant->getSin() ?></td>
+        <td><?=$dependant->getDob() ?></td>
+    </tr>
+
+<?php endforeach; ?>
+</table>
+</form>
+</body>
+</html>

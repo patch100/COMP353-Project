@@ -107,10 +107,11 @@ $app->post('/department/new', function ($request, $response) {
     $data['RoomNumber'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
     $data['FaxNumber'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
     $data['PhoneNumber1'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
-    $data['PhoneNumber2'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['PhoneNumber2'] = filter_var($post_data['phoneTwo'], FILTER_SANITIZE_STRING);
 
     $department = new DepartmentEntity($data);
     $department_mapper = new DepartmentMapper($this->db);
+    $this->logger->info("Creating new department " . $department->getName());
     $department_mapper->save($department);
     $response = $response->withRedirect("/departments");
     return $response;
@@ -150,13 +151,14 @@ $app->post('/department/edit', function ($request, $response) {
 });
 
 // Delete Department
-$app->post('/department/{id}/delete', function ($request, $response, $args) {
+$app->get('/department/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new DepartmentMapper($this->db);
   $department = $mapper->getDepartmentById($id);
   $this->logger->info("Deleting department " . $id);
   $mapper->delete($department);
-  return $this->renderer->render($response, 'department/departments.phtml', $args);
+  $response = $response->withRedirect("/departments");
+  return $response;
 });
 
 // Query
@@ -198,16 +200,16 @@ $app->get('/order/new', function ($request, $response, $args) {
 });
 
 // New Order POST
-$app->post('/order/new', function (Request $request, Response $response) {
+$app->post('/order/new', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
-    $data['total'] = filter_var($post_data['total'], FILTER_SANITIZE_STRING);
-    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
-    $data['method'] = filter_var($post_data['method'], FILTER_SANITIZE_STRING);
+    $data['Balance'] = filter_var($post_data['total'], FILTER_SANITIZE_STRING);
+    $data['DateOfPurchase'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+    $data['PaymentMethod'] = filter_var($post_data['method'], FILTER_SANITIZE_STRING);
 
     $order = new OrderEntity($data);
+
     $mapper = new OrderMapper($this->db);
     $mapper->save($order);
     $response = $response->withRedirect("/orders");
@@ -224,11 +226,10 @@ $app->get('/order/{id}/edit', function ($request, $response, $args) {
 });
 
 // EDIT Order POST
-$app->post('/order/edit', function (Request $request, Response $response) {
+$app->post('/order/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
     $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
     $data['total'] = filter_var($post_data['total'], FILTER_SANITIZE_STRING);
     $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
@@ -236,22 +237,25 @@ $app->post('/order/edit', function (Request $request, Response $response) {
 
     $mapper = new OrderMapper($this->db);
     $order = $mapper->getOrderById($data['id']);
+
+    $this->logger->info("POST Updating Order " . $order->getId());
     $order->setTotal( $data['total']);
     $order->setDate($data['date']);
     $order->setMethod($data['method']);
-    $mapper->save($order);
+    $mapper->update($order);
     $response = $response->withRedirect("/orders");
     return $response;
 });
 
 // Delete Order
-$app->post('/order/{id}/delete', function ($request, $response, $args) {
+$app->get('/order/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new OrderMapper($this->db);
   $order = $mapper->getOrderById($id);
   $this->logger->info("Deleting order " . $id);
   $mapper->delete($order);
-  return $this->renderer->render($response, 'order/orders.phtml', $args);
+  $response = $response->withRedirect("/orders");
+  return $response;
 });
 
 /**********************DEPENDANTS**********************/
@@ -266,21 +270,27 @@ $app->get('/dependants', function ($request, $response, $args) {
 // New Dependant
 $app->get('/dependant/new', function ($request, $response, $args) {
   $this->logger->info("Creating new dependant");
-  return $this->renderer->render($response, 'dependant/dependant.phtml', $args);
+  $employee_mapper = new EmployeeMapper($this->db);
+  $employees = $employee_mapper->getEmployees();
+  return $this->renderer->render($response, 'dependant/dependant.phtml', [$args, "employees" => $employees]);
 });
 
 // New Dependant POST
-$app->post('/dependant/new', function (Request $request, Response $response) {
+$app->post('/dependant/new', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
+    $care_giver_data = [];
     $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
     $data['SSN'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
     $data['DateOfBirth'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
+    $employee_id = (int)filter_var($post_data['employee'], FILTER_SANITIZE_STRING);
 
     $dependant = new DependantEntity($data);
     $mapper = new DependantMapper($this->db);
     $mapper->save($dependant);
+    $mapper->updateCareGiver($employee_id, $dependant);
+
     $response = $response->withRedirect("/dependants");
     return $response;
 });
@@ -295,7 +305,7 @@ $app->get('/dependant/{id}/edit', function ($request, $response, $args) {
 });
 
 // EDIT Dependant POST
-$app->post('/dependant/edit', function (Request $request, Response $response) {
+$app->post('/dependant/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
@@ -305,6 +315,7 @@ $app->post('/dependant/edit', function (Request $request, Response $response) {
 
     $mapper = new DependantMapper($this->db);
     $dependant = $mapper->getDependantById($data['SSN']);
+    $this->logger->info("POST Edit Dependant " . $dependant->getName());
     $dependant->setName( $data['Name']);
     $dependant->setDob($data['DateOfBirth']);
     $mapper->update($dependant);
@@ -313,13 +324,14 @@ $app->post('/dependant/edit', function (Request $request, Response $response) {
 });
 
 // Delete Dependant
-$app->post('/dependant/{id}/delete', function ($request, $response, $args) {
+$app->get('/dependant/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new DependantMapper($this->db);
   $dependant = $mapper->getDependantById($id);
   $this->logger->info("Deleting dependant " . $id);
   $mapper->delete($dependant);
-  return $this->renderer->render($response, 'dependant/dependants.phtml', $args);
+  $response = $response->withRedirect("/dependants");
+  return $response;
 });
 
 /**********************EMPLOYEE**********************/
@@ -340,7 +352,7 @@ $app->get('/employee/new', function ($request, $response, $args) {
 });
 
 // New Employee POST
-$app->post('/employee/new', function (Request $request, Response $response) {
+$app->post('/employee/new', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
@@ -368,8 +380,18 @@ $app->get('/employee/{id}/edit', function ($request, $response, $args) {
   return $this->renderer->render($response, 'employee/edit_employee.phtml', [$args, "employee" => $employee]);
 });
 
+//Details Employee GET
+$app->get('/employee/{id}/details', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new EmployeeMapper($this->db);
+  $employee = $mapper->getEmployeeById($id);
+  $dependants = $mapper->getDependants($employee);
+  $this->logger->info("Edit Employee " . $id);
+  return $this->renderer->render($response, 'employee/details_employee.phtml', [$args, "employee" => $employee, "dependants" => $dependants]);
+});
+
 // EDIT Employee POST
-$app->post('/employee/edit', function (Request $request, Response $response) {
+$app->post('/employee/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
@@ -391,19 +413,20 @@ $app->post('/employee/edit', function (Request $request, Response $response) {
     $employee->setPhone($data['Telephone']);
     $employee->setPosition($data['Position']);
     $employee->setEmail($data['email']);
-    $mapper->save($employee);
+    $mapper->update($employee);
     $response = $response->withRedirect("/employees");
     return $response;
 });
 
 // Delete Employee
-$app->post('/employee/{id}/delete', function ($request, $response, $args) {
+$app->get('/employee/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new EmployeeMapper($this->db);
   $employee = $mapper->getEmployeeById($id);
-  $this->logger->info("Deleting employee " . $id);
+  $this->logger->info("Deleting employee " . $employee->getName());
   $mapper->delete($employee);
-  return $this->renderer->render($response, 'employee/employees.phtml', $args);
+  $response = $response->withRedirect("/employees");
+  return $response;
 });
 
 /**********************ITEMS**********************/
@@ -418,17 +441,18 @@ $app->get('/items', function ($request, $response, $args) {
 // New Item
 $app->get('/item/new', function ($request, $response, $args) {
   $this->logger->info("Creating new item");
-  return $this->renderer->render($response, 'item/item.phtml', $args);
+  $mapper = new ColorMapper($this->db);
+  $colors = $mapper->getColors();
+  return $this->renderer->render($response, 'item/item.phtml', [$args, "colors" => $colors]);
 });
 
 // New Item POST
-$app->post('/item/new', function (Request $request, Response $response) {
+$app->post('/item/new', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
-    $data['color'] = filter_var($post_data['color'], FILTER_SANITIZE_STRING);
+    $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['Color'] = filter_var($post_data['color'], FILTER_SANITIZE_STRING);
 
     $item = new ItemEntity($data);
     $mapper = new ItemMapper($this->db);
@@ -443,15 +467,16 @@ $app->get('/item/{id}/edit', function ($request, $response, $args) {
   $mapper = new ItemMapper($this->db);
   $item = $mapper->getItemById($id);
   $this->logger->info("Edit Item " . $id);
-  return $this->renderer->render($response, 'item/edit_item.phtml', [$args, "item" => $item]);
+  $color_mapper = new ColorMapper($this->db);
+  $colors = $color_mapper->getColors();
+  return $this->renderer->render($response, 'item/edit_item.phtml', [$args, "item" => $item, "colors" => $colors]);
 });
 
 // EDIT Item POST
-$app->post('/item/edit', function (Request $request, Response $response) {
+$app->post('/item/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
     $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
     $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
     $data['color'] = filter_var($post_data['color'], FILTER_SANITIZE_STRING);
@@ -460,19 +485,20 @@ $app->post('/item/edit', function (Request $request, Response $response) {
     $item = $mapper->getItemById($data['id']);
     $item->setName( $data['name']);
     $item->setColor($data['color']);
-    $mapper->save($item);
+    $mapper->update($item);
     $response = $response->withRedirect("/items");
     return $response;
 });
 
 // Delete Item
-$app->post('/item/{id}/delete', function ($request, $response, $args) {
+$app->get('/item/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new ItemMapper($this->db);
   $item = $mapper->getItemById($id);
   $this->logger->info("Deleting Item " . $id);
   $mapper->delete($item);
-  return $this->renderer->render($response, 'item/items.phtml', $args);
+  $response = $response->withRedirect("/items");
+  return $response;
 });
 
 /**********************IVENTORY**********************/
@@ -493,7 +519,7 @@ $app->get('/inventory/add', function ($request, $response, $args) {
 });
 
 // Add Item POST
-$app->post('/inventory/add', function (Request $request, Response $response) {
+$app->post('/inventory/add', function ($request, $response) {
     $post_data = $request->getParsedBody();
     $data = [];
 
@@ -519,7 +545,7 @@ $app->get('/inventory/{id}/edit', function ($request, $response, $args) {
 });
 
 // EDIT Inventory Item POST
-$app->post('/inventory/edit', function (Request $request, Response $response) {
+$app->post('/inventory/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
@@ -533,19 +559,20 @@ $app->post('/inventory/edit', function (Request $request, Response $response) {
     $item->setDate($data['date']);
     $item->setUnits($data['units']);
     $item->setPrice($data['price']);
-    $mapper->save($item);
+    $mapper->update($item);
     $response = $response->withRedirect("/inventory");
     return $response;
 });
 
 // Delete Item
-$app->post('/inventory/{id}/delete', function ($request, $response, $args) {
+$app->get('/inventory/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new InventoryMapper($this->db);
   $item = $mapper->getItemById($id);
   $this->logger->info("Deleting Item from inventory" . $id);
   $mapper->delete($item);
-  return $this->renderer->render($response, 'inventory/inventory.phtml', $args);
+  $response = $response->withRedirect("/inventory");
+  return $response;
 });
 
 /**********************SHIPMENT AKA PAYMENT**********************/
@@ -566,19 +593,15 @@ $app->get('/payment/add', function ($request, $response, $args) {
 });
 
 // Add payment POST
-$app->post('/payment/add', function (Request $request, Response $response) {
+$app->post('/payment/add', function ($request, $response) {
     $post_data = $request->getParsedBody();
     $data = [];
 
-    $data['orderId'] = (int)filter_var($post_data['order'], FILTER_SANITIZE_STRING);
-    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
-    $data['amount'] = filter_var($post_data['amount'], FILTER_SANITIZE_STRING);
-
-    $order_mapper = new OrderMapper($this->db);
+    $data['OrderId'] = (int)filter_var($post_data['order'], FILTER_SANITIZE_STRING);
+    $data['PaymentDate'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+    $data['Amount'] = filter_var($post_data['amount'], FILTER_SANITIZE_STRING);
     $payment_mapper = new PaymentMapper($this->db);
     
-    $order = $order_mapper->getOrderById($data['orderId']);
-    $data['order'] = $order;
     $payment_item = new PaymentEntity($data);
     $payment_mapper->save($payment_item);
     $response = $response->withRedirect("/payments");
@@ -595,11 +618,10 @@ $app->get('/payment/{id}/edit', function ($request, $response, $args) {
 });
 
 // EDIT payment Item POST
-$app->post('/payment/edit', function (Request $request, Response $response) {
+$app->post('/payment/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
     $data['id'] = (int)filter_var($post_data['id'], FILTER_SANITIZE_STRING);
     $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
     $data['amount'] = filter_var($post_data['amount'], FILTER_SANITIZE_STRING);
@@ -614,13 +636,14 @@ $app->post('/payment/edit', function (Request $request, Response $response) {
 });
 
 // Delete payment
-$app->post('/payment/{id}/delete', function ($request, $response, $args) {
+$app->get('/payment/{id}/delete', function ($request, $response, $args) {
   $id = (int)$args['id'];
   $mapper = new PaymentMapper($this->db);
   $payment = $mapper->getPaymentById($id);
   $this->logger->info("Deleting payment" . $id);
   $mapper->delete($payment);
-  return $this->renderer->render($response, 'payment/payments.phtml', $args);
+  $response = $response->withRedirect("/payments");
+  return $response;
 });
 
 /*Produce a report on the top three selling products of the Company (in terms of

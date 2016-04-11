@@ -2,7 +2,7 @@
 class EmployeeMapper extends Mapper
 {    
     /**
-     * Gets a list of dependants
+     * Gets a list of employees
      *
      * @return [EmployeeEntity]  List of employee
      */
@@ -12,6 +12,24 @@ class EmployeeMapper extends Mapper
         $results = [];
         while($row = $stmt->fetch()) {
            $results[] = new EmployeeEntity($row);
+        }
+
+        return $results;
+    }
+
+        /**
+     * Gets a list of dependants
+     *
+     * @return [EmployeeEntity]  List of employee
+     */
+    public function getDependants(EmployeeEntity $employee) {
+        $dependant_mapper = new DependantMapper($this->db);
+        $sql = "SELECT SSN FROM IsCareGiver WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $employee->getId()]);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = $dependant_mapper->getDependantById($row['SSN']);
         }
 
         return $results;
@@ -40,7 +58,7 @@ class EmployeeMapper extends Mapper
      */
     public function save(EmployeeEntity $employee) {
         $id = $this->count() + 1;
-        $sql = "INSERT INTO Employee (Id, Name, SSN, DateOfBirth, Address, Telephone, Position, email) values (:id, :name, :sin, :dob, :address, :phone, :position, email)";
+        $sql = "insert into Employee (Id, Name, SSN, DateOfBirth, Address, Telephone, Position, email) values (:id, :name, :sin, :dob, :address, :phone, :position, :email)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "id" => $id,
@@ -63,7 +81,7 @@ class EmployeeMapper extends Mapper
      * @param EmployeeEntity the employee object
      */
     public function update(EmployeeEntity $employee) {
-        $sql = "UPDATE Employee SET Name = :name, Address = :address, Telephone = :phone, DateOfBirth = :dob, SSN = :sin, Position = :position, email = :email WHERE Id = :id";
+        $sql = "update Employee SET Name = :name, Address = :address, Telephone = :phone, DateOfBirth = :dob, SSN = :sin, Position = :position, email = :email where Id = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $employee->getName(),
@@ -86,7 +104,7 @@ class EmployeeMapper extends Mapper
      * @param 
      */
     public function count() {
-        $sql = "SELECT Id FROM Employee ORDER BY Id DESC LIMIT 1;";
+        $sql = "SELECT Id FROM Employee ORDER BY Id DESC LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute();
         $count = 0;
@@ -103,13 +121,10 @@ class EmployeeMapper extends Mapper
      *
      * @param EmployeeEntity the Employee object
      */
-    public function delete(Employee $employee) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM employee WHERE id = :id";
+    public function delete(EmployeeEntity $employee) {
+        $sql = "DELETE FROM Employee WHERE Id = :id";
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute([
-            "id" => $employee->getId()
-        ]);
+        $result = $stmt->execute(["id" => $employee->getId()]);
         if(!$result) {
             throw new Exception("could not delete record");
         }

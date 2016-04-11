@@ -10,16 +10,16 @@
     <label for="name">Name</label>
     <input name="name" id="name" type="text" size="60" /><br />
 
-<!--     <label for="color">Colors</label>
+<label for="color">Colors</label>
     <select name="color">
         <option value=""></option>
 <?php
     foreach($data['colors'] as $color): ?>
-        <option value=<?=$color->getId()?>><?=$color->getName()?></option>
+        <option value=<?=$color->getName()?>><?=$color->getName()?></option>
 <?php
     endforeach;
 ?>
-    </select><br /> -->
+    </select><br />
 
     <input type="submit" class="pure-button" value="Create" />
 </form>

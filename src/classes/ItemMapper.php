@@ -38,12 +38,67 @@ class ItemMapper extends Mapper
      * @param ItemEntity the item object
      */
     public function save(ItemEntity $item) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into items (name, color) values (:name, :color)";
+        $id = $this->count() + 1;
+        $sql = "insert into Item (Id, Name) values (:id, :name)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
-            "name" => $customer->getName(),
-            "color" => $customer->getAddress(),
+            "id" => $id,
+            "name" => $item->getName(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not save record");
+        }
+
+        $sql = "insert into HasColor (ItemId, Color) values (:id, :color)";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "id" => $id,
+            "color" => $item->getColor(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not save record");
+        }
+    }
+
+        /**
+     * count 
+     *
+     * @param 
+     */
+    public function count() {
+        $sql = "select Id from Item order by Id desc limit 1";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute();
+        $count = 0;
+        if($result) {
+           $row = $stmt->fetch();
+           $count = (int)$row['Id'];
+        }
+        
+        return $count;
+    } 
+
+    /**
+     * Update a customer
+     *
+     * @param item 
+     */
+    public function update(ItemEntity $item) {
+        $sql = "update Item SET Name = :name WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "name" => $item->getName(),
+            "id" => $item->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+
+        $sql = "update HasColor set Color = :color where ItemId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "color" => $item->getColor(),
+            "id" => $item->getId(),
         ]);
         if(!$result) {
             throw new Exception("could not save record");
@@ -56,8 +111,7 @@ class ItemMapper extends Mapper
      * @param ItemEntity the Item object
      */
     public function delete(ItemEntity $item) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM items WHERE id = :id";
+        $sql = "delete from Item where Id = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "id" => $item->getId()

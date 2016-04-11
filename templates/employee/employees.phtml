@@ -31,6 +31,7 @@
         <td><?=$employee->getPosition() ?></td>
         <td><?=$employee->getEmail() ?></td>
         <td>
+            <a href="/index.php/employee/<?php echo $employee->getId(); ?>/details">Details</a>
             <a href="/index.php/employee/<?php echo $employee->getId(); ?>/edit">Edit</a>
             <a href="/index.php/employee/<?php echo $employee->getId(); ?>/delete">Delete</a>
         </td>

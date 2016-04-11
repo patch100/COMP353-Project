@@ -38,7 +38,6 @@ class CustomerMapper extends Mapper
      * @param CustomerEntity the customer object
      */
     public function save(CustomerEntity $customer) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
         $id = $this->count() + 1;
         $sql = "insert into Customer (CustomerNumber, Name, Address, Telephone) values (:Number, :Name, :Address, :Telephone)";
         $stmt = $this->db->prepare($sql);
@@ -96,7 +95,6 @@ class CustomerMapper extends Mapper
      * @param CustomerEntity the customer object
      */
     public function delete(CustomerEntity $customer) {
-        // TODO Fix delete
         $sql = "DELETE FROM Customer WHERE CustomerNumber = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute(["id" => $customer->getId()]);

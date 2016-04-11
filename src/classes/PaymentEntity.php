@@ -1,7 +1,6 @@
 <?php
 class PaymentEntity
 {
-    protected $id;
     protected $orderId;
     protected $order;
     protected $date;
@@ -14,22 +13,16 @@ class PaymentEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        //TODO UNCOMMENT AND SET PROPER DATA
-        // if(isset($data['id'])) {
-        //     $this->id = $data['id'];
-        // }
-        // $this->name = $data['name'];
-        // $this->address = $data['address'];
-        // $this->phone = $data['phone'];
-        $now = new DateTime();
-        $this->id = 1;
-        $this->date = $now->format('Y-m-d H:i:s');    // MySQL datetime format;;
-        $this->amount = 87;
-        $this->setOrder(new OrderEntity($data));
+        if(isset($data['OrderId'])) {
+            $this->orderId = $data['OrderId'];
+        }
+
+        $this->date = $data['PaymentDate'];
+        $this->amount = $data['Amount'];
     }
 
     public function getId() {
-        return $this->id;
+        return $this->orderId;
     }
 
     public function getDate() {
@@ -44,10 +37,6 @@ class PaymentEntity
         return $this->order;
     }
 
-    public function getOrderId() {
-        return $this->orderId;
-    }
-
     public function setDate($date) {
         $this->date = $date;
     }
@@ -58,10 +47,5 @@ class PaymentEntity
 
     public function setOrder($order) {
         $this->order = $order;
-        $this->orderId = $order->getId();
-    }
-
-    public function setOrderId($id) {
-        $this->orderId = $id;
     }
 }

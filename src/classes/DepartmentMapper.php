@@ -130,7 +130,7 @@ class DepartmentMapper extends Mapper
             "name" => $department->getName(),
             "phone_1" => $department->getPhoneOne(),
             "phone_2" => $department->getPhoneTwo(),
-            "room_number" => $department->getRoomNumber(),
+            "room_number" => $department->getRoom(),
             "fax" => $department->getFax(),
         ]);
         if(!$result) {
@@ -148,7 +148,7 @@ class DepartmentMapper extends Mapper
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $department->getName(),
-            "room_number" => $department->getRoomNumber(),
+            "room_number" => $department->getRoom(),
             "fax" => $department->getFax(),
             "phone_1" => $department->getPhoneOne(),
             "phone_2" => $department->getPhoneTwo(),
@@ -165,13 +165,13 @@ class DepartmentMapper extends Mapper
      * @param 
      */
     public function count() {
-        $sql = "SELECT Id FROM Department ORDER BY Id DESC LIMIT 1;";
+        $sql = "select Id from Department order by Id desc limit 1";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute();
         $count = 0;
         if($result) {
            $row = $stmt->fetch();
-           $count = (int)$row['id'];
+           $count = (int)$row['Id'];
         }
         
         return $count;

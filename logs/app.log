@@ -71,3 +71,379 @@
 [2016-04-11 17:52:12] slim-app.INFO: Inventory page [] {"uid":"ead227f"}
 [2016-04-11 17:52:14] slim-app.INFO: adding item [] {"uid":"048c3fd"}
 [2016-04-11 17:52:15] slim-app.INFO: Inventory page [] {"uid":"6d8333b"}
+[2016-04-11 19:46:05] slim-app.INFO: Home [] {"uid":"879731e"}
+[2016-04-11 19:46:12] slim-app.INFO: Orders page [] {"uid":"15bbd46"}
+[2016-04-11 19:46:34] slim-app.INFO: Edit Order 1 [] {"uid":"b4d1b7c"}
+[2016-04-11 19:48:40] slim-app.INFO: Edit Order 1 [] {"uid":"45ddc0f"}
+[2016-04-11 19:48:42] slim-app.INFO: Edit Order 1 [] {"uid":"204457b"}
+[2016-04-11 19:49:58] slim-app.INFO: Edit Order 1 [] {"uid":"0307531"}
+[2016-04-11 19:50:00] slim-app.INFO: Edit Order 1 [] {"uid":"26016b1"}
+[2016-04-11 19:50:04] slim-app.INFO: POST Edit Order got body [] {"uid":"44a3412"}
+[2016-04-11 19:50:04] slim-app.INFO: POST Edit Order about to feth 1 [] {"uid":"44a3412"}
+[2016-04-11 19:50:04] slim-app.INFO: POST Edit Order 1 [] {"uid":"44a3412"}
+[2016-04-11 19:50:17] slim-app.INFO: Edit Order 1 [] {"uid":"6f140dc"}
+[2016-04-11 19:50:26] slim-app.INFO: POST Edit Order got body [] {"uid":"d487a4f"}
+[2016-04-11 19:50:26] slim-app.INFO: POST Edit Order about to feth 1 [] {"uid":"d487a4f"}
+[2016-04-11 19:50:26] slim-app.INFO: POST Edit Order 1 [] {"uid":"d487a4f"}
+[2016-04-11 19:50:26] slim-app.INFO: Orders page [] {"uid":"a560a7c"}
+[2016-04-11 19:51:32] slim-app.INFO: Orders page [] {"uid":"2e2c576"}
+[2016-04-11 19:51:33] slim-app.INFO: Orders page [] {"uid":"5220c62"}
+[2016-04-11 19:51:35] slim-app.INFO: Deleting order 8 [] {"uid":"ff7790b"}
+[2016-04-11 19:56:28] slim-app.INFO: Orders page [] {"uid":"7c1740e"}
+[2016-04-11 19:56:30] slim-app.INFO: Orders page [] {"uid":"9932eed"}
+[2016-04-11 19:56:33] slim-app.INFO: Deleting order 8 [] {"uid":"9c9875f"}
+[2016-04-11 20:09:04] slim-app.INFO: Orders page [] {"uid":"e66c0c3"}
+[2016-04-11 20:09:10] slim-app.INFO: Edit Order 1 [] {"uid":"2a52e4b"}
+[2016-04-11 20:09:13] slim-app.INFO: POST Updating Order 1 [] {"uid":"5a835c3"}
+[2016-04-11 20:09:13] slim-app.INFO: Orders page [] {"uid":"157094d"}
+[2016-04-11 20:09:15] slim-app.INFO: Deleting order 8 [] {"uid":"5322331"}
+[2016-04-11 20:10:25] slim-app.INFO: Orders page [] {"uid":"de354a2"}
+[2016-04-11 20:10:27] slim-app.INFO: Edit Order 1 [] {"uid":"630d68e"}
+[2016-04-11 20:10:30] slim-app.INFO: POST Updating Order 1 [] {"uid":"958dbef"}
+[2016-04-11 20:10:30] slim-app.INFO: Orders page [] {"uid":"b05a1ef"}
+[2016-04-11 20:10:35] slim-app.INFO: Deleting order 8 [] {"uid":"b3680b7"}
+[2016-04-11 20:10:48] slim-app.INFO: Creating new order [] {"uid":"4a9f5e7"}
+[2016-04-11 20:10:56] slim-app.INFO: Orders page [] {"uid":"6abb395"}
+[2016-04-11 20:11:00] slim-app.INFO: Orders page [] {"uid":"969305b"}
+[2016-04-11 20:11:06] slim-app.INFO: Orders page [] {"uid":"5d317bc"}
+[2016-04-11 20:11:08] slim-app.INFO: Deleting order 7 [] {"uid":"b8127d4"}
+[2016-04-11 20:11:12] slim-app.INFO: Home [] {"uid":"d0738ee"}
+[2016-04-11 20:11:16] slim-app.INFO: Orders page [] {"uid":"01d0703"}
+[2016-04-11 20:11:22] slim-app.INFO: Deleting order 6 [] {"uid":"73ba828"}
+[2016-04-11 20:11:28] slim-app.INFO: Orders page [] {"uid":"55734cc"}
+[2016-04-11 20:11:32] slim-app.INFO: Deleting order 5 [] {"uid":"44eadc8"}
+[2016-04-11 20:11:36] slim-app.INFO: Orders page [] {"uid":"656b449"}
+[2016-04-11 20:12:13] slim-app.INFO: Orders page [] {"uid":"c6ab0bc"}
+[2016-04-11 20:12:15] slim-app.INFO: Deleting order 4 [] {"uid":"4f9a27a"}
+[2016-04-11 20:12:15] slim-app.INFO: Orders page [] {"uid":"5cfdeb9"}
+[2016-04-11 20:13:06] slim-app.INFO: Creating new order [] {"uid":"16cb6ff"}
+[2016-04-11 20:13:24] slim-app.INFO: Creating new order [] {"uid":"3d19a2b"}
+[2016-04-11 20:15:04] slim-app.INFO: Creating new order [] {"uid":"e9dc013"}
+[2016-04-11 20:16:44] slim-app.INFO: Creating new order [] {"uid":"d315f9e"}
+[2016-04-11 20:16:46] slim-app.INFO: Creating new order [] {"uid":"e39d25f"}
+[2016-04-11 20:17:00] slim-app.INFO: Creating new order entity [] {"uid":"d868476"}
+[2016-04-11 20:19:44] slim-app.INFO: Creating new order [] {"uid":"94a4d6d"}
+[2016-04-11 20:19:46] slim-app.INFO: Created new order entity [] {"uid":"eb1eb60"}
+[2016-04-11 20:20:11] slim-app.INFO: Creating new order [] {"uid":"7b6fe41"}
+[2016-04-11 20:20:12] slim-app.INFO: Created new order entity 99.99 [] {"uid":"f6f3814"}
+[2016-04-11 20:22:41] slim-app.INFO: Creating new order [] {"uid":"7000cd2"}
+[2016-04-11 20:22:42] slim-app.INFO: Orders page [] {"uid":"02a6b1b"}
+[2016-04-11 20:22:45] slim-app.INFO: Edit Order 1 [] {"uid":"e118ca8"}
+[2016-04-11 20:22:49] slim-app.INFO: POST Updating Order 1 [] {"uid":"268f56a"}
+[2016-04-11 20:22:49] slim-app.INFO: Orders page [] {"uid":"59a2d5c"}
+[2016-04-11 20:22:53] slim-app.INFO: Creating new order [] {"uid":"ae8b62e"}
+[2016-04-11 20:28:26] slim-app.INFO: Creating new order [] {"uid":"574fe62"}
+[2016-04-11 20:29:25] slim-app.INFO: Creating new order [] {"uid":"ef6982a"}
+[2016-04-11 20:29:29] slim-app.INFO: Creating new order [] {"uid":"6bb0cb8"}
+[2016-04-11 20:29:30] slim-app.INFO: Creating new order [] {"uid":"cd1e74f"}
+[2016-04-11 20:32:30] slim-app.INFO: Creating new order [] {"uid":"ed02756"}
+[2016-04-11 20:32:46] slim-app.INFO: Creating new order [] {"uid":"8beaf87"}
+[2016-04-11 20:34:02] slim-app.INFO: Creating new order [] {"uid":"6eeb2e1"}
+[2016-04-11 20:34:05] slim-app.INFO: Home [] {"uid":"e79b041"}
+[2016-04-11 20:34:08] slim-app.INFO: Customers page [] {"uid":"56df520"}
+[2016-04-11 20:34:10] slim-app.INFO: Creating new customer [] {"uid":"03f430f"}
+[2016-04-11 20:34:14] slim-app.INFO: POST Creating new customer [] {"uid":"c404ff3"}
+[2016-04-11 20:34:14] slim-app.INFO: Customers page [] {"uid":"3b8193d"}
+[2016-04-11 20:34:56] slim-app.INFO: Creating new customer [] {"uid":"d016db7"}
+[2016-04-11 20:34:57] slim-app.INFO: Customers page [] {"uid":"4e7ac38"}
+[2016-04-11 20:34:58] slim-app.INFO: Home [] {"uid":"9a23be8"}
+[2016-04-11 20:34:59] slim-app.INFO: Creating new order [] {"uid":"dc7d70b"}
+[2016-04-11 20:37:28] slim-app.INFO: Creating new order [] {"uid":"2bba163"}
+[2016-04-11 20:37:29] slim-app.INFO: Orders page [] {"uid":"af33323"}
+[2016-04-11 20:37:33] slim-app.INFO: Home [] {"uid":"4e7936a"}
+[2016-04-11 20:37:37] slim-app.INFO: Payment AKA Shipments page [] {"uid":"876cf6d"}
+[2016-04-11 20:42:58] slim-app.INFO: Payment AKA Shipments page [] {"uid":"18b918d"}
+[2016-04-11 20:44:36] slim-app.INFO: Payment AKA Shipments page [] {"uid":"0c0e747"}
+[2016-04-11 20:46:12] slim-app.INFO: adding payment item [] {"uid":"09f4df3"}
+[2016-04-11 20:47:20] slim-app.INFO: Payment AKA Shipments page [] {"uid":"5985a08"}
+[2016-04-11 20:53:16] slim-app.INFO: Payment AKA Shipments page [] {"uid":"0b56096"}
+[2016-04-11 20:53:19] slim-app.INFO: adding payment item [] {"uid":"94c2e10"}
+[2016-04-11 20:53:35] slim-app.INFO: Payment AKA Shipments page [] {"uid":"dff6891"}
+[2016-04-11 20:54:04] slim-app.INFO: adding payment item [] {"uid":"18d3a11"}
+[2016-04-11 20:54:30] slim-app.INFO: Payment AKA Shipments page [] {"uid":"a19c47b"}
+[2016-04-11 20:59:18] slim-app.INFO: Payment AKA Shipments page [] {"uid":"b7cb989"}
+[2016-04-11 20:59:20] slim-app.INFO: adding payment item [] {"uid":"43e7a0c"}
+[2016-04-11 20:59:52] slim-app.INFO: adding payment item [] {"uid":"2f0c5d3"}
+[2016-04-11 21:00:13] slim-app.INFO: adding payment item [] {"uid":"ff56889"}
+[2016-04-11 21:00:46] slim-app.INFO: adding payment item [] {"uid":"0488531"}
+[2016-04-11 21:00:47] slim-app.INFO: adding payment item [] {"uid":"9fa0f4c"}
+[2016-04-11 21:00:56] slim-app.INFO: attempting to save payment [] {"uid":"b21924a"}
+[2016-04-11 21:00:56] slim-app.INFO: Payment AKA Shipments page [] {"uid":"370dcb1"}
+[2016-04-11 21:02:19] slim-app.INFO: Home [] {"uid":"7551332"}
+[2016-04-11 21:02:22] slim-app.INFO: Customers page [] {"uid":"07a21a2"}
+[2016-04-11 21:02:27] slim-app.INFO: Edit customer 1 [] {"uid":"c7b413c"}
+[2016-04-11 21:02:31] slim-app.INFO: Updating customer Mike Tyson [] {"uid":"5df0797"}
+[2016-04-11 21:02:31] slim-app.INFO: Customers page [] {"uid":"be33321"}
+[2016-04-11 21:02:34] slim-app.INFO: Creating new customer [] {"uid":"f8f660b"}
+[2016-04-11 21:02:37] slim-app.INFO: POST Creating new customer [] {"uid":"9d106b5"}
+[2016-04-11 21:02:37] slim-app.INFO: Customers page [] {"uid":"c96432f"}
+[2016-04-11 21:02:40] slim-app.INFO: Customer retrieved Patrick Young [] {"uid":"8d2228a"}
+[2016-04-11 21:02:40] slim-app.INFO: Customers page [] {"uid":"b0e272b"}
+[2016-04-11 21:02:47] slim-app.INFO: Home [] {"uid":"9563a00"}
+[2016-04-11 21:02:50] slim-app.INFO: Departments page [] {"uid":"15fe1ac"}
+[2016-04-11 21:02:54] slim-app.INFO: Edit Department 1 [] {"uid":"ce8e421"}
+[2016-04-11 21:03:10] slim-app.INFO: Edit Department 1 [] {"uid":"e524617"}
+[2016-04-11 21:03:58] slim-app.INFO: Edit Department POST [] {"uid":"94af0b6"}
+[2016-04-11 21:04:20] slim-app.INFO: Edit Department 1 [] {"uid":"e5d2a0f"}
+[2016-04-11 21:04:21] slim-app.INFO: Edit Department POST [] {"uid":"c496b2e"}
+[2016-04-11 21:07:13] slim-app.INFO: Edit Department 1 [] {"uid":"ac1c848"}
+[2016-04-11 21:07:15] slim-app.INFO: Departments page [] {"uid":"07c0abe"}
+[2016-04-11 21:07:19] slim-app.INFO: Edit Department 2 [] {"uid":"b41ca83"}
+[2016-04-11 21:07:25] slim-app.INFO: Departments page [] {"uid":"8d8cfd0"}
+[2016-04-11 21:07:29] slim-app.INFO: Deleting department 6 [] {"uid":"bbb1aa7"}
+[2016-04-11 21:08:32] slim-app.INFO: Departments page [] {"uid":"13278c1"}
+[2016-04-11 21:08:35] slim-app.INFO: Deleting department 6 [] {"uid":"c0ef5d2"}
+[2016-04-11 21:08:56] slim-app.INFO: Departments page [] {"uid":"bcefa51"}
+[2016-04-11 21:08:59] slim-app.INFO: Departments page [] {"uid":"90b90be"}
+[2016-04-11 21:09:01] slim-app.INFO: Creating new department [] {"uid":"492ac37"}
+[2016-04-11 21:09:29] slim-app.INFO: POST Creating new department [] {"uid":"0f5594e"}
+[2016-04-11 21:10:57] slim-app.INFO: Creating new department [] {"uid":"c6f665b"}
+[2016-04-11 21:10:58] slim-app.INFO: POST Creating new department [] {"uid":"e9a84f6"}
+[2016-04-11 21:10:58] slim-app.INFO: POST Creating new department [] {"uid":"e9a84f6"}
+[2016-04-11 21:11:08] slim-app.INFO: Creating new department [] {"uid":"0509514"}
+[2016-04-11 21:11:12] slim-app.INFO: POST Creating new department [] {"uid":"587f680"}
+[2016-04-11 21:11:12] slim-app.INFO: POST Creating new department [] {"uid":"587f680"}
+[2016-04-11 21:12:05] slim-app.INFO: Creating new department [] {"uid":"4edd74f"}
+[2016-04-11 21:12:07] slim-app.INFO: POST Creating new department [] {"uid":"a63bea3"}
+[2016-04-11 21:12:07] slim-app.INFO: POST Creating new department [] {"uid":"a63bea3"}
+[2016-04-11 21:12:45] slim-app.INFO: Creating new department [] {"uid":"decb3a0"}
+[2016-04-11 21:12:47] slim-app.INFO: POST Creating new department [] {"uid":"2288d13"}
+[2016-04-11 21:12:47] slim-app.INFO: POST Creating new department for Frogology [] {"uid":"2288d13"}
+[2016-04-11 21:15:43] slim-app.INFO: Creating new department [] {"uid":"c9abcb0"}
+[2016-04-11 21:15:45] slim-app.INFO: POST Creating new department [] {"uid":"9f33f8f"}
+[2016-04-11 21:16:45] slim-app.INFO: Creating new department [] {"uid":"ee6f1a3"}
+[2016-04-11 21:16:46] slim-app.INFO: POST Creating new department [] {"uid":"f1c6008"}
+[2016-04-11 21:17:07] slim-app.INFO: Creating new department [] {"uid":"1632fd9"}
+[2016-04-11 21:17:08] slim-app.INFO: Creating new department [] {"uid":"3d4fa5e"}
+[2016-04-11 21:17:28] slim-app.INFO: POST Creating new department [] {"uid":"422e757"}
+[2016-04-11 21:18:56] slim-app.INFO: Creating new department [] {"uid":"a3323f1"}
+[2016-04-11 21:18:58] slim-app.INFO: POST Creating new department [] {"uid":"daad249"}
+[2016-04-11 21:18:58] slim-app.INFO: Creating new department  Frogology [] {"uid":"daad249"}
+[2016-04-11 21:19:46] slim-app.INFO: Creating new department [] {"uid":"56f3d7c"}
+[2016-04-11 21:19:48] slim-app.INFO: POST Creating new department [] {"uid":"398e4a6"}
+[2016-04-11 21:19:48] slim-app.INFO: Creating new department Frogology [] {"uid":"398e4a6"}
+[2016-04-11 21:20:25] slim-app.INFO: Creating new department [] {"uid":"9a87448"}
+[2016-04-11 21:21:16] slim-app.INFO: POST Creating new department [] {"uid":"d6dafc8"}
+[2016-04-11 21:21:16] slim-app.INFO: Creating new department Frogology [] {"uid":"d6dafc8"}
+[2016-04-11 21:21:16] slim-app.INFO: Departments page [] {"uid":"9cecb30"}
+[2016-04-11 21:21:44] slim-app.INFO: Home [] {"uid":"562d4e4"}
+[2016-04-11 21:21:47] slim-app.INFO: Dependants page [] {"uid":"da7e5cb"}
+[2016-04-11 21:21:53] slim-app.INFO: Edit Dependant 582642999 [] {"uid":"573b322"}
+[2016-04-11 21:21:55] slim-app.INFO: Dependants page [] {"uid":"ed08cfe"}
+[2016-04-11 21:21:58] slim-app.INFO: Edit Dependant 582642999 [] {"uid":"a87147c"}
+[2016-04-11 21:23:35] slim-app.INFO: Edit Dependant 582642999 [] {"uid":"6345af3"}
+[2016-04-11 21:23:37] slim-app.INFO: POST Edit Dependant Sara Cambell [] {"uid":"5536ef1"}
+[2016-04-11 21:24:05] slim-app.INFO: Edit Dependant 582642999 [] {"uid":"d36a807"}
+[2016-04-11 21:24:07] slim-app.INFO: POST Edit Dependant Sara Cambell [] {"uid":"a8246a7"}
+[2016-04-11 21:24:07] slim-app.INFO: Dependants page [] {"uid":"c2253de"}
+[2016-04-11 21:24:09] slim-app.INFO: Edit Dependant 582642999 [] {"uid":"97eb14a"}
+[2016-04-11 21:24:13] slim-app.INFO: Dependants page [] {"uid":"21e6ea7"}
+[2016-04-11 21:24:33] slim-app.INFO: Dependants page [] {"uid":"1bbd51f"}
+[2016-04-11 21:24:35] slim-app.INFO: Deleting dependant 456879233 [] {"uid":"a01885a"}
+[2016-04-11 21:25:48] slim-app.INFO: Dependants page [] {"uid":"cfeeabb"}
+[2016-04-11 21:25:50] slim-app.INFO: Edit Dependant 582642999 [] {"uid":"4ef70d3"}
+[2016-04-11 21:25:53] slim-app.INFO: POST Edit Dependant Sara Cambell [] {"uid":"e3b91e2"}
+[2016-04-11 21:25:53] slim-app.INFO: Dependants page [] {"uid":"3712d29"}
+[2016-04-11 21:25:55] slim-app.INFO: Edit Dependant 456879233 [] {"uid":"a190002"}
+[2016-04-11 21:25:56] slim-app.INFO: POST Edit Dependant Vicky Cambell [] {"uid":"4d7c7ea"}
+[2016-04-11 21:25:57] slim-app.INFO: Dependants page [] {"uid":"fe4f3f3"}
+[2016-04-11 21:25:58] slim-app.INFO: Deleting dependant 456879233 [] {"uid":"15d1586"}
+[2016-04-11 21:26:13] slim-app.INFO: Dependants page [] {"uid":"041fe5c"}
+[2016-04-11 21:26:14] slim-app.INFO: Dependants page [] {"uid":"5098371"}
+[2016-04-11 21:26:16] slim-app.INFO: Creating new dependant [] {"uid":"e2683ff"}
+[2016-04-11 21:30:38] slim-app.INFO: Dependants page [] {"uid":"bbf9ac8"}
+[2016-04-11 21:30:58] slim-app.INFO: Creating new dependant [] {"uid":"1c28582"}
+[2016-04-11 21:31:10] slim-app.INFO: Creating new dependant [] {"uid":"50ab407"}
+[2016-04-11 21:31:35] slim-app.INFO: Creating new dependant [] {"uid":"3130dd9"}
+[2016-04-11 21:32:00] slim-app.INFO: Dependants page [] {"uid":"fb15f3e"}
+[2016-04-11 21:42:23] slim-app.INFO: Deleting dependant 23423423 [] {"uid":"ec61dfb"}
+[2016-04-11 21:42:23] slim-app.INFO: Dependants page [] {"uid":"b9ccdd2"}
+[2016-04-11 21:42:25] slim-app.INFO: Creating new dependant [] {"uid":"d001bc3"}
+[2016-04-11 21:42:50] slim-app.INFO: Creating new dependant [] {"uid":"2dac8be"}
+[2016-04-11 21:45:17] slim-app.INFO: Creating new dependant [] {"uid":"0b5eaba"}
+[2016-04-11 21:46:53] slim-app.INFO: Creating new dependant [] {"uid":"d4fea0f"}
+[2016-04-11 21:47:06] slim-app.INFO: Creating new dependant [] {"uid":"6f13d32"}
+[2016-04-11 21:47:50] slim-app.INFO: Creating new dependant [] {"uid":"b92fe50"}
+[2016-04-11 21:47:51] slim-app.INFO: Added to caregiver134213 [] {"uid":"a4e57ce"}
+[2016-04-11 21:48:21] slim-app.INFO: Creating new dependant [] {"uid":"981b31c"}
+[2016-04-11 21:48:22] slim-app.INFO: Added to caregiver 134213 6 [] {"uid":"2cf15c2"}
+[2016-04-11 21:49:37] slim-app.INFO: Creating new dependant [] {"uid":"55fa98b"}
+[2016-04-11 21:51:30] slim-app.INFO: Creating new dependant [] {"uid":"7786e94"}
+[2016-04-11 21:51:48] slim-app.INFO: Home [] {"uid":"16360d8"}
+[2016-04-11 21:51:51] slim-app.INFO: Home [] {"uid":"f6ce429"}
+[2016-04-11 21:51:54] slim-app.INFO: Dependants page [] {"uid":"9ab11a6"}
+[2016-04-11 21:51:56] slim-app.INFO: Creating new dependant [] {"uid":"67f4f8b"}
+[2016-04-11 21:56:00] slim-app.INFO: Dependants page [] {"uid":"bd44953"}
+[2016-04-11 21:56:02] slim-app.INFO: Creating new dependant [] {"uid":"d31da5c"}
+[2016-04-11 21:57:12] slim-app.INFO: Creating new dependant [] {"uid":"9ded1d8"}
+[2016-04-11 21:57:13] slim-app.INFO: Dependants page [] {"uid":"2a4911e"}
+[2016-04-11 21:57:14] slim-app.INFO: Creating new dependant [] {"uid":"33a0a8f"}
+[2016-04-11 21:58:08] slim-app.INFO: Creating new dependant [] {"uid":"5e9c175"}
+[2016-04-11 22:01:15] slim-app.INFO: Creating new dependant [] {"uid":"8eaf38a"}
+[2016-04-11 22:01:16] slim-app.INFO: Dependants page [] {"uid":"2f3af8e"}
+[2016-04-11 22:01:18] slim-app.INFO: Deleting dependant 324234 [] {"uid":"493c65f"}
+[2016-04-11 22:01:18] slim-app.INFO: Dependants page [] {"uid":"f190406"}
+[2016-04-11 22:01:20] slim-app.INFO: Creating new dependant [] {"uid":"b682cf8"}
+[2016-04-11 22:17:33] slim-app.INFO: Creating new dependant [] {"uid":"2485e86"}
+[2016-04-11 22:20:52] slim-app.INFO: Creating new dependant [] {"uid":"28a3039"}
+[2016-04-11 22:21:00] slim-app.INFO: Dependants page [] {"uid":"d2faf9f"}
+[2016-04-11 22:21:01] slim-app.INFO: Deleting dependant 3249432 [] {"uid":"13ef585"}
+[2016-04-11 22:21:01] slim-app.INFO: Dependants page [] {"uid":"3a92094"}
+[2016-04-11 22:21:02] slim-app.INFO: Creating new dependant [] {"uid":"65f3304"}
+[2016-04-11 22:21:12] slim-app.INFO: Dependants page [] {"uid":"0b0cb22"}
+[2016-04-11 22:21:30] slim-app.INFO: Deleting dependant 3424534 [] {"uid":"8ea3079"}
+[2016-04-11 22:21:30] slim-app.INFO: Dependants page [] {"uid":"9c96010"}
+[2016-04-11 22:35:31] slim-app.INFO: Employees page [] {"uid":"c5ad010"}
+[2016-04-11 22:35:43] slim-app.INFO: Edit Employee 1 [] {"uid":"08eeb63"}
+[2016-04-11 22:35:47] slim-app.INFO: Employees page [] {"uid":"19fc7e2"}
+[2016-04-11 22:36:07] slim-app.INFO: Employees page [] {"uid":"3958e57"}
+[2016-04-11 22:36:09] slim-app.INFO: Edit Employee 1 [] {"uid":"5751ea8"}
+[2016-04-11 22:36:17] slim-app.INFO: Employees page [] {"uid":"75324a5"}
+[2016-04-11 22:36:20] slim-app.INFO: Edit Employee 9 [] {"uid":"a44f3e8"}
+[2016-04-11 22:36:24] slim-app.INFO: Employees page [] {"uid":"c63d159"}
+[2016-04-11 22:36:29] slim-app.INFO: Edit Employee 8 [] {"uid":"ea633c5"}
+[2016-04-11 22:36:30] slim-app.INFO: Employees page [] {"uid":"234b115"}
+[2016-04-11 22:36:32] slim-app.INFO: Edit Employee 10 [] {"uid":"f21dc7f"}
+[2016-04-11 22:36:33] slim-app.INFO: Employees page [] {"uid":"a7099d7"}
+[2016-04-11 22:36:34] slim-app.INFO: Edit Employee 11 [] {"uid":"0256b20"}
+[2016-04-11 22:36:36] slim-app.INFO: Employees page [] {"uid":"5122e5c"}
+[2016-04-11 22:36:39] slim-app.INFO: Edit Employee 2 [] {"uid":"c36b9ed"}
+[2016-04-11 22:36:40] slim-app.INFO: Employees page [] {"uid":"eeefc3c"}
+[2016-04-11 22:36:41] slim-app.INFO: Edit Employee 3 [] {"uid":"38e4f23"}
+[2016-04-11 22:36:46] slim-app.INFO: Employees page [] {"uid":"44dd32b"}
+[2016-04-11 22:36:50] slim-app.INFO: Edit Employee 9 [] {"uid":"45a7ef1"}
+[2016-04-11 22:37:54] slim-app.INFO: Edit Employee 9 [] {"uid":"88a74df"}
+[2016-04-11 22:37:58] slim-app.INFO: Employees page [] {"uid":"e491296"}
+[2016-04-11 22:38:03] slim-app.INFO: Edit Employee 3 [] {"uid":"decb6b4"}
+[2016-04-11 22:38:46] slim-app.INFO: Edit Employee 3 [] {"uid":"8e2199b"}
+[2016-04-11 22:39:04] slim-app.INFO: Edit Employee 3 [] {"uid":"6cf0442"}
+[2016-04-11 22:40:13] slim-app.INFO: Employees page [] {"uid":"f21e172"}
+[2016-04-11 22:40:18] slim-app.INFO: Edit Employee 4 [] {"uid":"d17eee4"}
+[2016-04-11 22:40:20] slim-app.INFO: Employees page [] {"uid":"d0db1e0"}
+[2016-04-11 22:40:22] slim-app.INFO: Edit Employee 5 [] {"uid":"b43503f"}
+[2016-04-11 22:40:24] slim-app.INFO: Employees page [] {"uid":"ad0b4d1"}
+[2016-04-11 22:40:26] slim-app.INFO: Edit Employee 6 [] {"uid":"0509498"}
+[2016-04-11 22:40:27] slim-app.INFO: Employees page [] {"uid":"6450edc"}
+[2016-04-11 22:40:29] slim-app.INFO: Edit Employee 7 [] {"uid":"c9241f3"}
+[2016-04-11 22:40:31] slim-app.INFO: Employees page [] {"uid":"7fbc25a"}
+[2016-04-11 22:40:38] slim-app.INFO: Home [] {"uid":"8a8cb7a"}
+[2016-04-11 22:40:44] slim-app.INFO: Employees page [] {"uid":"10172c0"}
+[2016-04-11 22:40:46] slim-app.INFO: Home [] {"uid":"a7a187d"}
+[2016-04-11 22:40:50] slim-app.INFO: Employees page [] {"uid":"ce392ae"}
+[2016-04-11 22:40:52] slim-app.INFO: Creating new employee [] {"uid":"5cb4000"}
+[2016-04-11 22:41:25] slim-app.INFO: Creating new employee [] {"uid":"33704c5"}
+[2016-04-11 22:42:36] slim-app.INFO: Creating new employee [] {"uid":"bd48f7a"}
+[2016-04-11 22:44:23] slim-app.INFO: Creating new employee [] {"uid":"ea9d35d"}
+[2016-04-11 22:46:02] slim-app.INFO: Creating new employee [] {"uid":"e99bb56"}
+[2016-04-11 22:46:04] slim-app.INFO: Employees page [] {"uid":"9535ebb"}
+[2016-04-11 22:46:35] slim-app.INFO: Employees page [] {"uid":"b0252f1"}
+[2016-04-11 22:46:37] slim-app.INFO: Deleting employee 12 [] {"uid":"46bce88"}
+[2016-04-11 22:47:29] slim-app.INFO: Employees page [] {"uid":"9cf160c"}
+[2016-04-11 22:47:32] slim-app.INFO: Deleting employee 12 [] {"uid":"61114f9"}
+[2016-04-11 22:48:18] slim-app.INFO: Customers page [] {"uid":"f0573e1"}
+[2016-04-11 22:48:20] slim-app.INFO: Customer retrieved Christine Long [] {"uid":"b72c1dc"}
+[2016-04-11 22:49:03] slim-app.INFO: Customers page [] {"uid":"44f037c"}
+[2016-04-11 22:49:29] slim-app.INFO: Customers page [] {"uid":"79dab57"}
+[2016-04-11 22:49:31] slim-app.INFO: Customer retrieved Christine Long [] {"uid":"01fb02a"}
+[2016-04-11 22:49:31] slim-app.INFO: Customers page [] {"uid":"f5ec546"}
+[2016-04-11 22:50:39] slim-app.INFO: Customers page [] {"uid":"c706fc8"}
+[2016-04-11 22:50:41] slim-app.INFO: Employees page [] {"uid":"edc5aca"}
+[2016-04-11 22:50:44] slim-app.INFO: Employees page [] {"uid":"9f58108"}
+[2016-04-11 22:50:46] slim-app.INFO: Deleting employee 11 [] {"uid":"f2db893"}
+[2016-04-11 22:52:05] slim-app.INFO: Employees page [] {"uid":"c28c91e"}
+[2016-04-11 22:52:07] slim-app.INFO: Deleting employee Dave Gravell [] {"uid":"cd43f26"}
+[2016-04-11 22:53:08] slim-app.INFO: Home [] {"uid":"58430c3"}
+[2016-04-11 22:53:10] slim-app.INFO: Payment AKA Shipments page [] {"uid":"d53ff72"}
+[2016-04-11 22:53:31] slim-app.INFO: Employees page [] {"uid":"50cd5ad"}
+[2016-04-11 22:53:34] slim-app.INFO: Deleting employee Dave Gravell [] {"uid":"ba5d6e5"}
+[2016-04-11 22:54:09] slim-app.INFO: Employees page [] {"uid":"b0018b4"}
+[2016-04-11 22:54:34] slim-app.INFO: Employees page [] {"uid":"8b86382"}
+[2016-04-11 22:54:38] slim-app.INFO: Deleting employee Dave Gravell [] {"uid":"2a88864"}
+[2016-04-11 22:54:38] slim-app.INFO: Employees page [] {"uid":"024eba3"}
+[2016-04-11 22:54:43] slim-app.INFO: Creating new employee [] {"uid":"fdc98a8"}
+[2016-04-11 22:54:46] slim-app.INFO: Employees page [] {"uid":"3cbae1d"}
+[2016-04-11 22:54:48] slim-app.INFO: Edit Employee 4 [] {"uid":"dc3a1a8"}
+[2016-04-11 22:54:51] slim-app.INFO: Employees page [] {"uid":"bed71ca"}
+[2016-04-11 22:54:59] slim-app.INFO: Edit Employee 4 [] {"uid":"8a68ac0"}
+[2016-04-11 22:55:11] slim-app.INFO: Employees page [] {"uid":"dec6ecb"}
+[2016-04-11 22:55:37] slim-app.INFO: Deleting employee Meredith Cambell [] {"uid":"f63d7f8"}
+[2016-04-11 22:55:37] slim-app.INFO: Employees page [] {"uid":"86465e1"}
+[2016-04-11 22:55:40] slim-app.INFO: Deleting employee Meredith Cambell [] {"uid":"3ee51f3"}
+[2016-04-11 22:55:40] slim-app.INFO: Employees page [] {"uid":"33b1e58"}
+[2016-04-11 22:55:47] slim-app.INFO: Edit Employee 9 [] {"uid":"c49e6ed"}
+[2016-04-11 22:55:52] slim-app.INFO: Employees page [] {"uid":"5624aea"}
+[2016-04-11 22:55:59] slim-app.INFO: Home [] {"uid":"22b5713"}
+[2016-04-11 22:56:02] slim-app.INFO: Inventory page [] {"uid":"2ea617c"}
+[2016-04-11 22:56:04] slim-app.INFO: adding item [] {"uid":"2a8cd3d"}
+[2016-04-11 22:56:27] slim-app.INFO: adding item [] {"uid":"c5cbb6a"}
+[2016-04-11 22:56:28] slim-app.INFO: Inventory page [] {"uid":"e06ee72"}
+[2016-04-11 22:56:39] slim-app.INFO: Home [] {"uid":"88a5cc4"}
+[2016-04-11 22:56:42] slim-app.INFO: Items page [] {"uid":"59747bc"}
+[2016-04-11 22:56:44] slim-app.INFO: Creating new employee [] {"uid":"e0878fc"}
+[2016-04-11 22:56:57] slim-app.INFO: Items page [] {"uid":"93321cf"}
+[2016-04-11 22:57:53] slim-app.INFO: Items page [] {"uid":"7196f07"}
+[2016-04-11 22:57:55] slim-app.INFO: Creating new item [] {"uid":"06c6968"}
+[2016-04-11 23:03:30] slim-app.INFO: Creating new item [] {"uid":"7a3e1c5"}
+[2016-04-11 23:08:49] slim-app.INFO: Creating new item [] {"uid":"451fa72"}
+[2016-04-11 23:08:51] slim-app.INFO: POST Creating new item  Color: orange name: 10 Inch Gnome [] {"uid":"245f54b"}
+[2016-04-11 23:10:10] slim-app.INFO: Creating new item [] {"uid":"99f2809"}
+[2016-04-11 23:10:32] slim-app.INFO: Creating new item [] {"uid":"540f511"}
+[2016-04-11 23:10:37] slim-app.INFO: POST Creating new item  id:  color: orange [] {"uid":"e598a68"}
+[2016-04-11 23:11:09] slim-app.INFO: Creating new item [] {"uid":"72e7469"}
+[2016-04-11 23:11:11] slim-app.INFO: POST Creating new item  id:  color:  [] {"uid":"b578773"}
+[2016-04-11 23:11:30] slim-app.INFO: Creating new item [] {"uid":"ecc5279"}
+[2016-04-11 23:14:49] slim-app.INFO: Creating new item [] {"uid":"efb5958"}
+[2016-04-11 23:15:10] slim-app.INFO: Creating new item [] {"uid":"ed320d9"}
+[2016-04-11 23:15:23] slim-app.INFO: Creating new item [] {"uid":"119349d"}
+[2016-04-11 23:15:25] slim-app.INFO: Creating new item [] {"uid":"607e540"}
+[2016-04-11 23:15:35] slim-app.INFO: Creating new item [] {"uid":"96c3983"}
+[2016-04-11 23:15:36] slim-app.INFO: Creating new item [] {"uid":"2e3b54f"}
+[2016-04-11 23:16:06] slim-app.INFO: Creating new item [] {"uid":"cae5113"}
+[2016-04-11 23:16:07] slim-app.INFO: Creating new item  [] {"uid":"2b000ca"}
+[2016-04-11 23:22:06] slim-app.INFO: Creating new item [] {"uid":"76b57dd"}
+[2016-04-11 23:22:07] slim-app.INFO: Creating new item  [] {"uid":"38da30f"}
+[2016-04-11 23:22:32] slim-app.INFO: Creating new item [] {"uid":"e2902b3"}
+[2016-04-11 23:22:42] slim-app.INFO: Items page [] {"uid":"05f3fc7"}
+[2016-04-11 23:26:33] slim-app.INFO: Items page [] {"uid":"5e99bc3"}
+[2016-04-11 23:26:35] slim-app.INFO: Deleting Item 7 [] {"uid":"be26de9"}
+[2016-04-11 23:27:20] slim-app.INFO: Items page [] {"uid":"32d3130"}
+[2016-04-11 23:27:22] slim-app.INFO: Deleting Item 7 [] {"uid":"7e6ebf0"}
+[2016-04-11 23:27:22] slim-app.INFO: Items page [] {"uid":"20d89fd"}
+[2016-04-11 23:27:24] slim-app.INFO: Deleting Item 8 [] {"uid":"2808529"}
+[2016-04-11 23:27:24] slim-app.INFO: Items page [] {"uid":"09e33e4"}
+[2016-04-11 23:27:25] slim-app.INFO: Deleting Item 9 [] {"uid":"ad3d984"}
+[2016-04-11 23:27:25] slim-app.INFO: Items page [] {"uid":"9e2fb53"}
+[2016-04-11 23:27:26] slim-app.INFO: Deleting Item 10 [] {"uid":"35869d0"}
+[2016-04-11 23:27:26] slim-app.INFO: Items page [] {"uid":"b3544bc"}
+[2016-04-11 23:27:27] slim-app.INFO: Deleting Item 11 [] {"uid":"fbb0a5c"}
+[2016-04-11 23:27:52] slim-app.INFO: Items page [] {"uid":"f27ff83"}
+[2016-04-11 23:28:17] slim-app.INFO: Items page [] {"uid":"d755bb7"}
+[2016-04-11 23:28:20] slim-app.INFO: Creating new item [] {"uid":"9445814"}
+[2016-04-11 23:28:31] slim-app.INFO: Items page [] {"uid":"fa6e435"}
+[2016-04-11 23:28:35] slim-app.INFO: Edit Item 7 [] {"uid":"cf57b5b"}
+[2016-04-11 23:28:38] slim-app.INFO: Items page [] {"uid":"ae370c0"}
+[2016-04-11 23:30:44] slim-app.INFO: Edit Item 7 [] {"uid":"546400c"}
+[2016-04-11 23:31:47] slim-app.INFO: Edit Item 7 [] {"uid":"5163aad"}
+[2016-04-11 23:31:51] slim-app.INFO: Items page [] {"uid":"e473785"}
+[2016-04-11 23:32:05] slim-app.INFO: Home [] {"uid":"12059af"}
+[2016-04-11 23:32:09] slim-app.INFO: Inventory page [] {"uid":"b74b594"}
+[2016-04-11 23:32:14] slim-app.INFO: Edit Inventory Item 6 [] {"uid":"46d2bf6"}
+[2016-04-11 23:32:38] slim-app.INFO: Edit Inventory Item 6 [] {"uid":"47b4f22"}
+[2016-04-11 23:32:40] slim-app.INFO: Inventory page [] {"uid":"840ea62"}
+[2016-04-11 23:32:43] slim-app.INFO: Edit Inventory Item 6 [] {"uid":"cffc06e"}
+[2016-04-11 23:32:50] slim-app.INFO: Inventory page [] {"uid":"e16149a"}
+[2016-04-11 23:33:39] slim-app.INFO: Inventory page [] {"uid":"d82fd65"}
+[2016-04-11 23:33:58] slim-app.INFO: Inventory page [] {"uid":"3efba10"}
+[2016-04-11 23:34:02] slim-app.INFO: adding item [] {"uid":"5e3bc81"}
+[2016-04-11 23:34:05] slim-app.INFO: Inventory page [] {"uid":"26e1886"}
+[2016-04-11 23:34:58] slim-app.INFO: Inventory page [] {"uid":"5e3f4bd"}
+[2016-04-11 23:35:00] slim-app.INFO: Deleting Item from inventory1 [] {"uid":"2a42b16"}
+[2016-04-11 23:35:12] slim-app.INFO: Inventory page [] {"uid":"b01cd98"}
+[2016-04-11 23:35:13] slim-app.INFO: Inventory page [] {"uid":"fd7409c"}
+[2016-04-11 23:35:19] slim-app.INFO: Edit Inventory Item 5 [] {"uid":"ac17516"}
+[2016-04-11 23:35:24] slim-app.INFO: Inventory page [] {"uid":"4d9f0ac"}
+[2016-04-11 23:35:34] slim-app.INFO: Home [] {"uid":"da0cafe"}
+[2016-04-11 23:35:38] slim-app.INFO: Orders page [] {"uid":"bc474a1"}
+[2016-04-11 23:35:42] slim-app.INFO: Deleting order 4 [] {"uid":"a2190c8"}
+[2016-04-11 23:35:42] slim-app.INFO: Orders page [] {"uid":"17a5a50"}
+[2016-04-11 23:35:56] slim-app.INFO: Payment AKA Shipments page [] {"uid":"35ceff9"}

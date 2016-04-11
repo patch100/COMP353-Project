@@ -14,7 +14,21 @@
     <input name="sin" id="sin" type="text" size="60" /><br />
     
     <label for="dob">DOB</label>
-    <input name="dob" id="dob" type="text" size="60" /><br />
+    <input name="dob" id="dob" type="date" size="60" /><br />
+
+    <label for="employee">Related Employee</label>
+    <select name="employee">
+        <option value=""></option>
+<?php
+    foreach($data['employees'] as $employee): ?>
+        <option value=<?=$employee->getId()?>>
+            ID: <?=$employee->getId()?> Name: <?=$employee->getName()?>
+        </option>
+<?php
+    endforeach;
+?>
+    </select><br />
+    <input type="submit" class="pure-button" value="Create" />
 </form>
 </body>
 </html>
