@@ -68,7 +68,7 @@ FaxNumber VARCHAR(12)
 
 CREATE TABLE PartTimeEmployee(
 Id INT(6) PRIMARY KEY,
-HourlyWage FLOAT(3,2) NOT NULL,
+HourlyWage FLOAT(4,2) NOT NULL,
 Hours INT(2),
 FOREIGN KEY(Id) REFERENCES Employee(Id)
 );
