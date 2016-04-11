@@ -603,3 +603,17 @@ $app->post('/payment/{id}/delete', function ($request, $response, $args) {
   $mapper->delete($payment);
   return $this->renderer->render($response, 'payment/payments.phtml', $args);
 });
+
+/*Produce a report on the top three selling products of the Company (in terms of
+total value of sales) during the past 12 months. List (among other details) the
+name of the item, number of orders placed, number of items sold. */
+
+/**********************PAYMENT QUERY ROUTES**********************/
+// Products 
+$app->get('/products/query', function ($request, $response, $args) {
+  $this->logger->info("products query");
+  $mapper = new ProductQueryMapper($this->db);
+  $products = $mapper->getProducts();
+  return $this->renderer->render($response, 'queries/query_products.phtml', [$args, "products" => $products]);
+});
+
