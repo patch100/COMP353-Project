@@ -7,15 +7,12 @@ class DependantMapper extends Mapper
      * @return [DependantEntity]  List of dependants
      */
     public function getDependants() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new DepartmentEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new DependantEntity($dummy);
+        $sql = "SELECT * FROM EmployeeDependant";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new DependantEntity($row);
+        }
 
         return $results;
     }
@@ -27,15 +24,12 @@ class DependantMapper extends Mapper
      * @return DependantEntity  The Dependant
      */
     public function getDependantById($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["department_id" => $department_id]);
-        //if($result) {
-        //    return new DepartmentEntity($stmt->fetch());
-        //}
-        $dummy = [];
-        return new DependantEntity($dummy);
+        $sql = "SELECT * FROM EmployeeDependant WHERE SSN = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $id]);
+        if($result) {
+           return new DependantEntity($stmt->fetch());
+        }
     }
 
 
@@ -46,7 +40,7 @@ class DependantMapper extends Mapper
      */
     public function save(DependantEntity $dependant) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into dependants (name, sin, dob) values (:name, :sin, :dob)";
+        $sql = "insert into EmployeeDependant (Name, SSN, DateOfBirth) values (:name, :sin, :dob)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $dependant->getName(),
@@ -64,11 +58,10 @@ class DependantMapper extends Mapper
      * @param DependantEntity the department object
      */
     public function delete(DependantEntity $dependant) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM dependants WHERE id = :id";
+        $sql = "DELETE FROM EmployeeDependant WHERE SSN = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
-            "id" => $dependant->getId()
+            "id" => $dependant->getSin()
         ]);
         if(!$result) {
             throw new Exception("could not delete record");

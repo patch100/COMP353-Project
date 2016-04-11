@@ -251,10 +251,9 @@ $app->post('/dependant/new', function (Request $request, Response $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
-    $data['sin'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
-    $data['dob'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
+    $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['SSN'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
+    $data['DateOfBirth'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
 
     $dependant = new DependantEntity($data);
     $mapper = new DependantMapper($this->db);
@@ -277,17 +276,14 @@ $app->post('/dependant/edit', function (Request $request, Response $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
-    $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
-    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
-    $data['sin'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
-    $data['dob'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
+    $data['SSN'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['DateOfBirth'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
 
     $mapper = new DependantMapper($this->db);
-    $dependant = $mapper->getDependantById($data['id']);
-    $dependant->setName( $data['name']);
-    $dependant->setSin($data['sin']);
-    $dependant->setDob($data['dob']);
+    $dependant = $mapper->getDependantById($data['SSN']);
+    $dependant->setName( $data['Name']);
+    $dependant->setDob($data['DateOfBirth']);
     $mapper->save($dependant);
     $response = $response->withRedirect("/dependants");
     return $response;
