@@ -1,6 +1,7 @@
 <?php
 class DepartmentEntity
 {
+    protected $id;
     protected $name;
     protected $room;
     protected $fax;
@@ -14,19 +15,14 @@ class DepartmentEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        //TODO UNCOMMENT AND SET PROPER DATA
-        // if(isset($data['id'])) {
-        //     $this->id = $data['id'];
-        // }
-        // $this->name = $data['name'];
-        // $this->address = $data['address'];
-        // $this->phone = $data['phone'];
-        $this->id = 1;
-        $this->name = "Patrick";
-        $this->fax = "514-999-9999";
-        $this->room = "514-999-9999";
-        $this->phoneOne = "514-999-9999";
-        $this->phoneTwo = "514-999-9999";
+        if(isset($data['Id'])) {
+            $this->id = $data['Id'];
+        }
+        $this->name = $data['Name'];
+        $this->room = $data['RoomNumber'];
+        $this->fax = $data['FaxNumber'];
+        $this->phoneOne = $data['PhoneNumber1'];
+        $this->phoneTwo = $data['PhoneNumber2'];
     }
 
     public function getId() {

@@ -7,16 +7,12 @@ class DepartmentMapper extends Mapper
      * @return [DepartmentEntity]  List of departments
      */
     public function getDepartments() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new DepartmentEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new DepartmentEntity($dummy);
-
+        $sql = "SELECT * FROM Department";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new DepartmentEntity($row);
+        }
         return $results;
     }
 
@@ -27,15 +23,12 @@ class DepartmentMapper extends Mapper
      * @return DepartmentEntity  The department
      */
     public function getDepartmentById($department_id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["department_id" => $department_id]);
-        //if($result) {
-        //    return new DepartmentEntity($stmt->fetch());
-        //}
-        $dummy = [];
-        return new DepartmentEntity($dummy);
+        $sql = "SELECT * FROM Department WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $department_id]);
+        if($result) {
+           return new DepartmentEntity($stmt->fetch());
+        }
     }
 
 
@@ -45,15 +38,16 @@ class DepartmentMapper extends Mapper
      * @param DepartmentEntity the department object
      */
     public function save(DepartmentEntity $department) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into departments (name, room_number, fax, phone_1, phone_2) values (:name, :room_number, :fax, :phone_1, :phone_2)";
+        $id = $this->count();
+        $sql = "insert into Department (Id, Name, PhoneNumber1, PhoneNumber2, RoomNumber, FaxNumber) values (:id, :name, :phone_1, :phone_2, :room_number, :fax)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
+            "id" => $id,
             "name" => $department->getName(),
-            "room_number" => $department->getRoomNumber(),
-            "fax" => $department->getFax(),
             "phone_1" => $department->getPhoneOne(),
             "phone_2" => $department->getPhoneTwo(),
+            "room_number" => $department->getRoomNumber(),
+            "fax" => $department->getFax(),
         ]);
         if(!$result) {
             throw new Exception("could not save record");
@@ -61,17 +55,53 @@ class DepartmentMapper extends Mapper
     }
 
     /**
+     * Update a department
+     *
+     * @param DepartmentEntity the department object
+     */
+    public function update(DepartmentEntity $department) {
+        $sql = "UPDATE Department SET Name = :name, RoomNumber = :room_number, FaxNumber = :fax, PhoneNumber1 = :phone_1, PhoneNumber2 = :phone_2 WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "name" => $department->getName(),
+            "room_number" => $department->getRoomNumber(),
+            "fax" => $department->getFax(),
+            "phone_1" => $department->getPhoneOne(),
+            "phone_2" => $department->getPhoneTwo(),
+            "id" => $department->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+    }
+
+     /**
+     * count 
+     *
+     * @param 
+     */
+    public function count() {
+        $sql = "SELECT Id FROM Department ORDER BY Id DESC LIMIT 1;";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute();
+        $count = 0;
+        if($result) {
+           $row = $stmt->fetch();
+           $count = (int)$row['id'];
+        }
+        
+        return $count;
+    }   
+
+    /**
      * Delete a department
      *
      * @param DepartmentEntity the department object
      */
     public function delete(DepartmentEntity $department) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM departments WHERE id = :id";
+        $sql = "DELETE FROM Department WHERE Id = :id";
         $stmt = $this->db->prepare($sql);
-        $result = $stmt->execute([
-            "id" => $department->getId()
-        ]);
+        $result = $stmt->execute(["id" => $department->getId()]);
         if(!$result) {
             throw new Exception("could not delete record");
         }

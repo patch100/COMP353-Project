@@ -20,7 +20,8 @@ values
 (5,65300),
 (7,44600),
 (8,78350),
-(9,90400);
+(9,90400),
+(11,90400);
 
 insert into PartTimeEmployee
 values

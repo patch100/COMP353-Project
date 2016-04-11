@@ -30,9 +30,9 @@ $app->post('/customer/new', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $customer_data = [];
-    $customer_data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
-    $customer_data['address'] = filter_var($post_data['address'], FILTER_SANITIZE_STRING);
-    $customer_data['phone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
+    $customer_data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $customer_data['Address'] = filter_var($post_data['address'], FILTER_SANITIZE_STRING);
+    $customer_data['Telephone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
 
     $customer = new CustomerEntity($customer_data);
     $customer_mapper = new CustomerMapper($this->db);
@@ -51,21 +51,22 @@ $app->get('/customer/{id}/edit', function ($request, $response, $args) {
 });
 
 // EDIT Customer POST
-$app->post('/customer/edit', function (Request $request, Response $response) {
+$app->post('/customer/edit', function ($request, $response) {
     $data = $request->getParsedBody();
 
     $customer_data = [];
-    $customer_data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
-    $customer_data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $customer_data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $customer_data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $customer_data['CustomerNumber'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
+    $customer_data['Name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
+    $customer_data['Address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
+    $customer_data['Telephone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
 
     $customer_mapper = new CustomerMapper($this->db);
-    $customer = $customer_mapper->getCustomerById($customer_data['id']);
-    $customer->setName($customer_data['name']);
-    $customer->setAddress($customer_data['address']);
-    $customer->setPhoneNumber($customer_data['phone']);
-    $customer_mapper->save($customer);
+    $customer = $customer_mapper->getCustomerById($customer_data['CustomerNumber']);
+    $this->logger->info("Updating customer " . $customer->getName());
+    $customer->setName($customer_data['Name']);
+    $customer->setAddress($customer_data['Address']);
+    $customer->setPhoneNumber($customer_data['Telephone']);
+    $customer_mapper->update($customer);
     $response = $response->withRedirect("/index.php/customers");
     return $response;
 });
@@ -75,11 +76,10 @@ $app->get('/customer/{id}/delete', function ($request, $response, $args) {
   $customer_id = (int)$args['id'];
   $customer_mapper = new CustomerMapper($this->db);
   $customer = $customer_mapper->getCustomerById($customer_id);
-  $this->logger->info("Deleting customer " . $customer_id);
-  $result = $customer_mapper->delete($customer);
-  $this->logger->info("Delete returned " . $result);
+  $this->logger->info("Customer retrieved " . $customer->getName());
+  $customer_mapper->delete($customer);
   $response = $response->withRedirect("/customers");
-    return $response;
+  return $response;
 });
 
 /**********************DEPARTMENTS**********************/
@@ -97,21 +97,21 @@ $app->get('/department/new', function ($request, $response, $args) {
   return $this->renderer->render($response, 'department/department.phtml', $args);
 });
 
-// New Department POST
-$app->post('/department/new', function (Request $request, Response $response) {
+// New department POST
+$app->post('/department/new', function ($request, $response) {
+    $this->logger->info("POST Creating new department");
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
-    $data['room'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
-    $data['fax'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
-    $data['phoneOne'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
-    $data['phoneTwo'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['RoomNumber'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
+    $data['FaxNumber'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
+    $data['PhoneNumber1'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['PhoneNumber2'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
 
     $department = new DepartmentEntity($data);
-    $mapper = new DepartmentMapper($this->db);
-    $mapper->save($department);
+    $department_mapper = new DepartmentMapper($this->db);
+    $department_mapper->save($department);
     $response = $response->withRedirect("/departments");
     return $response;
 });
@@ -126,26 +126,25 @@ $app->get('/department/{id}/edit', function ($request, $response, $args) {
 });
 
 // EDIT Department POST
-$app->post('/department/edit', function (Request $request, Response $response) {
+$app->post('/department/edit', function ($request, $response) {
     $post_data = $request->getParsedBody();
 
     $data = [];
-    // TODO: SET CORRECT PARAMS
-    $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
-    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
-    $data['room'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
-    $data['fax'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
-    $data['phoneOne'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
-    $data['phoneTwo'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['Id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['Name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['RoomNumber'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
+    $data['FaxNumber'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
+    $data['PhoneNumber1'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['PhoneNumber2'] = filter_var($post_data['phoneTwo'], FILTER_SANITIZE_STRING);
 
     $mapper = new DepartmentMapper($this->db);
-    $department = $mapper->getDepartmentById($data['id']);
-    $department->setName($data['name']);
-    $department->setRoom($data['room']);
-    $department->setFax($data['fax']);
-    $department->setPhoneOne($data['phoneOne']);
-    $department->setPhoneTwo($data['phoneTwo']);
-    $mapper->save($department);
+    $department = $mapper->getDepartmentById($data['Id']);
+    $department->setName($data['Name']);
+    $department->setRoom($data['RoomNumber']);
+    $department->setFax($data['FaxNumber']);
+    $department->setPhoneOne($data['PhoneNumber1']);
+    $department->setPhoneTwo($data['PhoneNumber2']);
+    $mapper->update($department);
     $response = $response->withRedirect("/departments");
     return $response;
 });

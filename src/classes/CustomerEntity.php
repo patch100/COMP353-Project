@@ -13,14 +13,13 @@ class CustomerEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        $this->id = $data['CustomerNumber'];
+         if(isset($data['CustomerNumber'])) {
+            $this->id = $data['CustomerNumber'];
+        }
+
         $this->name = $data['Name'];
         $this->address = $data['Address'];
         $this->phone = $data['Telephone'];
-        // $this->id = 1;
-        // $this->name = "Patrick";
-        // $this->address = "20 jon ave";
-        // $this->phone = "514-999-9999";
     }
 
     public function getId() {
@@ -47,7 +46,7 @@ class CustomerEntity
         $this->address = $address;
     }
 
-    public function setPhone($phone) {
+    public function setPhoneNumber($phone) {
         $this->phone = $phone;
     }
 }
