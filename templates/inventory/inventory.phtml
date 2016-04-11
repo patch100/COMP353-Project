@@ -6,25 +6,29 @@
 <body>
 <h1>Dependants</h1>
 
-<a href="/index.php/dependant/new">Add New Dependant</a>
+<a href="/index.php/inventory/add">Add Item</a>
 
 <table class="pure-table">
     <tr>
         <th>Name</th>
-        <th>SIN</th>
-        <th>DOB</th>
+        <th>Color</th>
+        <th>Price</th>
+        <th>Units</th>
+        <th>Date</th>
         <th>Actions</th>
     </tr>
 
-<?php foreach($data['dependants'] as $dependant): ?>
+<?php foreach($data['inventoryItems'] as $invItem): ?>
 
     <tr>
-        <td><?=$dependant->getName() ?></td>
-        <td><?=$dependant->getSin() ?></td>
-        <td><?=$dependant->getDob() ?></td>
+        <td><?=$invItem->getItem()->getName() ?></td>
+        <td><?=$invItem->getItem()->getColor() ?></td>
+        <td><?=$invItem->getPrice() ?></td>
+        <td><?=$invItem->getUnits() ?></td>
+        <td><?=$invItem->getDate() ?></td>
         <td>
-            <a href="/index.php/dependant/<?php echo $dependant->getId(); ?>/edit">Edit</a>
-            <a href="/index.php/dependant/<?php echo $dependant->getId(); ?>/delete">Delete</a>
+            <a href="/index.php/inventory/<?php echo $invItem->getId(); ?>/edit">Edit</a>
+            <a href="/index.php/inventory/<?php echo $invItem->getId(); ?>/delete">Delete</a>
         </td>
     </tr>
 

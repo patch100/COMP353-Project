@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang ="en">
+	<head>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 		<link rel="stylesheet" href="jonStyle.css">
+		<script type="text/javascript" src="jonScript.js"></script>
+		<meta charset="utf-8">
+		<title>COMP 353 - Main Project</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-static-top text-center">
+  			<div class="container">
+  				<div class="navbar-header">
+  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+			    		<span class="sr-only">Toggle Navigation</span>
+			    		<span class="icon-bar"></span>
+			    		<span class="icon-bar"></span>
+			    		<span class="icon-bar"></span>
+			    	</button>
+			    	<a class="navbar-brand" href="index.html">COMP 353 - Main Project</a>
+			    </div>
+			    <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+			    	<ul class="nav navbar-nav">
+			        	<li><a href="departments.html">Department</a></li>
+			        	<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Top 3<span class="caret"></span></a>
+			          		<ul class="dropdown-menu">
+			          			<li><a href="products.html">Products</a></li>
+			          			<li role="separator" class="divider"></li>
+			          			<li><a href="customers.html">Customers</a></li>
+			          		</ul>
+			        	</li>
+			        	<li><a href="inventory.html">Inventory</a></li>
+			        	<li><a href="payments.html">Payments</a></li>
+			        	<li><a href="invoices.html">Invoices</a></li>
+			        	<li><a href="edit.html">Edit</a></li>
+			      </ul>
+			    </div>
+		    </div>
+		</nav>
+		<div class="container">
+			<div class="jumbotron">			
+				<h1>Inventory</h1>
+				<p>Given a month and year, list, in descending order, the average price of all items ordered and/or are present in the inventory.</p>
+			</div>		
+		</div>
+		<div class="container">
+			<div class="col-md-12 col-sm-8">
+				<div class="panel panel-default">
+					<div class="panel-heading text-center"><h4><strong>Inventory Query</strong></h4></div>
+					<div class="panel-body">
+						<div class="form-group text-center">
+						<!--innerpanels-->
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<form class="form-horizontal" method="post" id="InvForm">
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<div class="form-group text-center">
+												<label class="col-sm-4 control-label" id="myLbl">Month/Year: </label>
+												<div class="col-sm-3">
+													<input type="text" id="myInput" placeholder="02/2012" class="form-control">
+												</div>
+												<div class="col-sm-2">
+													<button type="button" class="btn btn-default" onclick="">Find</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="col-md-1"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

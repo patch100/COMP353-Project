@@ -1,58 +1,77 @@
 <?php
 class InventoryEntity
 {   
-    // TODO: Gabe
-    // Its all commented out because its a copy paste of the customer entity
-    // protected $id;
-    // protected $name;
-    // protected $address;
-    // protected $phone;
+    protected $id;
+    protected $itemId;
+    protected $date;
+    protected $price;
+    protected $units;
+    protected $item;
 
-    // /**
-    //  * Accept an array of data matching properties of this class
-    //  * and create the class
-    //  *
-    //  * @param array $data The data to use to create
-    //  */
-    // public function __construct(array $data) {
-    //     //TODO UNCOMMENT AND SET PROPER DATA
-    //     // if(isset($data['id'])) {
-    //     //     $this->id = $data['id'];
-    //     // }
-    //     // $this->name = $data['name'];
-    //     // $this->address = $data['address'];
-    //     // $this->phone = $data['phone'];
-    //     $this->id = 1;
-    //     $this->name = "Patrick";
-    //     $this->address = "20 jon ave";
-    //     $this->phone = "514-999-9999";
-    // }
+    /**
+     * Accept an array of data matching properties of this class
+     * and create the class
+     *
+     * @param array $data The data to use to create
+     */
+    public function __construct(array $data) {
+        //TODO UNCOMMENT AND SET PROPER DATA
+        // if(isset($data['id'])) {
+        //     $this->id = $data['id'];
+        // }
+        // $this->name = $data['name'];
+        // $this->address = $data['address'];
+        // $this->phone = $data['phone'];
+        $now = new DateTime();
+        $this->id = 1;
+        $this->date = $now->format('Y-m-d H:i:s');    // MySQL datetime format;;
+        $this->price = 100;
+        $this->units = 100;
+        $this->setItem(new ItemEntity($data));
+    }
 
-    // public function getId() {
-    //     return $this->id;
-    // }
+    public function getId() {
+        return $this->id;
+    }
 
-    // public function getName() {
-    //     return $this->name;
-    // }
+    public function getItemId() {
+        return $this->itemId;
+    }
 
-    // public function getAddress() {
-    //     return $this->address;
-    // }
+    public function getItem() {
+        return $this->item;
+    }
 
-    // public function getPhone() {
-    //     return $this->phone;
-    // }
+    public function getDate() {
+        return $this->date;
+    }
 
-    // public function setName($name) {
-    //     $this->name = $name;
-    // }
+    public function getPrice() {
+        return $this->price;
+    }
 
-    // public function setAddress($address) {
-    //     $this->address = $address;
-    // }
+    public function getUnits() {
+        return $this->units;
+    }
 
-    // public function setPhone($phone) {
-    //     $this->phone = $phone;
-    // }
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setItem($item) {
+        $this->item = $item;
+        $this->itemId = $item->getId();
+    }
+
+    public function setDate($date) {
+        $this->date = $date;
+    }
+
+    public function setPrice($price) {
+        $this->price = $price;
+    }
+
+    public function setUnits($units) {
+        $this->units = $units;
+    }
 }

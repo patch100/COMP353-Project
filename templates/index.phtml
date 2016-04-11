@@ -1,37 +1,166 @@
-<html>
+<!DOCTYPE HTML>
+<html lang ="en">
     <head>
-        <meta charset="utf-8"/>
-        <title>COMP 353</title>
-        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-        <style>
-            body {
-                margin: 50px 0 0 0;
-                padding: 0;
-                width: 100%;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                text-align: center;
-                color: #aaa;
-                font-size: 18px;
-            }
 
-            h1 {
-                color: #719e40;
-                letter-spacing: -3px;
-                font-family: 'Lato', sans-serif;
-                font-size: 100px;
-                font-weight: 200;
-                margin-bottom: 0;
-            }
-        </style>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="/templates/jonStyle.css">
+        <script type="text/javascript" src="/templates/bootstrap.js"></script>
+
+        
+        <meta charset="utf-8">
+        <title>COMP 353 - Main Project</title>
     </head>
     <body>
-        <h1>Powered by Slim</h1>
-        <div>a microframework for PHP</div>
+        <nav class="navbar navbar-default navbar-static-top text-center">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.php/">COMP 353 - Main Project</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/index.php/department/query">Department</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Top 3<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/index.php/products/query">Products</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/customers/query">Customers</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/index.php/inventory/query">Inventory</a></li>
+                        <li><a href="/index.php/payments/query">Payments</a></li>
+                        <li><a href="/index.php/invoices/query">Invoices</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CRUD<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/index.php/customers">Customers</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/departments">Departments</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/dependants">Dependants</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/employees">Employees</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/inventory">Inventory</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/items">Items</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/orders">Orders</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/shipments">Shipments</a></li>
+                            </ul>
+                        </li>
+                  </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron">         
+                <h1>Welcome</h1>
+                <p>Concordia University, Computer Science and Software Engineering.</p>
+            </div>      
+        </div>
+        <div class="container">
+            <div class="col-md-12 col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4><strong>Lastest Features</strong></h4></div>
+                    <div class="panel-body">
+                        <div class="form-group text-center">
+                        <!--innerpanels-->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="col-md-6">
+                                    <div class="col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><strong>Departments</strong></div>
+                                            <div class="panel-body">
+                                                <p class="text-left">Obtain details about each employee of that department; Including IDs, names, work status, earning per months and number of dependants.</p>
+                                                <a href="/index.php/department/query"><button type="button" class="btn btn-default">Find Now</button></a>
 
-        <?php if (isset($name)) : ?>
-            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
-        <?php else: ?>
-            <p>Try <a href="/SlimFramework">/SlimFramework</a>
-        <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><strong>Top 3 Products/Customers</strong></div>
+                                            <div class="panel-body">
+                                                <p class="text-left">Popular Products this year.</p>
+                                                <a href="/index.php/products/query"><button type="button" class="btn btn-default">Find Now</button></a>
+                                                <p class="text-left">Popular Customers this year.</p>
+                                                <a href="/index.php/customers/query"><button type="button" class="btn btn-default">Find Now</button></a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><strong>Inventory</strong></div>
+                                            <div class="panel-body">
+                                                <p class="text-left">The average price of all items ordered and/or all items present in our inventory, based on a given month and year.</p>
+                                                <a href="/index.php/inventory/query"><button type="button" class="btn btn-default">Find Now</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-4">
+                                    <div class="col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><strong>Payments</strong></div>
+                                            <div class="panel-body">
+                                                <p class="text-left">A List of Outstanding Payments for products that have been shipped to customers.</p>
+                                                <a href="/index.php/payments/query"><button type="button" class="btn btn-default">Find Now</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><strong>Invoices</strong></div>
+                                            <div class="panel-body">
+                                                <p class="text-left">A prepared Invoice for customers listing all necessary information.</p>
+                                                <a href="/index.php/invoices/query"><button type="button" class="btn btn-default">Find Now</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-10">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"><strong>CRUD</strong></div>
+                                            <div class="panel-body">
+                                                <p class="text-left">Add, Modify, Delete any information regarding Employees, Customers, Departments, Orders and Item/Inventory/Shipping Details.</p>
+                                                <a href="/index.php/customers"><button type="button" class="btn btn-default">Customers</button></a>
+                                                <a href="/index.php/departments"><button type="button" class="btn btn-default">Departments</button></a>
+                                                <a href="/index.php/dependants"><button type="button" class="btn btn-default">Dependants</button></a>
+                                                <a href="/index.php/employees"><button type="button" class="btn btn-default">Employees</button></a>
+                                                <a href="/index.php/inventory"><button type="button" class="btn btn-default">Inventory</button></a>
+                                                <a href="/index.php/items"><button type="button" class="btn btn-default">Items</button></a>
+                                                <a href="/index.php/orders"><button type="button" class="btn btn-default">Orders</button></a>
+                                                <a href="/index.php/shipments"><button type="button" class="btn btn-default">Shipments</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

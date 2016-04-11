@@ -26,12 +26,12 @@ $app->get('/customer/new', function ($request, $response, $args) {
 
 // New Customer POST
 $app->post('/customer/new', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $customer_data = [];
-    $customer_data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $customer_data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $customer_data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
+    $customer_data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $customer_data['address'] = filter_var($post_data['address'], FILTER_SANITIZE_STRING);
+    $customer_data['phone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
 
     $customer = new CustomerEntity($customer_data);
     $customer_mapper = new CustomerMapper($this->db);
@@ -95,15 +95,15 @@ $app->get('/department/new', function ($request, $response, $args) {
 
 // New Department POST
 $app->post('/department/new', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['room'] = filter_var($data['room'], FILTER_SANITIZE_STRING);
-    $data['fax'] = filter_var($data['fax'], FILTER_SANITIZE_STRING);
-    $data['phoneOne'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
-    $data['phoneTwo'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['room'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
+    $data['fax'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
+    $data['phoneOne'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['phoneTwo'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
 
     $department = new DepartmentEntity($data);
     $mapper = new DepartmentMapper($this->db);
@@ -123,16 +123,16 @@ $app->get('/department/{id}/edit', function ($request, $response, $args) {
 
 // EDIT Department POST
 $app->post('/department/edit', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['room'] = filter_var($data['room'], FILTER_SANITIZE_STRING);
-    $data['fax'] = filter_var($data['fax'], FILTER_SANITIZE_STRING);
-    $data['phoneOne'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
-    $data['phoneTwo'] = filter_var($data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['room'] = filter_var($post_data['room'], FILTER_SANITIZE_STRING);
+    $data['fax'] = filter_var($post_data['fax'], FILTER_SANITIZE_STRING);
+    $data['phoneOne'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
+    $data['phoneTwo'] = filter_var($post_data['phoneOne'], FILTER_SANITIZE_STRING);
 
     $mapper = new DepartmentMapper($this->db);
     $department = $mapper->getDepartmentById($data['id']);
@@ -173,13 +173,13 @@ $app->get('/order/new', function ($request, $response, $args) {
 
 // New Order POST
 $app->post('/order/new', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['total'] = filter_var($data['total'], FILTER_SANITIZE_STRING);
-    $data['date'] = filter_var($data['date'], FILTER_SANITIZE_STRING);
-    $data['method'] = filter_var($data['method'], FILTER_SANITIZE_STRING);
+    $data['total'] = filter_var($post_data['total'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+    $data['method'] = filter_var($post_data['method'], FILTER_SANITIZE_STRING);
 
     $order = new OrderEntity($data);
     $mapper = new OrderMapper($this->db);
@@ -199,14 +199,14 @@ $app->get('/order/{id}/edit', function ($request, $response, $args) {
 
 // EDIT Order POST
 $app->post('/order/edit', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
-    $data['total'] = filter_var($data['total'], FILTER_SANITIZE_STRING);
-    $data['date'] = filter_var($data['date'], FILTER_SANITIZE_STRING);
-    $data['method'] = filter_var($data['method'], FILTER_SANITIZE_STRING);
+    $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['total'] = filter_var($post_data['total'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+    $data['method'] = filter_var($post_data['method'], FILTER_SANITIZE_STRING);
 
     $mapper = new OrderMapper($this->db);
     $order = $mapper->getOrderById($data['id']);
@@ -245,13 +245,13 @@ $app->get('/dependant/new', function ($request, $response, $args) {
 
 // New Dependant POST
 $app->post('/dependant/new', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
-    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
 
     $dependant = new DependantEntity($data);
     $mapper = new DependantMapper($this->db);
@@ -271,14 +271,14 @@ $app->get('/dependant/{id}/edit', function ($request, $response, $args) {
 
 // EDIT Dependant POST
 $app->post('/dependant/edit', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
-    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
+    $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
 
     $mapper = new DependantMapper($this->db);
     $dependant = $mapper->getDependantById($data['id']);
@@ -319,16 +319,16 @@ $app->get('/employee/new', function ($request, $response, $args) {
 
 // New Employee POST
 $app->post('/employee/new', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
-    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
-    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
-    $data['position'] = filter_var($data['position'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
+    $data['address'] = filter_var($post_data['address'], FILTER_SANITIZE_STRING);
+    $data['phone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
+    $data['position'] = filter_var($post_data['position'], FILTER_SANITIZE_STRING);
 
     $employee = new EmployeeEntity($data);
     $mapper = new EmployeeMapper($this->db);
@@ -348,16 +348,16 @@ $app->get('/employee/{id}/edit', function ($request, $response, $args) {
 
 // EDIT Employee POST
 $app->post('/employee/edit', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['sin'] = filter_var($data['sin'], FILTER_SANITIZE_STRING);
-    $data['dob'] = filter_var($data['dob'], FILTER_SANITIZE_STRING);
-    $data['address'] = filter_var($data['address'], FILTER_SANITIZE_STRING);
-    $data['phone'] = filter_var($data['phone'], FILTER_SANITIZE_STRING);
-    $data['position'] = filter_var($data['position'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['sin'] = filter_var($post_data['sin'], FILTER_SANITIZE_STRING);
+    $data['dob'] = filter_var($post_data['dob'], FILTER_SANITIZE_STRING);
+    $data['address'] = filter_var($post_data['address'], FILTER_SANITIZE_STRING);
+    $data['phone'] = filter_var($post_data['phone'], FILTER_SANITIZE_STRING);
+    $data['position'] = filter_var($post_data['position'], FILTER_SANITIZE_STRING);
 
     $mapper = new EmployeeMapper($this->db);
     $employee = $mapper->getEmployeeById($data['id']);
@@ -399,12 +399,12 @@ $app->get('/item/new', function ($request, $response, $args) {
 
 // New Item POST
 $app->post('/item/new', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['color'] = filter_var($data['color'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['color'] = filter_var($post_data['color'], FILTER_SANITIZE_STRING);
 
     $item = new ItemEntity($data);
     $mapper = new ItemMapper($this->db);
@@ -424,13 +424,13 @@ $app->get('/item/{id}/edit', function ($request, $response, $args) {
 
 // EDIT Item POST
 $app->post('/item/edit', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+    $post_data = $request->getParsedBody();
 
     $data = [];
     // TODO: SET CORRECT PARAMS
-    $data['id'] = filter_var($data['id'], FILTER_SANITIZE_STRING);
-    $data['name'] = filter_var($data['name'], FILTER_SANITIZE_STRING);
-    $data['color'] = filter_var($data['color'], FILTER_SANITIZE_STRING);
+    $data['id'] = filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['name'] = filter_var($post_data['name'], FILTER_SANITIZE_STRING);
+    $data['color'] = filter_var($post_data['color'], FILTER_SANITIZE_STRING);
 
     $mapper = new ItemMapper($this->db);
     $item = $mapper->getItemById($data['id']);
@@ -449,4 +449,82 @@ $app->post('/item/{id}/delete', function ($request, $response, $args) {
   $this->logger->info("Deleting Item " . $id);
   $mapper->delete($item);
   return $this->renderer->render($response, 'item/items.phtml', $args);
+});
+
+/**********************IVENTORY**********************/
+// Inventory
+$app->get('/inventory', function ($request, $response, $args) {
+  $this->logger->info("Inventory page");
+  $mapper = new InventoryMapper($this->db);
+  $items = $mapper->getItems();
+  return $this->renderer->render($response, 'inventory/inventory.phtml', [$args, "inventoryItems" => $items]);
+});
+
+// Add Item GET
+$app->get('/inventory/add', function ($request, $response, $args) {
+  $this->logger->info("adding item");
+  $mapper = new ItemMapper($this->db);
+  $items = $mapper->getItems();
+  return $this->renderer->render($response, 'inventory/add.phtml', [$args, "items" => $items]);
+});
+
+// Add Item POST
+$app->post('/inventory/add', function (Request $request, Response $response) {
+    $post_data = $request->getParsedBody();
+    $data = [];
+
+    $data['itemId'] = (int)filter_var($post_data['item'], FILTER_SANITIZE_STRING);
+    $data['units'] = (int)filter_var($post_data['units'], FILTER_SANITIZE_STRING);
+    $data['price'] = filter_var($post_data['price'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+
+    $item_mapper = new ItemMapper($this->db);
+    $inventory_mapper = new InventoryMapper($this->db);
+    
+    $item = $item_mapper->getItemById($data['itemId']);
+    $data['item'] = $item;
+    $inventory_item = new InventoryEntity($data);
+    $inventory_mapper->save($inventory_item);
+    $response = $response->withRedirect("/inventory");
+    return $response;
+});
+
+//Edit Inventory Item GET
+$app->get('/inventory/{id}/edit', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new InventoryMapper($this->db);
+  $item = $mapper->getItemById($id);
+  $this->logger->info("Edit Inventory Item " . $id);
+  return $this->renderer->render($response, 'inventory/edit_item.phtml', [$args, "item" => $item]);
+});
+
+// EDIT Inventory Item POST
+$app->post('/inventory/edit', function (Request $request, Response $response) {
+    $post_data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['id'] = (int)filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['units'] = (int)filter_var($post_data['units'], FILTER_SANITIZE_STRING);
+    $data['price'] = filter_var($post_data['price'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+
+    $mapper = new InventoryMapper($this->db);
+    $item = $mapper->getItemById($data['id']);
+    $item->setDate($data['date']);
+    $item->setUnits($data['units']);
+    $item->setPrice($data['price']);
+    $mapper->save($item);
+    $response = $response->withRedirect("/inventory");
+    return $response;
+});
+
+// Delete Item
+$app->post('/inventory/{id}/delete', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new InventoryMapper($this->db);
+  $item = $mapper->getItemById($id);
+  $this->logger->info("Deleting Item from inventory" . $id);
+  $mapper->delete($item);
+  return $this->renderer->render($response, 'inventory/inventory.phtml', $args);
 });

@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>COMP 353 Database Project</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+<body>
+<h1>Edit Item</h1>
+<?php $item = $data['item'] ?>
+<form class="pure-form" method="post" action="/index.php/inventory/edit">
+    <input type="hidden" name="id" value="<?php echo $item->getId(); ?>"/>
+    <label for="units">Units</label>
+    <input name="units" id="units" type="text" size="60" value="<?php echo $item->getUnits(); ?>"/><br />
+
+    <label for="date">Date</label>
+    <input name="date" id="date" type="date" size="60" value="<?php echo $item->getDate(); ?>"/><br />
+
+    <label for="price">Price</label>
+    <input name="price" id="price" type="text" size="60" value="<?php echo $item->getPrice(); ?>"/><br />
+    
+    <input type="submit" class="pure-button" value="Create" />
+</form>
+</body>
+</html>
