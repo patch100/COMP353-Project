@@ -528,3 +528,78 @@ $app->post('/inventory/{id}/delete', function ($request, $response, $args) {
   $mapper->delete($item);
   return $this->renderer->render($response, 'inventory/inventory.phtml', $args);
 });
+
+/**********************SHIPMENT AKA PAYMENT**********************/
+// Shipments AKA Payments
+$app->get('/payments', function ($request, $response, $args) {
+  $this->logger->info("Payment AKA Shipments page");
+  $mapper = new PaymentMapper($this->db);
+  $payments = $mapper->getPayments();
+  return $this->renderer->render($response, 'payment/payments.phtml', [$args, "payments" => $payments]);
+});
+
+// Add payment GET
+$app->get('/payment/add', function ($request, $response, $args) {
+  $this->logger->info("adding payment item");
+  $mapper = new OrderMapper($this->db);
+  $orders = $mapper->getOrders();
+  return $this->renderer->render($response, 'payment/add.phtml', [$args, "orders" => $orders]);
+});
+
+// Add payment POST
+$app->post('/payment/add', function (Request $request, Response $response) {
+    $post_data = $request->getParsedBody();
+    $data = [];
+
+    $data['orderId'] = (int)filter_var($post_data['order'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+    $data['amount'] = filter_var($post_data['amount'], FILTER_SANITIZE_STRING);
+
+    $order_mapper = new OrderMapper($this->db);
+    $payment_mapper = new PaymentMapper($this->db);
+    
+    $order = $order_mapper->getOrderById($data['orderId']);
+    $data['order'] = $order;
+    $payment_item = new PaymentEntity($data);
+    $payment_mapper->save($payment_item);
+    $response = $response->withRedirect("/payments");
+    return $response;
+});
+
+//Edit payment Item GET
+$app->get('/payment/{id}/edit', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new PaymentMapper($this->db);
+  $payment = $mapper->getPaymentById($id);
+  $this->logger->info("Edit payment " . $id);
+  return $this->renderer->render($response, 'payment/edit_payment.phtml', [$args, "payment" => $payment]);
+});
+
+// EDIT payment Item POST
+$app->post('/payment/edit', function (Request $request, Response $response) {
+    $post_data = $request->getParsedBody();
+
+    $data = [];
+    // TODO: SET CORRECT PARAMS
+    $data['id'] = (int)filter_var($post_data['id'], FILTER_SANITIZE_STRING);
+    $data['date'] = filter_var($post_data['date'], FILTER_SANITIZE_STRING);
+    $data['amount'] = filter_var($post_data['amount'], FILTER_SANITIZE_STRING);
+
+    $mapper = new PaymentMapper($this->db);
+    $payment = $mapper->getPaymentById($data['id']);
+    $payment->setDate($data['date']);
+    $payment->setUnits($data['amount']);
+    $mapper->save($payment);
+    $response = $response->withRedirect("/payments");
+    return $response;
+});
+
+// Delete payment
+$app->post('/payment/{id}/delete', function ($request, $response, $args) {
+  $id = (int)$args['id'];
+  $mapper = new PaymentMapper($this->db);
+  $payment = $mapper->getPaymentById($id);
+  $this->logger->info("Deleting payment" . $id);
+  $mapper->delete($payment);
+  return $this->renderer->render($response, 'payment/payments.phtml', $args);
+});
