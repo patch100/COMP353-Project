@@ -7,16 +7,16 @@ class InventoryMapper extends Mapper
      * @return [InventoryEntity]  List of items
      */
     public function getItems() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new CustomerEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new InventoryEntity($dummy);
-
+        $sql = "SELECT * FROM Inventory";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $inv_item = new InventoryEntity($row);
+           $item_mapper = new ItemMapper($this->db);
+           $item = $item_mapper->getItemById($inv_item->getId());
+           $inv_item->setItem($item);
+           $results[] = $inv_item;
+        }
         return $results;
     }
 
@@ -27,15 +27,12 @@ class InventoryMapper extends Mapper
      * @return InventoryEntity  The item
      */
     public function getItemById($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["customer_id" => $customer_id]);
-        //if($result) {
-        //    return new CustomerEntity($stmt->fetch());
-        //}
-        $dummy = [];
-        return new InventoryEntity($dummy);
+        $sql = "SELECT * FROM Inventory where ItemId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $id]);
+        if($result) {
+           return new InventoryEntity($stmt->fetch());
+        }
     }
 
     /**
@@ -44,18 +41,35 @@ class InventoryMapper extends Mapper
      * @param InventoryEntity the item object
      */
     public function save(InventoryEntity $item) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into inventory (name, itemId, units, price, date) values (:name, :itemId, :units, :price, :date)";
+        $sql = "insert into Inventory (ItemId, Quantity, Price, DateOfManufacture) values (:itemId, :units, :price, :date)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
-            "name" => $item->getName(),
-            "itemId" => $item->getItemId(),
+            "itemId" => $item->getId(),
             "units" => $item->getUnits(),
             "price" => $item->getPrice(),
             "date" => $item->getDate(),
         ]);
         if(!$result) {
             throw new Exception("could not save record");
+        }
+    }
+
+    /**
+     * Save a item
+     *
+     * @param InventoryEntity the item object
+     */
+    public function update(InventoryEntity $item) {
+        $sql = "UPDATE Inventory SET Quantity = :units, Price = :price, DateOfManufacture = :date_m WHERE ItemId = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "units" => $item->getUnits(),
+            "price" => $item->getPrice(),
+            "date_m" => $item->getDate(),
+            "id" => $item->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
         }
     }
 }

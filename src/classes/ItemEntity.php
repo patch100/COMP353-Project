@@ -12,16 +12,10 @@ class ItemEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        //TODO UNCOMMENT AND SET PROPER DATA
-        // if(isset($data['id'])) {
-        //     $this->id = $data['id'];
-        // }
-        // $this->name = $data['name'];
-        // $this->address = $data['address'];
-        // $this->phone = $data['phone'];
-        $this->id = 1;
-        $this->name = "Fire Truck";
-        $this->color = 1;
+        if(isset($data['Id'])) {
+            $this->id = $data['Id'];
+        }
+        $this->name = $data['Name'];
     }
 
     public function getId() {

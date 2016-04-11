@@ -7,15 +7,12 @@ class ItemMapper extends Mapper
      * @return [ItemEntity]  List of items
      */
     public function getItems() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new CustomerEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new ItemEntity($dummy);
+        $sql = "SELECT * FROM Item";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new ItemEntity($row);
+        }
 
         return $results;
     }
@@ -27,15 +24,12 @@ class ItemMapper extends Mapper
      * @return iItemEntity  The item
      */
     public function getItemById($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["customer_id" => $customer_id]);
-        //if($result) {
-        //    return new CustomerEntity($stmt->fetch());
-        //}
-        $dummy = [];
-        return new ItemEntity($dummy);
+        $sql = "SELECT * FROM Item where Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $id]);
+        if($result) {
+           return new ItemEntity($stmt->fetch());
+        }
     }
 
     /**

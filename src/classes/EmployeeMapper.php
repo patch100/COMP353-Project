@@ -7,15 +7,12 @@ class EmployeeMapper extends Mapper
      * @return [EmployeeEntity]  List of employee
      */
     public function getEmployees() {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new DepartmentEntity($row);
-        //}
-        $dummy = [];
-        $results[] = new EmployeeEntity($dummy);
+        $sql = "SELECT * FROM Employee";
+        $stmt = $this->db->query($sql);
+        $results = [];
+        while($row = $stmt->fetch()) {
+           $results[] = new EmployeeEntity($row);
+        }
 
         return $results;
     }
@@ -27,15 +24,12 @@ class EmployeeMapper extends Mapper
      * @return EmployeeEntity  The Employee
      */
     public function getEmployeeById($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->prepare($sql);
-        //$result = $stmt->execute(["department_id" => $department_id]);
-        //if($result) {
-        //    return new DepartmentEntity($stmt->fetch());
-        //}
-        $dummy = [];
-        return new EmployeeEntity($dummy);
+        $sql = "SELECT * FROM Employee WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute(["id" => $id]);
+        if($result) {
+           return new EmployeeEntity($stmt->fetch());
+        }
     }
 
 
@@ -45,21 +39,64 @@ class EmployeeMapper extends Mapper
      * @param EmployeeEntity the Employee object
      */
     public function save(EmployeeEntity $employee) {
-        //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into employees (name, sin, dob, address, phone, position) values (:name, :sin, :dob, :address, :phone, :position)";
+        $id = $this->count() + 1;
+        $sql = "INSERT INTO Employee (Id, Name, SSN, DateOfBirth, Address, Telephone, Position, email) values (:id, :name, :sin, :dob, :address, :phone, :position, email)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
+            "id" => $id,
             "name" => $employee->getName(),
             "sin" => $employee->getSin(),
             "dob" => $employee->getDob(),
             "address" => $employee->getAddress(),
             "phone" => $employee->getPhone(),
             "position" => $employee->getPosition(),
+            "email" => $employee->getEmail(),
         ]);
         if(!$result) {
             throw new Exception("could not save record");
         }
     }
+
+        /**
+     * Update a Employee
+     *
+     * @param EmployeeEntity the employee object
+     */
+    public function update(EmployeeEntity $employee) {
+        $sql = "UPDATE Employee SET Name = :name, Address = :address, Telephone = :phone, DateOfBirth = :dob, SSN = :sin, Position = :position, email = :email WHERE Id = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "name" => $employee->getName(),
+            "address" => $employee->getAddress(),
+            "phone" => $employee->getPhone(),
+            "dob" => $employee->getDob(),
+            "sin" => $employee->getSin(),
+            "position" => $employee->getPosition(),
+            "email" => $employee->getEmail(),
+            "id" => (int)$employee->getId(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+    }
+
+    /**
+     * count 
+     *
+     * @param 
+     */
+    public function count() {
+        $sql = "SELECT Id FROM Employee ORDER BY Id DESC LIMIT 1;";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute();
+        $count = 0;
+        if($result) {
+           $row = $stmt->fetch();
+           $count = (int)$row['Id'];
+        }
+        
+        return $count;
+    }   
 
     /**
      * Delete a Employee

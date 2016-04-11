@@ -52,6 +52,24 @@ class DependantMapper extends Mapper
         }
     }
 
+            /**
+     * Update a DependantEntity
+     *
+     * @param DependantEntity the DependantEntity object
+     */
+    public function update(DependantEntity $dependant) {
+        $sql = "UPDATE Dependant SET Name = :name, DateOfBirth = :dob WHERE SSN = :id";
+        $stmt = $this->db->prepare($sql);
+        $result = $stmt->execute([
+            "name" => $dependant->getName(),
+            "dob" => $dependant->getDob(),
+            "id" => (int)$dependant->getSin(),
+        ]);
+        if(!$result) {
+            throw new Exception("could not update record");
+        }
+    } 
+
     /**
      * Delete a dependant
      *

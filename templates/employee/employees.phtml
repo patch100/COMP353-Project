@@ -16,6 +16,7 @@
         <th>Address</th>
         <th>Phone</th>
         <th>Position</th>
+        <th>Email</th>
         <th>Actions</th>
     </tr>
 
@@ -28,6 +29,7 @@
         <td><?=$employee->getAddress() ?></td>
         <td><?=$employee->getPhone() ?></td>
         <td><?=$employee->getPosition() ?></td>
+        <td><?=$employee->getEmail() ?></td>
         <td>
             <a href="/index.php/employee/<?php echo $employee->getId(); ?>/edit">Edit</a>
             <a href="/index.php/employee/<?php echo $employee->getId(); ?>/delete">Delete</a>

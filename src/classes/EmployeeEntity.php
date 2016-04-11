@@ -8,6 +8,7 @@ class EmployeeEntity
     protected $address;
     protected $phone;
     protected $position;
+    protected $email;
 
     /**
      * Accept an array of data matching properties of this class
@@ -16,21 +17,16 @@ class EmployeeEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        //TODO UNCOMMENT AND SET PROPER DATA
-        // if(isset($data['id'])) {
-        //     $this->id = $data['id'];
-        // }
-        // $this->name = $data['name'];
-        // $this->address = $data['address'];
-        // $this->phone = $data['phone'];
-        $now = new DateTime();
-        $this->id = 1;
-        $this->name = "Patrick";
-        $this->sin = 1234567;
-        $this->dob = $now->format('Y-m-d H:i:s');    // MySQL datetime format;
-        $this->address = "20 John Ave";
-        $this->phone = "555-555-5555";
-        $this->position = "Supreme Ruler";
+        if(isset($data['Id'])) {
+            $this->id = $data['Id'];
+        }
+        $this->name = $data['Name'];
+        $this->sin = $data['SSN'];
+        $this->dob = $data['DateOfBirth'];
+        $this->address = $data['Address'];
+        $this->phone = $data['Telephone'];
+        $this->position = $data['Position'];
+        $this->email = $data['email'];
     }
 
     public function getId() {
@@ -61,6 +57,10 @@ class EmployeeEntity
         return $this->position;
     }
 
+    public function getEmail() {
+        return $this->email;
+    }
+
     public function setName($name) {
         $this->name = $name;
     }
@@ -83,5 +83,9 @@ class EmployeeEntity
 
     public function setPosition($position) {
         $this->position = $position;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
     }
 }
