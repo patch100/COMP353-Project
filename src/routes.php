@@ -25,7 +25,8 @@ $app->get('/customer/new', function ($request, $response, $args) {
 });
 
 // New Customer POST
-$app->post('/customer/new', function (Request $request, Response $response) {
+$app->post('/customer/new', function ($request, $response) {
+    $this->logger->info("POST Creating new customer");
     $post_data = $request->getParsedBody();
 
     $customer_data = [];
@@ -65,17 +66,20 @@ $app->post('/customer/edit', function (Request $request, Response $response) {
     $customer->setAddress($customer_data['address']);
     $customer->setPhoneNumber($customer_data['phone']);
     $customer_mapper->save($customer);
-    $response = $response->withRedirect("/customers");
+    $response = $response->withRedirect("/index.php/customers");
     return $response;
 });
 
 // Delete Customer
-$app->post('/customer/{id}/delete', function ($request, $response, $args) {
+$app->get('/customer/{id}/delete', function ($request, $response, $args) {
   $customer_id = (int)$args['id'];
+  $customer_mapper = new CustomerMapper($this->db);
   $customer = $customer_mapper->getCustomerById($customer_id);
   $this->logger->info("Deleting customer " . $customer_id);
-  $customer_mapper->delete($customer);
-  return $this->renderer->render($response, 'customer/customers.phtml', $args);
+  $result = $customer_mapper->delete($customer);
+  $this->logger->info("Delete returned " . $result);
+  $response = $response->withRedirect("/customers");
+    return $response;
 });
 
 /**********************DEPARTMENTS**********************/

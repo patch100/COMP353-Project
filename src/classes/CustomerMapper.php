@@ -7,7 +7,7 @@ class CustomerMapper extends Mapper
      * @return [CustomerEntity]  List of customers
      */
     public function getCustomers() {
-        $sql = "select * from customer";
+        $sql = "select * from Customer";
         $stmt = $this->db->query($sql);
         $results = [];
         while($row = $stmt->fetch()) {
@@ -42,7 +42,7 @@ class CustomerMapper extends Mapper
      */
     public function save(CustomerEntity $customer) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "insert into customer (Name, Address, Telephone) values (:name, :address, :phone)";
+        $sql = "insert into Customer (Name, Address, Telephone) values (:name, :address, :phone)";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "name" => $customer->getName(),
@@ -61,7 +61,7 @@ class CustomerMapper extends Mapper
      */
     public function delete(CustomerEntity $customer) {
         //TODO WRITE INSERTSQL (Preferabbly in another file, full of queries)
-        $sql = "DELETE FROM customer WHERE CustomerNumber = :id";
+        $sql = "DELETE FROM Customer WHERE CustomerNumber = :id";
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
             "id" => $customer->getId()
@@ -69,5 +69,6 @@ class CustomerMapper extends Mapper
         if(!$result) {
             throw new Exception("could not delete record");
         }
+        return $result;
     }
 }
