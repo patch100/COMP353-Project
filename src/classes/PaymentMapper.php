@@ -49,22 +49,19 @@ class PaymentMapper extends Mapper
         }
     }
 
-    public function processQuery($logger) {
+    public function processQuery() {
 
-        $sql = "SELECT Customer.Name, HasOrdered.OrderId,(Orders.Balance - Payment.Amount) AS Oustanding_Payment
-FROM Customer natural join HasOrdered
-join Orders on HasOrdered.OrderId = Orders.Id
-join Payment on HasOrdered.OrderId = Payment.OrderId
-WHERE Payment.Amount < Orders.Balance";
+        $sql = "SELECT Name, Orders.Id AS OrderNumber, Orders.Balance, Orders.DateOfPurchase AS DateShipped, Orders.PaymentMethod
+FROM Orders join HasOrdered on Orders.Id = HasOrdered.OrderId 
+join customer on Customer.CustomerNumber = HasOrdered.CNumber
+WHERE orders.balance > 0";
 
         $stmt = $this->db->query($sql);
         $results = [];
 
         while($row = $stmt->fetch()) {
             $results[] = new PaymentQueryEntity($row);
-            print_r($row);
         }
-
         return $results;
     }
 

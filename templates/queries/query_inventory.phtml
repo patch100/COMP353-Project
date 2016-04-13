@@ -100,20 +100,38 @@
 				</div>
 			</div>
 		</div>
+                <div class="container">
+            <div class="col-md-12 col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4><strong>Query Results</strong></h4></div>
+                    <div class="panel-body">
+                        <div class="form-group text-center">
+                        <!--innerpanels-->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+        <?php if(isset($data['inventory'])) { ?>
             <table class="pure-table">
-    <tr>
-        <th>Name   </th>
-        <th>Average   </th>
-    </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Average</th>
+                </tr>
 
-<?php foreach($data['inventory'] as $inv): ?>
+                <?php foreach($data['inventory'] as $inv): ?>
 
-    <tr>
-        <td><?=$inv->getName() ?></td>
-        <td><?=$inv->getAverage() ?></td>
-    </tr>
+                    <tr>
+                        <td><?=$inv->getName() ?></td>
+                        <td><?=$inv->getAverage() ?></td>
+                    </tr>
 
-<?php endforeach; ?>
-</table>
+                <?php endforeach; ?>
+            </table>
+        <? }; ?>
+        </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>

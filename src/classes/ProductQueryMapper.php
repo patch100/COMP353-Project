@@ -63,8 +63,6 @@ class ProductQueryMapper extends Mapper
                 array_push($top3, $highest_valued_item);
         }  
 
-        #print_r($results);
-
         return $top3;
     }
 

@@ -725,8 +725,7 @@ $app->get('/payments/query', function ($request, $response, $args) {
   $this->logger->info("Payments GET Query Page");
 
   $mapper = new PaymentMapper($this->db);
-  $payments = $mapper->processQuery($this->logger);
-  print_r($payments);
+  $payments = $mapper->processQuery();
 
   return $this->renderer->render($response, 'queries/query_payments.phtml', [$args, "payments" => $payments]);
 });
