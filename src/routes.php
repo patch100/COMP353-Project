@@ -37,7 +37,7 @@ $app->post('/customer/new', function ($request, $response) {
     $customer = new CustomerEntity($customer_data);
     $customer_mapper = new CustomerMapper($this->db);
     $customer_mapper->save($customer);
-    $response = $response->withRedirect("/customers");
+    $response = $response->withRedirect("/index.php/customers");
     return $response;
 });
 
@@ -78,7 +78,7 @@ $app->get('/customer/{id}/delete', function ($request, $response, $args) {
   $customer = $customer_mapper->getCustomerById($customer_id);
   $this->logger->info("Customer retrieved " . $customer->getName());
   $customer_mapper->delete($customer);
-  $response = $response->withRedirect("/customers");
+  $response = $response->withRedirect("/index.php/customers");
   return $response;
 });
 
@@ -113,7 +113,7 @@ $app->post('/department/new', function ($request, $response) {
     $department_mapper = new DepartmentMapper($this->db);
     $this->logger->info("Creating new department " . $department->getName());
     $department_mapper->save($department);
-    $response = $response->withRedirect("/departments");
+    $response = $response->withRedirect("/index.php/departments");
     return $response;
 });
 
@@ -146,7 +146,7 @@ $app->post('/department/edit', function ($request, $response) {
     $department->setPhoneOne($data['PhoneNumber1']);
     $department->setPhoneTwo($data['PhoneNumber2']);
     $mapper->update($department);
-    $response = $response->withRedirect("/departments");
+    $response = $response->withRedirect("/index.php/departments");
     return $response;
 });
 
@@ -157,7 +157,7 @@ $app->get('/department/{id}/delete', function ($request, $response, $args) {
   $department = $mapper->getDepartmentById($id);
   $this->logger->info("Deleting department " . $id);
   $mapper->delete($department);
-  $response = $response->withRedirect("/departments");
+  $response = $response->withRedirect("/index.php/departments");
   return $response;
 });
 
@@ -208,7 +208,7 @@ $app->post('/order/new', function ($request, $response) {
 
     $mapper = new OrderMapper($this->db);
     $mapper->save($order);
-    $response = $response->withRedirect("/orders");
+    $response = $response->withRedirect("/index.php/orders");
     return $response;
 });
 
@@ -239,7 +239,7 @@ $app->post('/order/edit', function ($request, $response) {
     $order->setDate($data['date']);
     $order->setMethod($data['method']);
     $mapper->update($order);
-    $response = $response->withRedirect("/orders");
+    $response = $response->withRedirect("/index.php/orders");
     return $response;
 });
 
@@ -250,7 +250,7 @@ $app->get('/order/{id}/delete', function ($request, $response, $args) {
   $order = $mapper->getOrderById($id);
   $this->logger->info("Deleting order " . $id);
   $mapper->delete($order);
-  $response = $response->withRedirect("/orders");
+  $response = $response->withRedirect("/index.php/orders");
   return $response;
 });
 
@@ -287,7 +287,7 @@ $app->post('/dependant/new', function ($request, $response) {
     $mapper->save($dependant);
     $mapper->updateCareGiver($employee_id, $dependant);
 
-    $response = $response->withRedirect("/dependants");
+    $response = $response->withRedirect("/index.php/dependants");
     return $response;
 });
 
@@ -315,7 +315,7 @@ $app->post('/dependant/edit', function ($request, $response) {
     $dependant->setName( $data['Name']);
     $dependant->setDob($data['DateOfBirth']);
     $mapper->update($dependant);
-    $response = $response->withRedirect("/dependants");
+    $response = $response->withRedirect("/index.php/dependants");
     return $response;
 });
 
@@ -326,7 +326,7 @@ $app->get('/dependant/{id}/delete', function ($request, $response, $args) {
   $dependant = $mapper->getDependantById($id);
   $this->logger->info("Deleting dependant " . $id);
   $mapper->delete($dependant);
-  $response = $response->withRedirect("/dependants");
+  $response = $response->withRedirect("/index.php/dependants");
   return $response;
 });
 
@@ -369,7 +369,7 @@ $app->post('/employee/new', function ($request, $response) {
     $mapper = new EmployeeMapper($this->db);
     $this->logger->info("Creating new employee");
     $mapper->save($employee, $department_data);
-    $response = $response->withRedirect("/employees");
+    $response = $response->withRedirect("/index.php/employees");
     return $response;
 });
 
@@ -423,7 +423,7 @@ $app->post('/employee/edit', function ($request, $response) {
     $employee->setPosition($data['Position']);
     $employee->setEmail($data['email']);
     $mapper->update($employee, $department_data);
-    $response = $response->withRedirect("/employees");
+    $response = $response->withRedirect("/index.php/employees");
     return $response;
 });
 
@@ -434,7 +434,7 @@ $app->get('/employee/{id}/delete', function ($request, $response, $args) {
   $employee = $mapper->getEmployeeById($id);
   $this->logger->info("Deleting employee " . $employee->getName());
   $mapper->delete($employee);
-  $response = $response->withRedirect("/employees");
+  $response = $response->withRedirect("/index.php/employees");
   return $response;
 });
 
@@ -466,7 +466,7 @@ $app->post('/item/new', function ($request, $response) {
     $item = new ItemEntity($data);
     $mapper = new ItemMapper($this->db);
     $mapper->save($item);
-    $response = $response->withRedirect("/items");
+    $response = $response->withRedirect("/index.php/items");
     return $response;
 });
 
@@ -495,7 +495,7 @@ $app->post('/item/edit', function ($request, $response) {
     $item->setName( $data['name']);
     $item->setColor($data['color']);
     $mapper->update($item);
-    $response = $response->withRedirect("/items");
+    $response = $response->withRedirect("/index.php/items");
     return $response;
 });
 
@@ -506,7 +506,7 @@ $app->get('/item/{id}/delete', function ($request, $response, $args) {
   $item = $mapper->getItemById($id);
   $this->logger->info("Deleting Item " . $id);
   $mapper->delete($item);
-  $response = $response->withRedirect("/items");
+  $response = $response->withRedirect("/index.php/items");
   return $response;
 });
 
@@ -540,7 +540,7 @@ $app->post('/inventory/add', function ($request, $response) {
     $inventory_mapper = new InventoryMapper($this->db);
     $inventory_item = new InventoryEntity($data);
     $inventory_mapper->save($inventory_item);
-    $response = $response->withRedirect("/inventory");
+    $response = $response->withRedirect("/index.php/inventory");
     return $response;
 });
 
@@ -569,7 +569,7 @@ $app->post('/inventory/edit', function ($request, $response) {
     $item->setUnits($data['units']);
     $item->setPrice($data['price']);
     $mapper->update($item);
-    $response = $response->withRedirect("/inventory");
+    $response = $response->withRedirect("/index.php/inventory");
     return $response;
 });
 
@@ -580,7 +580,7 @@ $app->get('/inventory/{id}/delete', function ($request, $response, $args) {
   $item = $mapper->getItemById($id);
   $this->logger->info("Deleting Item from inventory" . $id);
   $mapper->delete($item);
-  $response = $response->withRedirect("/inventory");
+  $response = $response->withRedirect("/index.php/inventory");
   return $response;
 });
 
@@ -613,7 +613,7 @@ $app->post('/payment/add', function ($request, $response) {
     
     $payment_item = new PaymentEntity($data);
     $payment_mapper->save($payment_item);
-    $response = $response->withRedirect("/payments");
+    $response = $response->withRedirect("/index.php/payments");
     return $response;
 });
 
@@ -640,7 +640,7 @@ $app->post('/payment/edit', function ($request, $response) {
     $payment->setDate($data['date']);
     $payment->setUnits($data['amount']);
     $mapper->save($payment);
-    $response = $response->withRedirect("/payments");
+    $response = $response->withRedirect("/index.php/payments");
     return $response;
 });
 
@@ -651,7 +651,7 @@ $app->get('/payment/{id}/delete', function ($request, $response, $args) {
   $payment = $mapper->getPaymentById($id);
   $this->logger->info("Deleting payment" . $id);
   $mapper->delete($payment);
-  $response = $response->withRedirect("/payments");
+  $response = $response->withRedirect("/index.php/payments");
   return $response;
 });
 
