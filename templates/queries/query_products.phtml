@@ -81,16 +81,16 @@
 								<table>
 							    <tr>
 							        <th>Item Name</th>
-							        <th>Orders Placed</th>
-							        <th>Items Sold</th>
+							        <th>Units Sold</th>
+							        <th>Number of Orders</th>
 							    </tr>
 
 							<?php foreach($data['products'] as $products): ?>
 
 							    <tr>
 							        <td><?=$products->getName() ?></td>
+							        <td><?=$products->getUnits() ?></td>
 							        <td><?=$products->getOrders() ?></td>
-							        <td><?=$products->getQuantity() ?></td>
 							    </tr>
 
 							<?php endforeach; ?>
