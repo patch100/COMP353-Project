@@ -719,3 +719,14 @@ $app->post('/invoices/query', function ($request, $response, $args) {
 
   return $this->renderer->render($response, 'queries/query_invoices.phtml', [$args, "invoices" => $invoices]);
 });
+
+// Payment
+$app->get('/payments/query', function ($request, $response, $args) {
+  $this->logger->info("Payments GET Query Page");
+
+  $mapper = new PaymentMapper($this->db);
+  $payments = $mapper->processQuery($this->logger);
+  print_r($payments);
+
+  return $this->renderer->render($response, 'queries/query_payments.phtml', [$args, "payments" => $payments]);
+});

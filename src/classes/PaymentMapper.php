@@ -49,6 +49,25 @@ class PaymentMapper extends Mapper
         }
     }
 
+    public function processQuery($logger) {
+
+        $sql = "SELECT Customer.Name, HasOrdered.OrderId,(Orders.Balance - Payment.Amount) AS Oustanding_Payment
+FROM Customer natural join HasOrdered
+join Orders on HasOrdered.OrderId = Orders.Id
+join Payment on HasOrdered.OrderId = Payment.OrderId
+WHERE Payment.Amount < Orders.Balance";
+
+        $stmt = $this->db->query($sql);
+        $results = [];
+
+        while($row = $stmt->fetch()) {
+            $results[] = new PaymentQueryEntity($row);
+            print_r($row);
+        }
+
+        return $results;
+    }
+
     /**
      * Save a payment
      *

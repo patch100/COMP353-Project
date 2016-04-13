@@ -45,6 +45,11 @@ order by grand_total desc
 limit 3;
 
 -- Query #5
+SELECT Customer.Name, HasOrdered.OrderId,(Orders.Balance - Payment.Amount) AS Oustanding_Payment
+FROM Customer natural join HasOrdered
+join Orders on HasOrdered.OrderId = Orders.Id
+join Payment on HasOrdered.OrderId = Payment.OrderId
+WHERE Payment.Amount < Orders.Balance;
 
 -- Query #6
 -- #queries for the invoice in this case I hardcoded the name and orderid but we would use 

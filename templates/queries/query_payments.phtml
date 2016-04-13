@@ -69,33 +69,22 @@
 				<p>Make a list of outstanding payments for products already shipped out to customers.</p>
 			</div>		
 		</div>
-		<div class="container">
-			<div class="col-md-12 col-sm-8">
-				<div class="panel panel-default">
-					<div class="panel-heading text-center"><h4><strong>Oustanding Payments Query</strong></h4></div>
-					<div class="panel-body">
-						<div class="form-group text-center">
-						<!--innerpanels-->
-							<div class="col-md-1"></div>
-							<div class="col-md-10">
-								<form class="form-horizontal" method="post" id="PayForm">
-									<div class="panel panel-default">
-										<div class="panel-body">
-											<div class="form-group text-center">
-												<p class="col-sm-7">Payment that has not been received for products or services rendered.</p>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default" onclick="">Find</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="col-md-1"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <table class="pure-table">
+    <tr>
+        <th>Name   </th>
+        <th>Order Id   </th>
+        <th>Amount left   </th>
+    </tr>
+
+<?php foreach($data['payments'] as $payment): ?>
+
+    <tr>
+        <td><?=$payment->getName() ?></td>
+        <td><?=$payment->getId() ?></td>
+        <td><?=$payment->getAmount() ?></td>
+    </tr>
+
+<?php endforeach; ?>
+</table>
 	</body>
 </html>
