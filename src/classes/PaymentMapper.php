@@ -53,8 +53,8 @@ class PaymentMapper extends Mapper
 
         $sql = "SELECT Name, Orders.Id AS OrderNumber, Orders.Balance, Orders.DateOfPurchase AS DateShipped, Orders.PaymentMethod
 FROM Orders join HasOrdered on Orders.Id = HasOrdered.OrderId 
-join customer on Customer.CustomerNumber = HasOrdered.CNumber
-WHERE orders.balance > 0";
+join Customer on Customer.CustomerNumber = HasOrdered.CNumber
+WHERE Orders.balance > 0";
 
         $stmt = $this->db->query($sql);
         $results = [];
