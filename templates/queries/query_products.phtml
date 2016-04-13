@@ -78,23 +78,25 @@
 						<!--innerpanels-->
 							<div class="col-md-1"></div>
 							<div class="col-md-10">
-								<table>
-							    <tr>
-							        <th>Item Name</th>
-							        <th>Units Sold</th>
-							        <th>Number of Orders</th>
-							    </tr>
+                                <div class="table-responsive">
+    								<table class="table table-stripped table-hover table-condensed">
+        							    <tr>
+        							        <th>Item Name</th>
+        							        <th>Orders Placed</th>
+        							        <th>Items Sold</th>
+        							    </tr>
 
-							<?php foreach($data['products'] as $products): ?>
+        							<?php foreach($data['products'] as $product): ?>
 
-							    <tr>
-							        <td><?=$products->getName() ?></td>
-							        <td><?=$products->getUnits() ?></td>
-							        <td><?=$products->getOrders() ?></td>
-							    </tr>
+        							    <tr>
+        							        <td><?=$product->getName() ?></td>
+        							        <td><?=$product->getOrders() ?></td>
+        							        <td><?=$product->getUnits() ?></td>
+        							    </tr>
 
-							<?php endforeach; ?>
-							</table>
+        							<?php endforeach; ?>
+        							</table>
+                                </div>
 							</div>
 							<div class="col-md-1"></div>
 						</div>

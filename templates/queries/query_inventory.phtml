@@ -84,7 +84,7 @@
 											<div class="form-group text-center">
 												<label class="col-sm-4 control-label" id="myLbl">Month/Year: </label>
 												<div class="col-sm-3">
-													<input type="text" name="myInput" id="myInput" placeholder="2012-02-01" class="form-control">
+													<input type="month" name="myInput" id="myInput" placeholder="2012-02-01" class="form-control">
 												</div>
 												<div class="col-sm-2">
 													<button type="submit" class="btn btn-default" onclick="">Find</button>
@@ -109,24 +109,26 @@
                         <!--innerpanels-->
                             <div class="col-md-1"></div>
                             <div class="col-md-10">
-        <?php if(isset($data['inventory'])) { ?>
-            <table class="pure-table">
-                <tr>
-                    <th>Name</th>
-                    <th>Average</th>
-                </tr>
+                                <div class="table-responsive">
+                                <?php if(isset($data['inventory'])) { ?>
+                                    <table class="table table-stripped table-hover table-condensed pure-table">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Average</th>
+                                        </tr>
 
-                <?php foreach($data['inventory'] as $inv): ?>
+                                        <?php foreach($data['inventory'] as $inv): ?>
 
-                    <tr>
-                        <td><?=$inv->getName() ?></td>
-                        <td><?=$inv->getAverage() ?></td>
-                    </tr>
+                                            <tr>
+                                                <td><?=$inv->getName() ?></td>
+                                                <td><?=$inv->getAverage() ?></td>
+                                            </tr>
 
-                <?php endforeach; ?>
-            </table>
-        <? }; ?>
-        </div>
+                                        <?php endforeach; ?>
+                                    </table>
+                                <? }; ?>
+                                </div>
+                            </div>
                             <div class="col-md-1"></div>
                         </div>
                     </div>

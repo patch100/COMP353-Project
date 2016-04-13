@@ -103,36 +103,60 @@
 				</div>
 			</div>
 		</div>
-        <?php if(isset($data['invoices'])) {?>
-            <table class="pure-table">
-    <tr>
-        <th>Name</th>
-        <th>Telephone</th>
-        <th>Date</th>
-        <th>Items</th>
-        <th>Payment Date</th>
-        <th>Amount</th>
-    </tr>
+        <div class="container">
+            <div class="col-md-12 col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4><strong>Top 3 Product Query</strong></h4></div>
+                    <div class="panel-body">
+                        <div class="form-group text-center">
+                        <!--innerpanels-->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="table-responsive">
+                                    <?php if(isset($data['invoices'])) {?>
+                                    <table class="table table-stripped table-hover table-condensed pure-table">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Telephone</th>
+                                            <th>Date</th>
+                                            <th>Items</th>
+                                            <th>Payment Date</th>
+                                            <th>Amount</th>
+                                        </tr>
 
-<?php foreach($data['invoices'] as $invoice): ?>
+                                    <?php foreach($data['invoices'] as $invoice): ?>
 
-    <tr>
-        <td><?=$invoice->getName() ?>   </td>
-        <td><?=$invoice->getTelephone() ?>   </td>
-        <td><?=$invoice->getDateOfPurchase() ?>   </td>
-        <td>
-            <?php foreach($invoice->getItems() as $item): ?>
-                Name:  <?=$item[0] ?>   
-                Units: <?=$item[1] ?>   
-                Total: <?=$item[2] ?> 
-            <?php endforeach; ?>
-        </td>
-        <td><?=$invoice->getPaymentDate() ?>   </td>
-        <td><?=$invoice->getAmount() ?>   </td>
-    </tr>
+                                        <tr>
+                                            <td><?=$invoice->getName() ?>   </td>
+                                            <td><?=$invoice->getTelephone() ?>   </td>
+                                            <td><?=$invoice->getDateOfPurchase() ?>   </td>
+                                            <td>
+                                                <?php foreach($invoice->getItems() as $item): ?>
+                                                    Name:  <?=$item[0] ?>   
+                                                    Units: <?=$item[1] ?>   
+                                                    Total: <?=$item[2] ?> 
+                                                <?php endforeach; ?>
+                                            </td>
+                                            <td><?=$invoice->getPaymentDate() ?>   </td>
+                                            <td><?=$invoice->getAmount() ?>   </td>
+                                        </tr>
 
-<?php endforeach; ?>
-</table>
-<? };?>
+                                    <?php endforeach; ?>
+                                    </table>
+                                    <? };?>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        
 	</body>
 </html>

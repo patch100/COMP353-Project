@@ -69,26 +69,44 @@
 				<p>Make a list of outstanding payments for products already shipped out to customers.</p>
 			</div>		
 		</div>
-    <table class="pure-table">
-    <tr>
-        <th>Name   </th>
-        <th>Order Id   </th>
-        <th>Amount left   </th>
-        <th>Date Shipped   </th>
-        <th>Payment Method   </th>
-    </tr>
+         <div class="container">
+            <div class="col-md-12 col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4><strong>Query Results</strong></h4></div>
+                    <div class="panel-body">
+                        <div class="form-group text-center">
+                        <!--innerpanels-->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="table-responsive">
+                                    <table class="table table-stripped table-hover table-condensed pure-table">
+                                        <tr>
+                                            <th>Name   </th>
+                                            <th>Order Id   </th>
+                                            <th>Amount left   </th>
+                                            <th>Date Shipped   </th>
+                                            <th>Payment Method   </th>
+                                        </tr>
 
-<?php foreach($data['payments'] as $payment): ?>
+                                    <?php foreach($data['payments'] as $payment): ?>
 
-    <tr>
-        <td><?=$payment->getName() ?></td>
-        <td><?=$payment->getId() ?></td>
-        <td><?=$payment->getAmount() ?></td>
-        <td><?=$payment->getDate() ?></td>
-        <td><?=$payment->getMethod() ?></td>
-    </tr>
+                                        <tr>
+                                            <td><?=$payment->getName() ?></td>
+                                            <td><?=$payment->getId() ?></td>
+                                            <td><?=$payment->getAmount() ?></td>
+                                            <td><?=$payment->getDate() ?></td>
+                                            <td><?=$payment->getMethod() ?></td>
+                                        </tr>
 
-<?php endforeach; ?>
-</table>
+                                    <?php endforeach; ?>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>

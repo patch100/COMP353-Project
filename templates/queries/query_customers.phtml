@@ -69,22 +69,42 @@
 				<p>Produce a report on the best three customers of the Company (in terms of total value of purchases by the customer) during the past 12 months. List details on the customers as well as the types, the number and value of their orders.</p>
 			</div>		
 		</div>
-    <table class="pure-table">
-    <tr>
-        <th>Name   </th>
-        <th>Total Items Ordered   </th>
-        <th>Grand Total   </th>
-    </tr>
+        <div class="container">
+            <div class="col-md-12 col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center"><h4><strong>Top 3 Customers Query</strong></h4></div>
+                    <div class="panel-body">
+                        <div class="form-group text-center">
+                        <!--innerpanels-->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="table-responsive">
+                                    <div class="table-responsive">
+                                        <table class="table table-stripped table-hover table-condensed pure-table">
+                                            <tr>
+                                                <th>Name   </th>
+                                                <th>Total Items Ordered   </th>
+                                                <th>Grand Total   </th>
+                                            </tr>
 
-<?php foreach($data['customers'] as $customer): ?>
+                                        <?php foreach($data['customers'] as $customer): ?>
 
-    <tr>
-        <td><?=$customer->getName() ?></td>
-        <td><?=$customer->getTotalItemsOrdered() ?></td>
-        <td><?=$customer->getGrandTotal() ?></td>
-    </tr>
+                                            <tr>
+                                                <td><?=$customer->getName() ?></td>
+                                                <td><?=$customer->getTotalItemsOrdered() ?></td>
+                                                <td><?=$customer->getGrandTotal() ?></td>
+                                            </tr>
 
-<?php endforeach; ?>
-</table>
+                                        <?php endforeach; ?>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>

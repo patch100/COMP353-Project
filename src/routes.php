@@ -664,7 +664,6 @@ name of the item, number of orders placed, number of items sold. */
 $app->get('/products/query', function ($request, $response, $args) {
   $this->logger->info("products query");
   $mapper = new ProductQueryMapper($this->db);
-  //$products = $mapper->getProducts();
   $products = $mapper->processQuery();
   return $this->renderer->render($response, 'queries/query_products.phtml', [$args, "products" => $products]);
 });
@@ -693,8 +692,7 @@ $app->get('/inventory/query', function ($request, $response, $args) {
 $app->post('/inventory/query', function ($request, $response, $args) {
   $data = $request->getParsedBody();
   $this->logger->info("Inventory POST query");
-  $date = (int)filter_var($data['myInput'], FILTER_SANITIZE_STRING);
-
+  $date = filter_var($data['myInput'], FILTER_SANITIZE_STRING);
   $mapper = new InventoryQueryMapper($this->db);
   $inventory = $mapper->processQuery($date);
 

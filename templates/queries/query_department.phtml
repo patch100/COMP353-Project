@@ -82,10 +82,10 @@
                   <div class="panel panel-default">
                     <div class="panel-body">
                       <div class="form-group text-center">
-                        <label class="col-sm-4 control-label" id="deptLbl">Department: </label>
+                        <label class="col-sm-4 control-label" id="deptLbl">Departments: </label>
                         <div class="col-sm-4">
-                          <label for="department">Departments</label>
-                            <select name="department">
+                          <!--<label for="department">Departments</label>-->
+                            <select name="department" class="form-control">
                               <option value=""></option>
                                 <?php foreach($data['departments'] as $department): ?>
                               <option value=<?=$department->getid()?>><?=$department->getName()?></option>
