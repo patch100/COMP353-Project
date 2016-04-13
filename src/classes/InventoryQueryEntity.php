@@ -1,11 +1,9 @@
 <?php
-class ProductQueryEntity
+class InventoryQueryEntity
 {
     // columns: name, orders, quantity
     protected $name;
-    protected $orders;
-    protected $quantity;
-    protected $id;
+    protected $average;
 
     /**
      * Accept an array of data matching properties of this class
@@ -26,40 +24,23 @@ class ProductQueryEntity
         #$this->quantity = 100;
 
         #if(isset($data['name'])) { $this->name = $data['name']; }
-        if(isset($data['id'])) { $this->id = $data['id']; }
-        if(isset($data['orders'])) { $this->orders = $data['orders']; }
-        if(isset($data['quantity'])) { $this->quantity = $data['quantity']; }
-    }
-
-    public function getId() {
-        return $this->id;
+        if(isset($data['Name'])) { $this->name = $data['Name']; }
+        if(isset($data['average'])) { $this->average = $data['average']; }
     }
 
     public function getName() {
         return $this->name;
     }
 
-    public function getOrders() {
-        return $this->orders;
-    }
-
-    public function getQuantity() {
-        return $this->quantity;
-    }
-
-    public function setId($id) {
-        $this->id = $id;
+    public function getAverage() {
+        return $this->average;
     }
 
     public function setName($name) {
         $this->name = $name;
     }
 
-    public function setOrders($orders) {
-         $this->orders = $orders;
-    }
-
-    public function setQuantity($quantity) {
-         $this->quantity = $quantity;
+    public function setAverage($average) {
+        $this->average = $average;
     }
 }

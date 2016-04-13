@@ -69,42 +69,25 @@
 				<p>Given the code or name of a department, print out details about each employee or employees of a department. Such details include ID, name, status (full-time, parttime), earnings per month, number of dependents.</p>
 			</div>		
 		</div>
-		<div class="container">
-			<div class="col-md-12 col-sm-8">
-				<div class="panel panel-default">
-					<div class="panel-heading text-center"><h4><strong>Department Query</strong></h4></div>
-					<div class="panel-body">
-						<div class="form-group text-center">
-						<!--innerpanels-->
-							<div class="col-md-1"></div>
-							<div class="col-md-10">
-								<form class="form-horizontal" method="post" action="/index.php/department/query">
-									<div class="panel panel-default">
-										<div class="panel-body">
-											<div class="form-group text-center">
-												<label class="col-sm-4 control-label" id="deptLbl">Department: </label>
-												<div class="col-sm-4">
-													<label for="department">Departments</label>
-    												<select name="department">
-        											<option value=""></option>
-																<?php foreach($data['departments'] as $department): ?>
-        											<option value=<?=$department->getid()?>><?=$department->getName()?></option>
-																<?php endforeach;?>
-    												</select><br />
-												</div>
-												<div class="col-sm-2">
-													<button type="submit" class="btn btn-default" >Find</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="col-md-1"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+            <table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Number of Dependants</th>
+    </tr>
+
+<?php foreach($data['departments'] as $department): ?>
+
+    <tr>
+        <td><?=$department->getId() ?></td>
+        <td><?=$department->getName() ?></td>
+        <td><?=$department->getStatus() ?></td>
+        <td><?=$department->getDependentsCount() ?></td>
+    </tr>
+
+<?php endforeach; ?>
+</table>
 	</body>
 </html>

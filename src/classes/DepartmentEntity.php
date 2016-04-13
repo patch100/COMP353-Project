@@ -7,6 +7,8 @@ class DepartmentEntity
     protected $fax;
     protected $phoneOne;
     protected $phoneTwo;
+    protected $status;
+    protected $dependentsCount;
 
     /**
      * Accept an array of data matching properties of this class
@@ -15,14 +17,12 @@ class DepartmentEntity
      * @param array $data The data to use to create
      */
     public function __construct(array $data) {
-        if(isset($data['Id'])) {
-            $this->id = $data['Id'];
-        }
-        $this->name = $data['Name'];
-        $this->room = $data['RoomNumber'];
-        $this->fax = $data['FaxNumber'];
-        $this->phoneOne = $data['PhoneNumber1'];
-        $this->phoneTwo = $data['PhoneNumber2'];
+        if(isset($data['Id'])) { $this->id = $data['Id']; }
+        if(isset($data['Name'])) { $this->name = $data['Name']; }
+        if(isset($data['PhoneNumber1'])) { $this->phoneOne = $data['PhoneNumber1']; }
+        if(isset($data['PhoneNumber2'])) { $this->phoneTwo = $data['PhoneNumber2']; }
+        if(isset($data['RoomNumber'])) { $this->room = $data['RoomNumber']; }
+        if(isset($data['FaxNumber'])) { $this->fax = $data['FaxNumber']; }
     }
 
     public function getId() {
@@ -49,6 +49,14 @@ class DepartmentEntity
         return $this->phoneTwo;
     }
 
+     public function getStatus() {
+        return $this->status;
+    }
+
+    public function getDependentsCount() {
+         return $this->dependentsCount;
+    }
+
     public function setName($name) {
         $this->name = $name;
     }
@@ -67,5 +75,13 @@ class DepartmentEntity
 
     public function setPhoneTwo($phone_2) {
          $this->phoneTwo = $phone_2;
+    }
+
+    public function setStatus($status) {
+         $this->status = $status;
+    }
+
+    public function setDependentsCount($count) {
+         $this->dependentsCount = $count;
     }
 }

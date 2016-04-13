@@ -166,7 +166,7 @@ $app->get('/department/query', function ($request, $response, $args) {
   $this->logger->info("Departments GET Query Page");
   $mapper = new DepartmentMapper($this->db);
   $departments = $mapper->getDepartments();
-  return $this->renderer->render($response, 'queries/query_departments.phtml', [$args, "departments" => $departments]);
+  return $this->renderer->render($response, 'queries/query_department.phtml', [$args, "departments" => $departments]);
 });
 
 // Query POST
@@ -659,12 +659,63 @@ $app->get('/payment/{id}/delete', function ($request, $response, $args) {
 total value of sales) during the past 12 months. List (among other details) the
 name of the item, number of orders placed, number of items sold. */
 
-/**********************PAYMENT QUERY ROUTES**********************/
+/**********************QUERY ROUTES**********************/
 // Products 
 $app->get('/products/query', function ($request, $response, $args) {
   $this->logger->info("products query");
   $mapper = new ProductQueryMapper($this->db);
-  $products = $mapper->getProducts();
+  //$products = $mapper->getProducts();
+  $products = $mapper->processQuery();
   return $this->renderer->render($response, 'queries/query_products.phtml', [$args, "products" => $products]);
 });
 
+/*
+Produce a report on the best three customers of the Company (in terms of total
+value of purchases by the customer) during the past 12 months. List details on the
+customers as well as the types, the number and value of their orders. 
+*/
+// Customers
+$app->get('/customers/query', function ($request, $response, $args) {
+  $this->logger->info("Customers query");
+  $mapper = new CustomerQueryMapper($this->db);
+  //$products = $mapper->getProducts();
+  $customers = $mapper->processQuery();
+  return $this->renderer->render($response, 'queries/query_customers.phtml', [$args, "customers" => $customers]);
+});
+
+// Inventory
+$app->get('/inventory/query', function ($request, $response, $args) {
+  $this->logger->info("inventory GET Query Page");
+  return $this->renderer->render($response, 'queries/query_inventory.phtml');
+});
+
+// Inventory POST
+$app->post('/inventory/query', function ($request, $response, $args) {
+  $data = $request->getParsedBody();
+  $this->logger->info("Inventory POST query");
+  $date = (int)filter_var($data['myInput'], FILTER_SANITIZE_STRING);
+
+  $mapper = new InventoryQueryMapper($this->db);
+  $inventory = $mapper->processQuery($date);
+
+  return $this->renderer->render($response, 'queries/query_inventory.phtml', [$args, "inventory" => $inventory]);
+});
+
+// Invoices
+$app->get('/invoices/query', function ($request, $response, $args) {
+  $this->logger->info("invoice GET Query Page");
+  return $this->renderer->render($response, 'queries/query_invoices.phtml');
+});
+
+// Invoices POST
+$app->post('/invoices/query', function ($request, $response, $args) {
+  $data = $request->getParsedBody();
+  $this->logger->info("invoices POST query");
+  $name = filter_var($data['customerName'], FILTER_SANITIZE_STRING);
+  $orderId = (int)filter_var($data['orderId'], FILTER_SANITIZE_STRING);
+
+  $mapper = new InvoicesQueryMapper($this->db);
+  $invoices = $mapper->processQuery($name, $orderId);
+
+  return $this->renderer->render($response, 'queries/query_invoices.phtml', [$args, "invoices" => $invoices]);
+});

@@ -22,14 +22,6 @@ class DepartmentMapper extends Mapper
      * @return [DepartmentEntity]  List of departments
      */
     public function processQuery($id) {
-        //TODO WRITE SQL (Preferabbly in another file, full of queries)
-        //$sql = "";
-        //$stmt = $this->db->query($sql);
-        //$results = [];
-        //while($row = $stmt->fetch()) {
-        //    $results[] = new DepartmentEntity($row);
-        //}
-
         // First gets the employees according to the department ID
 
         $get_employees_sql = "SELECT e.Id, e.Name
@@ -89,13 +81,10 @@ class DepartmentMapper extends Mapper
             $row = $stmt->fetch();
 
             if ($row)
-                $value->setCountDependents($row['count']);
+                $value->setDependentsCount($row['count']);
             else
-                $value->setCountDependents(0);
+                $value->setDependentsCount(0);
         }
-
-        #$dummy = [];
-        #$results[] = new DepartmentEntity($dummy);
 
         return $results;
     }

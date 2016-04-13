@@ -106,27 +106,5 @@
         </div>
       </div>
     </div>
-
-    <table class="pure-table">
-    <tr>
-        <th>Name</th>
-        <th>Room</th>
-        <th>Fax</th>
-        <th>Phone One</th>
-        <th>Phone Two</th>
-    </tr>
-
-<?php foreach($data['departments'] as $department): ?>
-
-    <tr>
-        <td><?=$department->getName() ?></td>
-        <td><?=$department->getRoom() ?></td>
-        <td><?=$department->getFax() ?></td>
-        <td><?=$department->getPhoneOne() ?></td>
-        <td><?=$department->getPhoneTwo() ?></td>
-    </tr>
-
-<?php endforeach; ?>
-</table>
   </body>
 </html>

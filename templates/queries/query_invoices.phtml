@@ -1,48 +1,68 @@
 <!DOCTYPE HTML>
 <html lang ="en">
-	<head>
+    <head>
 
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
- 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
- 		<link rel="stylesheet" href="jonStyle.css">
-		<script type="text/javascript" src="jonScript.js"></script>
-		<meta charset="utf-8">
-		<title>COMP 353 - Main Project</title>
-	</head>
-	<body>
-		<nav class="navbar navbar-default navbar-static-top text-center">
-  			<div class="container">
-  				<div class="navbar-header">
-  					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
-			    		<span class="sr-only">Toggle Navigation</span>
-			    		<span class="icon-bar"></span>
-			    		<span class="icon-bar"></span>
-			    		<span class="icon-bar"></span>
-			    	</button>
-			    	<a class="navbar-brand" href="index.html">COMP 353 - Main Project</a>
-			    </div>
-			    <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
-			    	<ul class="nav navbar-nav">
-			        	<li><a href="departments.html">Department</a></li>
-			        	<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Top 3<span class="caret"></span></a>
-			          		<ul class="dropdown-menu">
-			          			<li><a href="products.html">Products</a></li>
-			          			<li role="separator" class="divider"></li>
-			          			<li><a href="customers.html">Customers</a></li>
-			          		</ul>
-			        	</li>
-			        	<li><a href="inventory.html">Inventory</a></li>
-			        	<li><a href="payments.html">Payments</a></li>
-			        	<li><a href="invoices.html">Invoices</a></li>
-			        	<li><a href="edit.html">Edit</a></li>
-			      </ul>
-			    </div>
-		    </div>
-		</nav>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="/templates/jonStyle.css">
+        <script type="text/javascript" src="/templates/bootstrap.js"></script>
+
+        
+        <meta charset="utf-8">
+        <title>COMP 353 - Main Project</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-static-top text-center">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.php/">COMP 353 - Main Project</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/index.php/department/query">Department</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Top 3<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/index.php/products/query">Products</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/customers/query">Customers</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/index.php/inventory/query">Inventory</a></li>
+                        <li><a href="/index.php/payments/query">Payments</a></li>
+                        <li><a href="/index.php/invoices/query">Invoices</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CRUD<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/index.php/customers">Customers</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/departments">Departments</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/dependants">Dependants</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/employees">Employees</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/inventory">Inventory</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/items">Items</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/orders">Orders</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/index.php/payments">Shipments</a></li>
+                            </ul>
+                        </li>
+                  </ul>
+                </div>
+            </div>
+        </nav>
 		<div class="container">
 			<div class="jumbotron">			
 				<h1>Invoices</h1>
@@ -58,13 +78,19 @@
 						<!--innerpanels-->
 							<div class="col-md-1"></div>
 							<div class="col-md-10">
-								<form class="form-horizontal" method="post" id="InForm">
+								<form class="form-horizontal" method="post" id="InForm" action="/index.php/invoices/query">
 									<div class="panel panel-default">
 										<div class="panel-body">
 											<div class="form-group text-center">
 												<p class="col-sm-7 text-right">Customer invoice data at you fingertips. Manage your orders information.</p>
+												<div class="col-sm-3">
+													<input type="text" name="customerName" id="customerName" placeholder="Name" class="form-control">
+												</div>
+												<div class="col-sm-3">
+													<input type="text" name="orderId" id="orderId" placeholder="Order ID" class="form-control">
+												</div>
 												<div class="col-sm-1">
-													<button type="button" class="btn btn-default" onclick="GetIn()">Find</button>
+													<button type="submit" class="btn btn-default" onclick="GetIn()">Find</button>
 												</div>
 											</div>
 										</div>
@@ -77,5 +103,34 @@
 				</div>
 			</div>
 		</div>
+            <table class="pure-table">
+    <tr>
+        <th>Name</th>
+        <th>Telephone</th>
+        <th>Date</th>
+        <th>Items</th>
+        <th>Payment Date</th>
+        <th>Amount</th>
+    </tr>
+
+<?php foreach($data['invoices'] as $invoice): ?>
+
+    <tr>
+        <td><?=$invoice->getName() ?>   </td>
+        <td><?=$invoice->getTelephone() ?>   </td>
+        <td><?=$invoice->getDateOfPurchase() ?>   </td>
+        <td>
+            <?php foreach($invoice->getItems() as $item): ?>
+                Name:  <?=$item[0] ?>   
+                Units: <?=$item[1] ?>   
+                Total: <?=$item[2] ?> 
+            <?php endforeach; ?>
+        </td>
+        <td><?=$invoice->getPaymentDate() ?>   </td>
+        <td><?=$invoice->getAmount() ?>   </td>
+    </tr>
+
+<?php endforeach; ?>
+</table>
 	</body>
 </html>
