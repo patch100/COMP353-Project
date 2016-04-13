@@ -1,9 +1,64 @@
 <html>
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/templates/jonStyle.css">
+    <script type="text/javascript" src="/templates/bootstrap.js"></script>
+    <meta charset="utf-8">
     <title>COMP 353 Database Project</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
+  <nav class="navbar navbar-default navbar-static-top text-center">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.php/">COMP 353 - Main Project</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
+                <ul class="nav navbar-nav">
+                    <li><a href="/index.php/department/query">Department</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Top 3<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/index.php/products/query">Products</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/customers/query">Customers</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/index.php/inventory/query">Inventory</a></li>
+                    <li><a href="/index.php/payments/query">Payments</a></li>
+                    <li><a href="/index.php/invoices/query">Invoices</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CRUD<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/index.php/customers">Customers</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/departments">Departments</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/dependants">Dependants</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/employees">Employees</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/inventory">Inventory</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/items">Items</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/orders">Orders</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/index.php/payments">Shipments</a></li>
+                        </ul>
+                    </li>
+              </ul>
+            </div>
+        </div>
+    </nav>
 <h1>Edit Item</h1>
 <?php $item = $data['item'] ?>
 <form class="pure-form" method="post" action="/index.php/inventory/edit">
